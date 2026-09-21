@@ -77,6 +77,22 @@ Keep the generated `.spec.ts`.
 - Adding a company? Its slug must appear in `getPrerenderParams` output, which reads
   `ContentService.companies()`, so adding it to `content/companies.ts` is enough.
 
+## Layout, navigation and SEO (decided in phase 2)
+
+- Navigation data lives once in `core/layout/navigation.ts` (`MAIN_NAV`, `LEGAL_NAV`); header
+  and footer both render from it. Add pages there, not in templates.
+- The nav uses the **disclosure pattern** (button + `aria-expanded` + list of links), not
+  `ngMenuBar`/`role="menu"`. The user chose this over Angular Aria's menu, which is an
+  app-menu pattern. `@angular/cdk` supplies the drawer's focus trap.
+- `rg-mobile-drawer` wraps the single `rg-nav-menu`: inline from `$md`, modal side panel below
+  it. Its TS breakpoint (`COMPACT_QUERY`) must match `$md`.
+- SEO is route-driven: give each route a `title` and `data: { description }` (and
+  `noindex: true` where needed); `SeoTitleStrategy` calls `SeoService.apply`. Dynamic routes
+  use a title `ResolveFn` plus `resolve: { description }`. Absolute URLs use
+  `environment.site_url`.
+- The skip link's href is built from the current path, because `<base href="/">` turns a bare
+  `#main` into `/#main`.
+
 ## Styles
 
 - Tokens are CSS custom properties in `_tokens.scss` (colors `--c-*`, `--font-*`, `--fs-*`,
