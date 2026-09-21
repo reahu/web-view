@@ -1,1 +1,71 @@
-<p>hero-carousel works!</p>
+<section class="hero" aria-roledescription="carousel" aria-label="Highlights">
+  <div class="slides" [attr.aria-live]="running() ? 'off' : 'polite'">
+    @for (slide of slides(); track slide.id; let i = $index; let count = $count) {
+      <div
+        class="slide"
+        role="group"
+        aria-roledescription="slide"
+        [attr.aria-label]="i + 1 + ' of ' + count"
+        [class.is-active]="i === active()"
+        [inert]="i !== active()"
+      >
+        <img
+          class="image"
+          [ngSrc]="slide.image"
+          [alt]="slide.imageAlt"
+          fill
+          sizes="100vw"
+          [priority]="i === 0"
+        />
+        <div class="container content">
+          <h2 class="title">{{ slide.title }}</h2>
+          <a class="button button--on-dark" [routerLink]="slide.ctaLink">{{ slide.ctaLabel }}</a>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (slides().length > 1) {
+    <div class="container controls">
+      <button
+        type="button"
+        class="icon-button"
+        [attr.aria-label]="autoplay() ? 'Pause slideshow' : 'Play slideshow'"
+        (click)="toggleAutoplay()"
+      >
+        @if (autoplay()) {
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M4 2h3v12H4zM9 2h3v12H9z" fill="currentColor" />
+          </svg>
+        } @else {
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M4 2l10 6-10 6z" fill="currentColor" />
+          </svg>
+        }
+      </button>
+
+      <button type="button" class="icon-button" aria-label="Previous slide" (click)="show(active() - 1)">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+          <path d="M10 2L4 8l6 6" fill="none" stroke="currentColor" stroke-width="1.75" />
+        </svg>
+      </button>
+      <button type="button" class="icon-button" aria-label="Next slide" (click)="show(active() + 1)">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+          <path d="M6 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.75" />
+        </svg>
+      </button>
+
+      <div class="dots">
+        @for (slide of slides(); track slide.id; let i = $index) {
+          <button
+            type="button"
+            class="dot"
+            [attr.aria-label]="'Show slide ' + (i + 1) + ': ' + slide.title"
+            [attr.aria-current]="i === active() ? 'true' : null"
+            (click)="show(i)"
+          ></button>
+        }
+      </div>
+    </div>
+  }
+</section>
