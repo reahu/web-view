@@ -1,4 +1,38 @@
 <div class="container page">
-  <h1>Business portfolio</h1>
-  <p>Placeholder page. Content arrives in a later phase.</p>
+  <header class="page-header">
+    <h1>Business portfolio</h1>
+    <p class="lead">
+      Placeholder copy. The companies of Royal Group, grouped by the sector they work in.
+    </p>
+  </header>
+
+  <nav class="sector-nav" aria-label="Sectors">
+    <ul role="list">
+      @for (group of groups(); track group.sector) {
+        <li>
+          <a routerLink="/business-portfolio" [fragment]="group.sector">{{ group.label }}</a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  @for (group of groups(); track group.sector) {
+    <section class="sector" [id]="group.sector" [attr.aria-labelledby]="group.sector + '-heading'">
+      <h2 [id]="group.sector + '-heading'">{{ group.label }}</h2>
+      <ul class="companies" role="list">
+        @for (company of group.companies; track company.slug) {
+          <li class="company">
+            <!-- The name is right beside the logo, so the logo is decorative here. -->
+            <img [ngSrc]="company.logo" alt="" width="160" height="80" />
+            <div class="stack">
+              <h3 class="name">
+                <a [routerLink]="['/business-portfolio', company.slug]">{{ company.name }}</a>
+              </h3>
+              <p>{{ company.summary }}</p>
+            </div>
+          </li>
+        }
+      </ul>
+    </section>
+  }
 </div>

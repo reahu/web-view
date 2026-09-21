@@ -1,0 +1,71 @@
+@use 'breakpoints' as bp;
+
+.sector-nav {
+  margin-bottom: var(--space-7);
+  padding-block: var(--space-4);
+  border-block: var(--border);
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.sector + .sector {
+  margin-top: var(--space-8);
+}
+
+.sector h2 {
+  margin-bottom: var(--space-5);
+}
+
+.companies {
+  display: grid;
+  gap: var(--space-6) var(--grid-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.up(bp.$md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.company {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+  padding-top: var(--space-5);
+  border-top: var(--border);
+
+  img {
+    width: 6rem;
+    height: auto;
+  }
+
+  @include bp.up(bp.$sm) {
+    grid-template-columns: 10rem minmax(0, 1fr);
+
+    img {
+      width: 10rem;
+    }
+  }
+}
+
+.name {
+  font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -230,3 +230,8 @@ textarea {
   padding-bottom: var(--space-9);
   padding-top: var(--space-7);
 }
+
+// Leave breathing room above targets reached by fragment links.
+[id] {
+  scroll-margin-top: var(--space-5);
+}
