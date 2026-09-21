@@ -93,6 +93,32 @@ Keep the generated `.spec.ts`.
 - The skip link's href is built from the current path, because `<base href="/">` turns a bare
   `#main` into `/#main`.
 
+## Pages and shared pieces (phases 3–6)
+
+- Content pages wrap in `<div class="container page">` and open with
+  `<header class="page-header"><h1>…</h1><p class="lead">…</p></header>`. Global helpers in
+  `_base.scss`: `.page`, `.page-header`, `.prose`, `.stack`, `.lead`, `.section`,
+  `.section--mist`, `.button` (+ `--secondary`, `--on-dark`), `.visually-hidden`.
+- Shared UI: `rg-section-heading` (h2/h3 + optional link), `rg-external-link` (always use it
+  for off-site links), `rg-news-card` (`headingLevel` 2 or 3), `rg-video-facade`
+  (youtube-nocookie, loads on click, local poster only).
+- Links to an in-page target can't be bare `href="#x"` (base href). Use
+  `routerLink` + `[fragment]` (anchor scrolling is on) or a button that focuses the target.
+- Home: a visually hidden h1, then hero (h2 slide titles), about intro, logo marquee, latest
+  news. The marquee renders the list once; don't duplicate it for looping.
+- Contact form: Signal Forms with `[formRoot]`/`[formField]`, an error summary of buttons
+  that call `focusBoundControl()`, `aria-invalid`/`aria-describedby` per field. Sending goes
+  through the `CONTACT_SENDER` token, which **rejects by default** until a real endpoint
+  is provided. `?topic=` preselects the topic.
+- Search: `rg-search-overlay` is a native `<dialog>` opened with `showModal()`; the index is
+  built from `MAIN_NAV`, `LEGAL_NAV` and `ContentService`. New pages appear in search
+  once they're in the nav data.
+- `/404` is a real route so the build writes `404/index.html`; nginx serves it for unknown
+  URLs with a 404 status.
+- Only `--c-error` and `--c-success` exist beyond the approved palette, for form feedback only.
+- Dates: pass ISO date strings (`2026-03-14`) to `DatePipe` without a timezone argument;
+  Angular reads date-only strings as local dates, so `'UTC'` shifts them by a day east of UTC.
+
 ## Styles
 
 - Tokens are CSS custom properties in `_tokens.scss` (colors `--c-*`, `--font-*`, `--fs-*`,
