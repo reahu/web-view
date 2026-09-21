@@ -100,6 +100,13 @@ export const routes: Routes = [
   },
   { path: 'social', redirectTo: 'latest-news' },
   {
+    // Prerendered to /404/index.html so nginx can serve it with a real 404 status.
+    path: '404',
+    title: 'Page not found',
+    data: { noindex: true },
+    loadComponent: () => import('@features/not-found/not-found').then((m) => m.NotFound),
+  },
+  {
     path: '**',
     title: 'Page not found',
     data: { noindex: true },
