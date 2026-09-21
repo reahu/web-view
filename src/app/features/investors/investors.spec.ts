@@ -1,21 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { Investors } from './investors';
 
 describe('Investors', () => {
-  let component: Investors;
-  let fixture: ComponentFixture<Investors>;
-
-  beforeEach(async () => {
+  it('has exactly one h1', async () => {
     await TestBed.configureTestingModule({
       imports: [Investors],
+      providers: [provideRouter([])],
     }).compileComponents();
-
-    fixture = TestBed.createComponent(Investors);
-    component = fixture.componentInstance;
+    const fixture = TestBed.createComponent(Investors);
     await fixture.whenStable();
-  });
+    const el: HTMLElement = fixture.nativeElement;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(el.querySelectorAll('h1').length).toBe(1);
+    expect(el.querySelector('a.button')?.getAttribute('href')).toBe('/contact-us?topic=investors');
   });
 });

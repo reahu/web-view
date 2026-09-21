@@ -1,0 +1,39 @@
+@use 'breakpoints' as bp;
+
+.section-block + .section-block {
+  margin-top: var(--space-8);
+}
+
+.points {
+  display: grid;
+  gap: var(--space-6) var(--grid-gap);
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.up(bp.$md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  li {
+    padding-top: var(--space-4);
+    border-top: 2px solid var(--c-navy);
+
+    > * + * {
+      margin-top: var(--space-2);
+    }
+  }
+
+  h3 {
+    font-size: var(--fs-md);
+  }
+}
+
+.contact {
+  padding: var(--space-6);
+  background: var(--c-mist);
+
+  > * + * {
+    margin-top: var(--space-4);
+  }
+}
