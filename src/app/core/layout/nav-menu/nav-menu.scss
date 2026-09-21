@@ -1,0 +1,109 @@
+@use 'breakpoints' as bp;
+
+// Compact (inside the mobile drawer): stacked list, navy on paper.
+.nav__list,
+.nav__group {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav__item {
+  border-bottom: var(--border);
+}
+
+.nav__trigger,
+.nav__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: 3rem;
+  padding: var(--space-2) 0;
+  border: 0;
+  background: none;
+  color: var(--c-navy);
+  font-size: var(--fs-md);
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.nav__trigger[aria-expanded='true'] .nav__chevron {
+  transform: rotate(180deg);
+}
+
+.nav__group {
+  padding: 0 0 var(--space-3) var(--space-4);
+}
+
+.nav__sublink {
+  display: block;
+  padding: var(--space-2) 0;
+  color: var(--c-ink);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.is-active {
+  font-weight: 600;
+}
+
+// Wide: inline in the navy header, groups drop down as white panels.
+@include bp.up(bp.$md) {
+  .nav__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .nav__item {
+    position: relative;
+    border: 0;
+  }
+
+  .nav__trigger,
+  .nav__link {
+    width: auto;
+    min-height: 2.75rem;
+    color: var(--c-paper);
+    font-size: var(--fs-sm);
+  }
+
+  .nav__trigger.is-active,
+  .nav__link.is-active {
+    font-weight: inherit;
+    text-decoration: underline 2px;
+    text-underline-offset: 0.5em;
+  }
+
+  .nav__group {
+    --c-focus: var(--c-navy);
+
+    position: absolute;
+    top: 100%;
+    left: calc(-1 * var(--space-4));
+    z-index: 10;
+    min-width: 17rem;
+    padding: var(--space-2) 0;
+    border: var(--border);
+    background: var(--c-paper);
+  }
+
+  .nav__sublink {
+    padding: var(--space-2) var(--space-4);
+    color: var(--c-navy);
+
+    &:hover {
+      background: var(--c-mist);
+    }
+  }
+}
