@@ -1,4 +1,49 @@
 <div class="container page">
-  <h1>About Royal Group</h1>
-  <p>Placeholder page. Content arrives in a later phase.</p>
+  <header class="page-header">
+    <h1>About Royal Group</h1>
+    <p class="lead">
+      Placeholder copy. Royal Group of Cambodia is a family of companies working in eight sectors of
+      the Cambodian economy.
+    </p>
+  </header>
+
+  <div class="layout">
+    <div class="prose">
+      <h2>Who we are</h2>
+      <p>
+        Placeholder copy. This section introduces the group: where it started, how it has grown and
+        what it stands for today. Replace it with approved text from the client.
+      </p>
+      <p>
+        Placeholder copy. A second paragraph can describe the group's scale, such as the number of
+        companies, employees and provinces it operates in, once those figures are confirmed.
+      </p>
+
+      <h2>What we do</h2>
+      <p>Placeholder copy. The group's companies work in these sectors:</p>
+      <ul>
+        @for (sector of sectors; track sector.id) {
+          <li>
+            <a routerLink="/business-portfolio" [fragment]="sector.id">{{ sector.label }}</a>
+          </li>
+        }
+      </ul>
+
+      <h2>How we work</h2>
+      <p>
+        Placeholder copy. A short statement of values: long-term investment, partnership with
+        international companies, and commitment to Cambodia's development.
+      </p>
+    </div>
+
+    <aside class="related" aria-labelledby="about-related-heading">
+      <h2 id="about-related-heading" class="related-heading">More about the group</h2>
+      <ul role="list">
+        <li><a routerLink="/the-chairman">The Chairman</a></li>
+        <li><a routerLink="/milestones">Milestones</a></li>
+        <li><a routerLink="/business-portfolio">Business portfolio</a></li>
+        <li><a routerLink="/csr">Corporate social responsibility</a></li>
+      </ul>
+    </aside>
+  </div>
 </div>
