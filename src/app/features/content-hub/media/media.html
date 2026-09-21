@@ -1,4 +1,30 @@
 <div class="container page">
-  <h1>Media</h1>
-  <p>Placeholder page. Content arrives in a later phase.</p>
+  <header class="page-header">
+    <h1>Media</h1>
+    <p class="lead">Videos and resources for journalists and partners.</p>
+  </header>
+
+  <section aria-labelledby="videos-heading">
+    <h2 id="videos-heading">Videos</h2>
+    <ul class="videos" role="list">
+      @for (video of videos(); track video.id) {
+        <li>
+          <rg-video-facade [youtubeId]="video.youtubeId" [title]="video.title" [poster]="video.poster" />
+          <h3 class="video-title">{{ video.title }}</h3>
+        </li>
+      } @empty {
+        <li class="empty">Videos will be published here soon.</li>
+      }
+    </ul>
+  </section>
+
+  <section class="press" aria-labelledby="press-heading">
+    <h2 id="press-heading">Press enquiries</h2>
+    <p>Journalists can contact our communications team for interviews, statements and images.</p>
+    <p>
+      <a class="button" routerLink="/contact-us" [queryParams]="{ topic: 'media' }">
+        Contact the press team
+      </a>
+    </p>
+  </section>
 </div>

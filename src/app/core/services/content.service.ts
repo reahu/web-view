@@ -2,9 +2,11 @@ import { Service, Signal, computed, signal } from '@angular/core';
 import { COMPANIES } from '@content/companies';
 import { MILESTONES } from '@content/milestones';
 import { NEWS } from '@content/news';
+import { VIDEOS } from '@content/videos';
 import { SLIDES } from '@content/slides';
 import { Company, Sector } from '@core/models/company';
 import { HeroSlide } from '@core/models/hero-slide';
+import { MediaVideo } from '@core/models/media-video';
 import { Milestone } from '@core/models/milestone';
 import { NewsItem } from '@core/models/news-item';
 
@@ -18,6 +20,8 @@ export class ContentService {
   readonly slides: Signal<readonly HeroSlide[]> = signal(SLIDES).asReadonly();
 
   readonly companies: Signal<readonly Company[]> = signal(COMPANIES).asReadonly();
+
+  readonly videos: Signal<readonly MediaVideo[]> = signal(VIDEOS).asReadonly();
 
   /** Newest first. */
   readonly news: Signal<readonly NewsItem[]> = computed(() =>
