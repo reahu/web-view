@@ -1,59 +1,49 @@
-# WebView
+# web-view
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.7.
+Angular 22 · standalone · zoneless · signals · Vitest.
 
-## Development server
+## Scripts
 
-To start a local development server, run:
+| Command | What it does |
+|---|---|
+| `npm start` | Dev server with the `local` configuration |
+| `npm run build -- --configuration <local\|dev\|staging\|production>` | Build (default `production`) |
+| `npm test` | Unit tests (Vitest) |
+| `docker build --build-arg configuration=staging -t web-view .` | Container image served by nginx |
 
-```bash
-ng serve
+## Project structure
+
+Code is organized by **feature area**, not by file type ([Angular style guide](https://angular.dev/style-guide)).
+
+```
+src/
+  app/
+    app.ts · app.html · app.scss · app.config.ts · app.routes.ts
+    core/          app-wide singletons, provided once from app.config.ts
+      auth/        auth state, functional guards
+      http/        functional interceptors, API helpers
+      config/      runtime/app configuration tokens
+    layout/        app shell: container, left menu, not-found page
+    features/      one folder per lazy-loaded feature, each with its own <name>.routes.ts
+    shared/        reusable, feature-agnostic code
+      ui/          standalone components, directives, pipes
+      models/      shared types (datatables/, enums/, responses/)
+      utils/       pure helper functions
+  environments/    environment.{,dev.,staging.,prod.}ts — swapped via fileReplacements
+  styles/          global SCSS (styles.scss, _variables.scss)
+public/            static files served from the site root (/imgs, /i18n, /fonts, /excels)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Import aliases
 
-## Code scaffolding
+`@core/*`, `@layout/*`, `@features/*`, `@shared/*`, `@env/*` (see `tsconfig.json`).
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Conventions
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Standalone only; no NgModules. File names without type suffix (`user-list.ts`, class `UserList`).
+- Zoneless change detection; components are `OnPush` by default.
+- `inject()` instead of constructor injection; signals (`signal`, `computed`, `input()`, `output()`) for state.
+- Built-in control flow (`@if`, `@for`, `@switch`) in templates.
+- Functional guards and interceptors (`CanActivateFn`, `HttpInterceptorFn`).
+- Features are lazy-loaded: `{ path: 'x', loadChildren: () => import('@features/x/x.routes') }`.
+- Anything under `core/` or `shared/` must not import from `features/`.
