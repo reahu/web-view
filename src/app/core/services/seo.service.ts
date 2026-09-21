@@ -7,7 +7,7 @@ import { environment } from '@env/environment';
 export const SITE_NAME = 'Royal Group of Cambodia';
 
 const DEFAULT_DESCRIPTION =
-  'Royal Group of Cambodia is one of the country’s largest conglomerates, with businesses in telecoms and media, finance, insurance, property, hospitality, infrastructure, energy and consumer goods.';
+  'Royal Group of Cambodia is a Cambodian group of companies working in telecoms and media, finance, insurance, property, hospitality, infrastructure, energy and consumer goods.';
 
 // Placeholder until a real share image exists.
 const DEFAULT_IMAGE = '/images/placeholders/hero-1.webp';
