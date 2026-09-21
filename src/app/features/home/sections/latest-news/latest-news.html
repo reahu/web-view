@@ -1,1 +1,15 @@
-<p>latest-news works!</p>
+<section class="section" aria-labelledby="latest-news-heading">
+  <div class="container">
+    <rg-section-heading
+      heading="Latest news"
+      headingId="latest-news-heading"
+      linkLabel="View all news"
+      linkPath="/latest-news"
+    />
+    <ul class="grid" role="list">
+      @for (item of news(); track item.id) {
+        <li><rg-news-card [item]="item" /></li>
+      }
+    </ul>
+  </div>
+</section>
