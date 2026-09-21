@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ContentService } from '@core/services/content.service';
 
 @Component({
-  imports: [],
   selector: 'rg-milestones',
   styleUrl: './milestones.scss',
   templateUrl: './milestones.html',
 })
-export class Milestones {}
+export class Milestones {
+  protected readonly milestones = inject(ContentService).milestones;
+}
