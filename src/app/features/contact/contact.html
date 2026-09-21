@@ -1,4 +1,137 @@
 <div class="container page">
-  <h1>Contact us</h1>
-  <p>Placeholder page. Content arrives in a later phase.</p>
+  <header class="page-header">
+    <h1>Contact us</h1>
+    <p class="lead">Send us a message and the right team will reply by email.</p>
+  </header>
+
+  <div class="layout">
+    <section aria-labelledby="form-heading">
+      <h2 id="form-heading">Send us a message</h2>
+      <p class="hint">All fields are required unless marked optional.</p>
+
+      @if (status() === 'sent') {
+        <div #statusMessage class="notice notice--success" tabindex="-1">
+          <p><strong>Thank you. Your message has been sent.</strong></p>
+          <p>We'll reply to the email address you gave us.</p>
+        </div>
+      }
+      @if (status() === 'failed') {
+        <div #statusMessage class="notice notice--error" tabindex="-1">
+          <p><strong>Sorry, your message couldn't be sent.</strong></p>
+          <p>Your answers are still in the form. Please try again later.</p>
+        </div>
+      }
+
+      @if (showSummary() && errors().length) {
+        <div #summary class="error-summary" tabindex="-1" aria-labelledby="error-summary-title">
+          <h3 id="error-summary-title">There is a problem</h3>
+          <ul role="list">
+            @for (error of errors(); track error.key) {
+              <li>
+                <button type="button" class="error-link" (click)="focusField(error.key)">
+                  {{ error.message }}
+                </button>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+
+      <form class="form" [formRoot]="contactForm">
+        <div class="field" [class.has-error]="hasError(contactForm.name)">
+          <label for="contact-name">Full name</label>
+          @if (hasError(contactForm.name)) {
+            <p class="error" id="contact-name-error">
+              <span class="visually-hidden">Error: </span>{{ errorOf(contactForm.name) }}
+            </p>
+          }
+          <input
+            id="contact-name"
+            type="text"
+            autocomplete="name"
+            [formField]="contactForm.name"
+            [attr.aria-invalid]="hasError(contactForm.name) || null"
+            [attr.aria-describedby]="hasError(contactForm.name) ? 'contact-name-error' : null"
+          />
+        </div>
+
+        <div class="field" [class.has-error]="hasError(contactForm.email)">
+          <label for="contact-email">Email address</label>
+          @if (hasError(contactForm.email)) {
+            <p class="error" id="contact-email-error">
+              <span class="visually-hidden">Error: </span>{{ errorOf(contactForm.email) }}
+            </p>
+          }
+          <input
+            id="contact-email"
+            type="email"
+            autocomplete="email"
+            spellcheck="false"
+            [formField]="contactForm.email"
+            [attr.aria-invalid]="hasError(contactForm.email) || null"
+            [attr.aria-describedby]="hasError(contactForm.email) ? 'contact-email-error' : null"
+          />
+        </div>
+
+        <div class="field" [class.has-error]="hasError(contactForm.organisation)">
+          <label for="contact-organisation">Organisation (optional)</label>
+          @if (hasError(contactForm.organisation)) {
+            <p class="error" id="contact-organisation-error">
+              <span class="visually-hidden">Error: </span>{{ errorOf(contactForm.organisation) }}
+            </p>
+          }
+          <input
+            id="contact-organisation"
+            type="text"
+            autocomplete="organization"
+            [formField]="contactForm.organisation"
+            [attr.aria-invalid]="hasError(contactForm.organisation) || null"
+            [attr.aria-describedby]="
+              hasError(contactForm.organisation) ? 'contact-organisation-error' : null
+            "
+          />
+        </div>
+
+        <div class="field">
+          <label for="contact-topic">What is your message about?</label>
+          <select id="contact-topic" [formField]="contactForm.topic">
+            @for (topic of topics; track topic.value) {
+              <option [value]="topic.value">{{ topic.label }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="field" [class.has-error]="hasError(contactForm.message)">
+          <label for="contact-message">Your message</label>
+          @if (hasError(contactForm.message)) {
+            <p class="error" id="contact-message-error">
+              <span class="visually-hidden">Error: </span>{{ errorOf(contactForm.message) }}
+            </p>
+          }
+          <textarea
+            id="contact-message"
+            rows="7"
+            [formField]="contactForm.message"
+            [attr.aria-invalid]="hasError(contactForm.message) || null"
+            [attr.aria-describedby]="hasError(contactForm.message) ? 'contact-message-error' : null"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="button" [disabled]="contactForm().submitting()">
+          Send message
+        </button>
+      </form>
+    </section>
+
+    <aside class="details" aria-labelledby="office-heading">
+      <h2 id="office-heading">Head office</h2>
+      <address>
+        Placeholder address<br />
+        Phnom Penh, Cambodia
+      </address>
+      <p class="placeholder-note">
+        Placeholder: phone, email and opening hours to be confirmed by the client.
+      </p>
+    </aside>
+  </div>
 </div>

@@ -12,6 +12,8 @@
   --c-paper: #ffffff; // page background
 
   --c-focus: var(--c-navy);
+  --c-error: #b3261e; // form errors only (6.5:1 on white)
+  --c-success: #1e6b3a; // form confirmation only (6.6:1 on white)
 
   // Typefaces
   --font-display: 'Noto Serif Display', 'Noto Serif Khmer', Georgia, 'Times New Roman', serif;
