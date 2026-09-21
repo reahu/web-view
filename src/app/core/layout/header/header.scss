@@ -1,0 +1,45 @@
+@use 'breakpoints' as bp;
+
+.header {
+  --c-focus: var(--c-paper);
+
+  background: var(--c-navy);
+  color: var(--c-paper);
+}
+
+.header__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  min-height: 4.5rem;
+}
+
+.brand {
+  color: var(--c-paper);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: 0 var(--space-3);
+  border: 1px solid rgb(255 255 255 / 0.5);
+  border-radius: var(--radius-control);
+  background: none;
+  color: var(--c-paper);
+  cursor: pointer;
+}
+
+@include bp.up(bp.$md) {
+  .header__toggle {
+    display: none;
+  }
+}

@@ -1,0 +1,30 @@
+<header class="header">
+  <div class="container header__bar">
+    <a class="brand" routerLink="/">
+      Royal Group<span class="visually-hidden"> of Cambodia, home page</span>
+    </a>
+
+    <button
+      #menuToggle
+      type="button"
+      class="header__toggle"
+      aria-controls="site-nav"
+      [attr.aria-expanded]="navOpen()"
+      (click)="navOpen.set(!navOpen())"
+    >
+      <svg viewBox="0 0 18 14" width="18" height="14" aria-hidden="true">
+        <path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" stroke-width="1.5" />
+      </svg>
+      Menu
+    </button>
+
+    <rg-mobile-drawer
+      id="site-nav"
+      label="Site menu"
+      [(open)]="navOpen"
+      (dismissed)="menuToggle.focus()"
+    >
+      <rg-nav-menu />
+    </rg-mobile-drawer>
+  </div>
+</header>
