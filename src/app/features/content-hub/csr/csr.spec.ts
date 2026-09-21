@@ -1,21 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { Csr } from './csr';
 
 describe('Csr', () => {
-  let component: Csr;
-  let fixture: ComponentFixture<Csr>;
-
-  beforeEach(async () => {
+  it('has exactly one h1', async () => {
     await TestBed.configureTestingModule({
       imports: [Csr],
+      providers: [provideRouter([])],
     }).compileComponents();
-
-    fixture = TestBed.createComponent(Csr);
-    component = fixture.componentInstance;
+    const fixture = TestBed.createComponent(Csr);
     await fixture.whenStable();
-  });
+    const el: HTMLElement = fixture.nativeElement;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(el.querySelectorAll('h1').length).toBe(1);
+    expect(el.querySelectorAll('.areas li').length).toBe(4);
   });
 });

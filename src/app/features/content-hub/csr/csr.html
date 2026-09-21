@@ -1,4 +1,32 @@
 <div class="container page">
-  <h1>Corporate social responsibility</h1>
-  <p>Placeholder page. Content arrives in a later phase.</p>
+  <header class="page-header">
+    <h1>Corporate social responsibility</h1>
+    <p class="lead">
+      Placeholder copy. How Royal Group and its companies support communities across Cambodia.
+    </p>
+  </header>
+
+  <div class="prose">
+    <h2>Our approach</h2>
+    <p>
+      Placeholder copy. A short statement of how the group chooses, funds and measures its
+      community programmes.
+    </p>
+  </div>
+
+  <section class="areas-section" aria-labelledby="areas-heading">
+    <h2 id="areas-heading">Focus areas</h2>
+    <ul class="areas" role="list">
+      @for (area of areas; track area.title) {
+        <li>
+          <h3>{{ area.title }}</h3>
+          <p>{{ area.text }}</p>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <p class="more">
+    <a routerLink="/latest-news">Read community news</a>
+  </p>
 </div>
