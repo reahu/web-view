@@ -1,0 +1,89 @@
+import { DOCUMENT } from '@angular/common';
+import { Injectable, Service, inject } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
+import { environment } from '@env/environment';
+
+export const SITE_NAME = 'Royal Group of Cambodia';
+
+const DEFAULT_DESCRIPTION =
+  'Royal Group of Cambodia is one of the country’s largest conglomerates, with businesses in telecoms and media, finance, insurance, property, hospitality, infrastructure, energy and consumer goods.';
+
+// Placeholder until a real share image exists.
+const DEFAULT_IMAGE = '/images/placeholders/hero-1.webp';
+
+export interface PageSeo {
+  /** Page name without the site suffix; empty or undefined for the home page. */
+  title?: string;
+  description?: string;
+  /** Root-relative path of the page, e.g. '/csr'. Query and fragment are dropped. */
+  path: string;
+  /** Root-relative image path for social previews. */
+  image?: string;
+  noindex?: boolean;
+}
+
+/** Writes the document title, meta description, canonical link and Open Graph tags. */
+@Service()
+export class SeoService {
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+  private readonly document = inject(DOCUMENT);
+
+  apply(page: PageSeo): void {
+    const title = page.title && page.title !== SITE_NAME ? `${page.title} | ${SITE_NAME}` : SITE_NAME;
+    const description = page.description || DEFAULT_DESCRIPTION;
+    const url = absoluteUrl(page.path.split(/[?#]/, 1)[0] || '/');
+    const image = absoluteUrl(page.image ?? DEFAULT_IMAGE);
+
+    this.title.setTitle(title);
+    this.meta.updateTag({ name: 'description', content: description });
+    this.meta.updateTag({ name: 'robots', content: page.noindex ? 'noindex' : 'index, follow' });
+
+    this.meta.updateTag({ property: 'og:site_name', content: SITE_NAME });
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:title', content: title });
+    this.meta.updateTag({ property: 'og:description', content: description });
+    this.meta.updateTag({ property: 'og:url', content: url });
+    this.meta.updateTag({ property: 'og:image', content: image });
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+
+    this.setCanonical(url);
+  }
+
+  private setCanonical(url: string): void {
+    let link = this.document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!link) {
+      link = this.document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      this.document.head.appendChild(link);
+    }
+    link.setAttribute('href', url);
+  }
+}
+
+/**
+ * Applies SEO on every navigation from the route's `title` and its `data`:
+ * `description` (string) and `noindex` (boolean).
+ */
+@Injectable()
+export class SeoTitleStrategy extends TitleStrategy {
+  private readonly seo = inject(SeoService);
+
+  override updateTitle(snapshot: RouterStateSnapshot): void {
+    let leaf = snapshot.root;
+    while (leaf.firstChild) {
+      leaf = leaf.firstChild;
+    }
+    this.seo.apply({
+      title: this.buildTitle(snapshot),
+      description: leaf.data['description'] as string | undefined,
+      noindex: leaf.data['noindex'] === true,
+      path: snapshot.url,
+    });
+  }
+}
+
+function absoluteUrl(path: string): string {
+  return `${environment.site_url}${path}`;
+}
