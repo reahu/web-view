@@ -8,6 +8,20 @@ export type Sector =
   | 'energy-resources'
   | 'retail-consumer';
 
+/** Display names, in the order sectors are presented across the site. */
+export const SECTOR_LABELS: Readonly<Record<Sector, string>> = {
+  'telecom-media': 'Telecoms and media',
+  finance: 'Finance',
+  insurance: 'Insurance',
+  property: 'Property',
+  hospitality: 'Hospitality',
+  infrastructure: 'Infrastructure',
+  'energy-resources': 'Energy and resources',
+  'retail-consumer': 'Retail and consumer',
+};
+
+export const SECTORS = Object.keys(SECTOR_LABELS) as readonly Sector[];
+
 export interface Company {
   /** URL segment for /business-portfolio/:slug. */
   slug: string;

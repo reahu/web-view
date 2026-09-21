@@ -1,1 +1,27 @@
-<p>about-intro works!</p>
+<section class="section" aria-labelledby="about-intro-heading">
+  <div class="container grid">
+    <div class="stack">
+      <h2 id="about-intro-heading">A Cambodian group working across the economy</h2>
+      <p class="lead">
+        Placeholder copy. Royal Group of Cambodia builds and runs businesses the country relies on,
+        from mobile networks and banking to railways and power.
+      </p>
+      <p>
+        Placeholder copy. We work with international partners and investors on long-term
+        projects, and employ thousands of people across the country.
+      </p>
+      <p><a class="button" routerLink="/about-royal-group">Read about Royal Group</a></p>
+    </div>
+
+    <div>
+      <h3 class="sectors-heading">Eight sectors</h3>
+      <ul class="sectors" role="list">
+        @for (sector of sectors; track sector.id) {
+          <li>
+            <a routerLink="/business-portfolio" [fragment]="sector.id">{{ sector.label }}</a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>
