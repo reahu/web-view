@@ -1,0 +1,9 @@
+<div class="container">
+  @if (company(); as company) {
+    <h1>{{ company.name }}</h1>
+    <p>{{ company.summary }}</p>
+  } @else {
+    <h1>Company not found</h1>
+    <p><a routerLink="/business-portfolio">View the business portfolio</a>.</p>
+  }
+</div>

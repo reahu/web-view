@@ -1,3 +1,5 @@
+> **Outdated.** These templates are from the earlier admin-app skeleton (employees, auth, HTTP, reactive forms) and do not apply to the corporate site. SKILL.md no longer references this file. Safe to delete.
+
 # web-view patterns
 
 Complete, compile-checked examples for each kind of file, shown as one small "employees"
