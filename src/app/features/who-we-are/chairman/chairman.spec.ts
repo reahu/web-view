@@ -1,21 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Chairman } from './chairman';
 
 describe('Chairman', () => {
-  let component: Chairman;
-  let fixture: ComponentFixture<Chairman>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Chairman],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(Chairman);
-    component = fixture.componentInstance;
+  it('has one h1 and a described portrait', async () => {
+    const fixture = TestBed.createComponent(Chairman);
     await fixture.whenStable();
-  });
+    const el: HTMLElement = fixture.nativeElement;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(el.querySelectorAll('h1').length).toBe(1);
+    expect(el.querySelector('img')?.getAttribute('alt')).toBeTruthy();
   });
 });
