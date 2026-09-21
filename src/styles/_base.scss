@@ -105,6 +105,98 @@ textarea {
   }
 }
 
+// Vertical rhythm for runs of text and blocks.
+.stack > * + * {
+  margin-top: var(--space-4);
+}
+
+.prose {
+  max-width: var(--measure);
+
+  > * + * {
+    margin-top: var(--space-4);
+  }
+
+  > h2 {
+    margin-top: var(--space-7);
+  }
+
+  > h3 {
+    margin-top: var(--space-6);
+  }
+
+  ul,
+  ol {
+    padding-left: var(--space-5);
+  }
+}
+
+.lead {
+  max-width: var(--measure);
+  color: var(--c-slate);
+  font-size: var(--fs-md);
+}
+
+// Page sections: calm bands separated by spacing, with mist for alternation.
+.section {
+  padding-block: var(--space-8);
+}
+
+.section--mist {
+  background: var(--c-mist);
+}
+
+.page-header {
+  padding-bottom: var(--space-7);
+
+  > * + * {
+    margin-top: var(--space-4);
+  }
+}
+
+// Buttons (also used on links that look like buttons).
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: 0 var(--space-5);
+  border: 1px solid var(--c-navy);
+  border-radius: var(--radius-control);
+  background: var(--c-navy);
+  color: var(--c-paper);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--c-ink);
+    border-color: var(--c-ink);
+  }
+}
+
+.button--secondary {
+  background: transparent;
+  color: var(--c-navy);
+
+  &:hover {
+    background: var(--c-mist);
+    border-color: var(--c-navy);
+  }
+}
+
+.button--on-dark {
+  border-color: var(--c-paper);
+  background: var(--c-paper);
+  color: var(--c-navy);
+
+  &:hover {
+    background: var(--c-mist);
+    border-color: var(--c-mist);
+  }
+}
+
 // Set on <html> while the mobile drawer is open.
 .scroll-locked {
   overflow: hidden;
@@ -131,4 +223,9 @@ textarea {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+// Standard top spacing for content pages (the home page starts with its full-bleed hero).
+.page {
+  padding-top: var(--space-7);
 }

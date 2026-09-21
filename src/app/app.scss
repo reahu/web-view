@@ -6,7 +6,6 @@
 
 main {
   flex: 1;
-  padding-top: var(--space-7);
 
   // Focus lands here from the skip link; the outline would frame the whole page.
   &:focus {
