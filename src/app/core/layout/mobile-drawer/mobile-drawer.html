@@ -1,0 +1,15 @@
+<div
+  class="panel"
+  [cdkTrapFocus]="modal()"
+  [attr.role]="modal() ? 'dialog' : null"
+  [attr.aria-modal]="modal() ? 'true' : null"
+  [attr.aria-label]="modal() ? label() : null"
+>
+  <button #closeButton type="button" class="close" (click)="dismiss()">
+    Close
+    <svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true">
+      <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" />
+    </svg>
+  </button>
+  <ng-content />
+</div>

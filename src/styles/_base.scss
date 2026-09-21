@@ -105,6 +105,11 @@ textarea {
   }
 }
 
+// Set on <html> while the mobile drawer is open.
+.scroll-locked {
+  overflow: hidden;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
