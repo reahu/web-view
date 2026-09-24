@@ -36,7 +36,8 @@ src/locale/              messages.km.xlf: the Khmer translation, English source 
 src/styles/              styles.scss → _fonts, _tokens, _base; _breakpoints (no CSS output)
 public/
   fonts/                 self-hosted WOFF2 subsets, Latin and Khmer
-  images/                logo/ (the client's logo), placeholders/, photos/ (WebP/AVIF)
+  images/                logo/ (the client's logo), share/ (og:image), placeholders/, photos/
+  icon.svg · favicon.ico · apple-touch-icon.png · icons/ · site.webmanifest
 tools/                   postbuild.mjs, i18n-merge.mjs, i18n-review.mjs (Node built-ins only)
 ```
 
@@ -170,6 +171,23 @@ already-translated template changes its extracted source (see Languages).
   and details, the legal pages.
 - `/404` is a real route in each language; nginx serves the one matching the URL's language.
 - Dates: pass ISO date strings (`2026-03-14`) to `DatePipe` without a timezone argument.
+
+## Icons and sharing
+
+- Small icons (`icon.svg`, `favicon.ico` 16/32/48) are a gold "M" on `--c-brand`. The SVG's
+  path is the "M" of Noto Serif Display 600, taken with fontTools (`SVGPathPen`), not a
+  `<text>` element. Large icons (`apple-touch-icon.png` 180, `icons/icon-192/512.png`,
+  `icons/icon-maskable-512.png` with the logo inside the central 80% circle) show the client's
+  logo on `--c-brand`.
+- `images/share/malin-share.webp` (1200×630) is the default `og:image`, with width, height and
+  a translated `og:image:alt`. It shows the logo, both names and the values line.
+- Recipe to regenerate: lay each out as a small HTML page using `public/fonts` and the
+  logo, screenshot it at the exact size with headless Chrome (Pillow can't shape Khmer), then
+  Pillow for `favicon.ico` (from separate 16/32/48 renders) and WebP. The logo PNG with
+  transparency comes from the client's organisation-chart PDF (image plus its soft mask).
+- Head links are root-relative (one cached copy for both languages) except the manifest,
+  which is relative so its `start_url: "./"` is each language's home. nginx serves
+  `.webmanifest` as `application/manifest+json` (its own location block).
 
 ## Build output, headers and CI
 

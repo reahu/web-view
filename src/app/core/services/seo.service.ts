@@ -18,8 +18,13 @@ export const LOGO = { src: '/images/logo/malin-logo.webp', width: 206, height: 1
 
 const DEFAULT_DESCRIPTION = $localize`:@@seo.defaultDescription:Malin Koh Kong Peace Development dredges and supplies sand for construction projects of every kind, in support of Cambodia’s construction sector.`;
 
-// Placeholder until a real share image exists.
-const DEFAULT_IMAGE = '/images/placeholders/hero-1.webp';
+/** Default social preview: logo, both names and the values line on the brand green. */
+const SHARE_IMAGE = {
+  src: '/images/share/malin-share.webp',
+  width: 1200,
+  height: 630,
+  alt: $localize`:@@seo.shareImageAlt:The Malin logo with the company name in English and Khmer`,
+};
 
 /**
  * schema.org Organization for the home page. Only confirmed facts go here: structured data
@@ -68,7 +73,7 @@ export class SeoService {
       page.title && page.title !== SITE_NAME ? `${page.title} | ${SITE_NAME}` : SITE_NAME;
     const description = page.description || DEFAULT_DESCRIPTION;
     const url = this.pageUrl(page.path);
-    const image = absoluteUrl(page.image ?? DEFAULT_IMAGE);
+    const image = absoluteUrl(page.image ?? SHARE_IMAGE.src);
 
     this.title.setTitle(title);
     this.meta.updateTag({ name: 'description', content: description });
@@ -80,6 +85,16 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:description', content: description });
     this.meta.updateTag({ property: 'og:url', content: url });
     this.meta.updateTag({ property: 'og:image', content: image });
+    if (page.image) {
+      // Size and description are only known for the default image.
+      for (const property of ['og:image:width', 'og:image:height', 'og:image:alt']) {
+        this.meta.removeTag(`property="${property}"`);
+      }
+    } else {
+      this.meta.updateTag({ property: 'og:image:width', content: String(SHARE_IMAGE.width) });
+      this.meta.updateTag({ property: 'og:image:height', content: String(SHARE_IMAGE.height) });
+      this.meta.updateTag({ property: 'og:image:alt', content: SHARE_IMAGE.alt });
+    }
     this.meta.updateTag({ property: 'og:locale', content: this.language.ogLocale });
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
 

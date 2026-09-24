@@ -593,6 +593,11 @@
         <target state="needs-review-translation">ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន បូម និងផ្គត់ផ្គង់ខ្សាច់ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ ក្នុងការគាំទ្រការអភិវឌ្ឍវិស័យសំណង់នៅកម្ពុជា។</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/core/services/seo.service.ts</context></context-group>
       </trans-unit>
+      <trans-unit id="seo.shareImageAlt" datatype="html">
+        <source>The Malin logo with the company name in English and Khmer</source>
+        <target state="needs-review-translation">ឡូហ្គោ ម៉ាលីន ជាមួយឈ្មោះក្រុមហ៊ុនជាភាសាអង់គ្លេស និងខ្មែរ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/services/seo.service.ts</context></context-group>
+      </trans-unit>
       <trans-unit id="services.lead" datatype="html">
         <source> Professional sand dredging and supply for construction projects of every kind. </source>
         <target state="needs-review-translation">ការបូម និងផ្គត់ផ្គង់ខ្សាច់ប្រកបដោយវិជ្ជាជីវៈ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ។</target>

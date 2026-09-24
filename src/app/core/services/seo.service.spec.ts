@@ -70,6 +70,18 @@ describe('SeoService', () => {
     expect(content('name="robots"')).toBe('index, follow');
   });
 
+  it('uses the share card as the default social image, with its size', () => {
+    service.apply({ path: '/' });
+    expect(content('property="og:image"')).toBe(`${environment.site_url}/images/share/malin-share.webp`);
+    expect(content('property="og:image:width"')).toBe('1200');
+    expect(content('property="og:image:height"')).toBe('630');
+    expect(content('property="og:image:alt"')).toBeTruthy();
+
+    service.apply({ path: '/about', image: '/images/about.webp' });
+    expect(content('property="og:image"')).toBe(`${environment.site_url}/images/about.webp`);
+    expect(meta.getTag('property="og:image:width"')).toBeNull();
+  });
+
   describe('language alternates', () => {
     const alternates = () =>
       Object.fromEntries(
