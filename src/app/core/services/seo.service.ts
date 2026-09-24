@@ -1,5 +1,5 @@
 import { DOCUMENT, Location } from '@angular/common';
-import { Injectable, LOCALE_ID, Service, inject } from '@angular/core';
+import { InjectionToken, Injectable, LOCALE_ID, Service, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
 import { LANGUAGES, languageFor, languagePath } from '@core/i18n/languages';
@@ -43,6 +43,15 @@ export const ORGANIZATION_JSON_LD = {
   description: DEFAULT_DESCRIPTION,
 };
 
+/**
+ * False on local, dev and staging builds (environment.indexable): every page is noindex and
+ * gets no language alternates, and tools/postbuild.mjs then writes no sitemap.
+ */
+export const SITE_INDEXABLE = new InjectionToken<boolean>('SITE_INDEXABLE', {
+  providedIn: 'root',
+  factory: () => environment.indexable,
+});
+
 export interface PageSeo {
   /** Page name without the site suffix; empty or undefined for the home page. */
   title?: string;
@@ -67,6 +76,7 @@ export class SeoService {
   private readonly document = inject(DOCUMENT);
   private readonly location = inject(Location);
   private readonly language = languageFor(inject(LOCALE_ID));
+  private readonly indexable = inject(SITE_INDEXABLE);
 
   apply(page: PageSeo): void {
     const title =
@@ -74,10 +84,11 @@ export class SeoService {
     const description = page.description || DEFAULT_DESCRIPTION;
     const url = this.pageUrl(page.path);
     const image = absoluteUrl(page.image ?? SHARE_IMAGE.src);
+    const noindex = page.noindex || !this.indexable;
 
     this.title.setTitle(title);
     this.meta.updateTag({ name: 'description', content: description });
-    this.meta.updateTag({ name: 'robots', content: page.noindex ? 'noindex' : 'index, follow' });
+    this.meta.updateTag({ name: 'robots', content: noindex ? 'noindex' : 'index, follow' });
 
     this.meta.updateTag({ property: 'og:site_name', content: SITE_NAME });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
@@ -99,7 +110,7 @@ export class SeoService {
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
 
     this.setCanonical(url);
-    this.setAlternates(page.noindex ? undefined : page.path);
+    this.setAlternates(noindex ? undefined : page.path);
     this.setJsonLd(page.jsonLd);
   }
 

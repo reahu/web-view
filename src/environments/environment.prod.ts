@@ -6,4 +6,6 @@ export const environment = {
    * Placeholder: Malin's domain isn't confirmed yet.
    */
   site_url: 'https://www.example.com',
+  /** Production is the only build search engines may index. */
+  indexable: true,
 };

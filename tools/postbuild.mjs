@@ -11,13 +11,14 @@
 //    canonical) drop out; an indexable page whose canonical points elsewhere fails the build.
 //    Each URL carries its language alternates (hreflang), read from the page; they must
 //    agree both ways and point at pages in the sitemap.
-// 3. robots.txt: allows everything and points to the sitemap.
+// 3. robots.txt: allows everything and points to the sitemap. Builds that aren't
+//    production (environment.indexable: false) are noindex throughout: no sitemap.
 //
 // The site origin is read from the home page's canonical link, which SeoService writes from
 // environment.site_url, so the sitemap always matches the canonicals of the build it ships with.
 
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const DIST = join(import.meta.dirname, '..', 'dist', 'web-view');
@@ -101,6 +102,16 @@ for (const { url, alternates } of included) {
       fail(`${url} and ${href} list different language alternates`);
     }
   }
+}
+
+// A build with no indexable pages (environment.indexable: false, i.e. not production) gets
+// no sitemap. robots.txt still allows crawling: a crawler that may not fetch a page never
+// sees its noindex, and a URL it already knows can stay in results.
+if (!included.length) {
+  await rm(join(BROWSER, 'sitemap.xml'), { force: true });
+  await writeFile(join(BROWSER, 'robots.txt'), 'User-agent: *\nAllow: /\n');
+  console.log('postbuild: every page is noindex (not a production build): robots.txt, no sitemap');
+  process.exit(0);
 }
 
 await writeFile(

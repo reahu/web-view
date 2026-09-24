@@ -6,4 +6,6 @@ export const environment = {
    * Placeholder: Malin's domain isn't confirmed yet.
    */
   site_url: 'https://www.example.com',
+  /** Not production: every page gets noindex and no sitemap is written. */
+  indexable: false,
 };

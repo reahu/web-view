@@ -2,7 +2,7 @@ import { APP_BASE_HREF, DOCUMENT } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 import { Meta, Title } from '@angular/platform-browser';
 import { environment } from '@env/environment';
-import { ORGANIZATION_JSON_LD, SITE_NAME, SeoService } from './seo.service';
+import { ORGANIZATION_JSON_LD, SITE_INDEXABLE, SITE_NAME, SeoService } from './seo.service';
 
 describe('SeoService', () => {
   let service: SeoService;
@@ -14,8 +14,14 @@ describe('SeoService', () => {
   const canonical = () =>
     document.head.querySelector('link[rel="canonical"]')?.getAttribute('href');
 
-  const setup = (baseHref: string) => {
-    TestBed.configureTestingModule({ providers: [{ provide: APP_BASE_HREF, useValue: baseHref }] });
+  // Tests describe the production site; local builds aren't indexable (see the last test).
+  const setup = (baseHref: string, indexable = true) => {
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: APP_BASE_HREF, useValue: baseHref },
+        { provide: SITE_INDEXABLE, useValue: indexable },
+      ],
+    });
     service = TestBed.inject(SeoService);
     meta = TestBed.inject(Meta);
     title = TestBed.inject(Title);
@@ -144,5 +150,14 @@ describe('SeoService', () => {
         url: `${environment.site_url}/`,
       });
     });
+  });
+
+  it('marks every page noindex, without alternates, on builds that are not indexable', () => {
+    TestBed.resetTestingModule();
+    setup('/', false);
+    service.apply({ title: 'Services', path: '/services' });
+    expect(content('name="robots"')).toBe('noindex');
+    expect(document.head.querySelector('link[rel="alternate"][hreflang]')).toBeNull();
+    expect(canonical()).toBe(`${environment.site_url}/services`);
   });
 });

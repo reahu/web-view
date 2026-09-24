@@ -141,6 +141,10 @@ already-translated template changes its extracted source (see Languages).
   alternates (km, en, x-default = Khmer; none on noindex pages), Open Graph with `og:locale`, and
   JSON-LD. Absolute URLs use `environment.site_url` (**a placeholder, `https://www.example.com`,
   until the client's domain is known**).
+- Only production is indexable (`environment.indexable`, read through the `SITE_INDEXABLE`
+  token so tests can set it). Local, dev and staging builds are `noindex` on every page with no
+  alternates, and postbuild writes no sitemap. robots.txt still allows crawling there, so
+  crawlers can see the noindex; don't "fix" it with `Disallow: /`.
 - JSON-LD (`ORGANIZATION_JSON_LD`, home only) holds **confirmed facts only**: it's invisible, so a
   placeholder can't be marked as one. Name, legal name, the client's Khmer name, url, logo and
   description; add address, phone, email, founding date and social profiles only when confirmed.
