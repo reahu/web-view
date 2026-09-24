@@ -20,7 +20,14 @@ import {
   maxLength,
   required,
 } from '@angular/forms/signals';
-import { CONTACT_SENDER, CONTACT_TOPICS, ContactMessage, isContactTopic } from './contact-sender';
+import { ContentService } from '@core/services/content.service';
+import {
+  CONTACT_DEMO,
+  CONTACT_SENDER,
+  CONTACT_TOPICS,
+  ContactMessage,
+  isContactTopic,
+} from './contact-sender';
 
 const EMPTY: ContactMessage = {
   name: '',
@@ -45,6 +52,9 @@ export class Contact {
   readonly topic = input<string>();
 
   private readonly send = inject(CONTACT_SENDER);
+  /** A demo form says plainly that nothing was sent. */
+  protected readonly demo = inject(CONTACT_DEMO);
+  protected readonly details = inject(ContentService).contactDetails;
   private readonly injector = inject(Injector);
   private readonly summary = viewChild<ElementRef<HTMLElement>>('summary');
   private readonly statusMessage = viewChild<ElementRef<HTMLElement>>('statusMessage');

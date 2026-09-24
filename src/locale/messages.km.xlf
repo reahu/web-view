@@ -72,6 +72,51 @@
         <target state="final">គុណភាព • ទំនុកចិត្ត • ភាពជាដៃគូដ៏រឹងមាំ</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
       </trans-unit>
+      <trans-unit id="contact.demo.notice" datatype="html">
+        <source> This form is a demo: messages aren’t sent anywhere yet. </source>
+        <target state="needs-review-translation">ទម្រង់នេះជាការសាកល្បង៖ សារមិនទាន់ត្រូវបានផ្ញើទៅកន្លែងណាទេ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.demo.sentBody" datatype="html">
+        <source> The form checked your answers. Once it’s connected, messages will reach the company by email. </source>
+        <target state="needs-review-translation">ទម្រង់បានពិនិត្យចម្លើយរបស់អ្នករួចហើយ។ នៅពេលភ្ជាប់រួច សារនឹងផ្ញើទៅក្រុមហ៊ុនតាមអ៊ីមែល។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.demo.sentTitle" datatype="html">
+        <source>Demo only: your message was not sent.</source>
+        <target state="needs-review-translation">សាកល្បងប៉ុណ្ណោះ៖ សាររបស់អ្នកមិនត្រូវបានផ្ញើទេ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.details.address" datatype="html">
+        <source>Street 000, Koh Kong Province, Cambodia</source>
+        <target state="needs-review-translation">ផ្លូវលេខ ០០០ ខេត្តកោះកុង ប្រទេសកម្ពុជា</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/contact.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.details.emailLabel" datatype="html">
+        <source>Email</source>
+        <target state="needs-review-translation">អ៊ីមែល</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.details.hours" datatype="html">
+        <source>Monday to Saturday, 8:00 to 17:00</source>
+        <target state="needs-review-translation">ថ្ងៃច័ន្ទ ដល់ ថ្ងៃសៅរ៍ ម៉ោង ៨:០០ ដល់ ១៧:០០</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/contact.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.details.hoursLabel" datatype="html">
+        <source>Opening hours</source>
+        <target state="needs-review-translation">ម៉ោងធ្វើការ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.details.phoneLabel" datatype="html">
+        <source>Phone</source>
+        <target state="needs-review-translation">ទូរសព្ទ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.details.sample" datatype="html">
+        <source>Sample details for the mock-up</source>
+        <target state="needs-review-translation">ព័ត៌មានគំរូសម្រាប់ការបង្ហាញ (mock-up)</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
       <trans-unit id="contact.email.label" datatype="html">
         <source>Email address</source>
         <target state="needs-review-translation">អាសយដ្ឋានអ៊ីមែល</target>
@@ -152,19 +197,9 @@
         <target state="needs-review-translation">ឈ្មោះពេញ</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
       </trans-unit>
-      <trans-unit id="contact.office.address" datatype="html">
-        <source>Placeholder address<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>Cambodia</source>
-        <target state="needs-review-translation">អាសយដ្ឋាន placeholder<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>កម្ពុជា</target>
-        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
-      </trans-unit>
       <trans-unit id="contact.office.heading" datatype="html">
         <source>Head office</source>
         <target state="needs-review-translation">ការិយាល័យកណ្តាល</target>
-        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
-      </trans-unit>
-      <trans-unit id="contact.office.note" datatype="html">
-        <source> Placeholder: phone, email and opening hours to be confirmed by the client. </source>
-        <target state="needs-review-translation">Placeholder៖ លេខទូរសព្ទ អ៊ីមែល និងម៉ោងធ្វើការ នឹងត្រូវបញ្ជាក់ដោយក្រុមហ៊ុន។</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
       </trans-unit>
       <trans-unit id="contact.organisation.label" datatype="html">

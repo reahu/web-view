@@ -1,6 +1,8 @@
 import { Service, Signal, computed, signal } from '@angular/core';
+import { CONTACT_DETAILS } from '@content/contact';
 import { ORGANISATION } from '@content/organisation';
 import { PROCESS } from '@content/process';
+import { ContactDetails } from '@core/models/contact-details';
 import { OrgMember, OrgNode } from '@core/models/org-member';
 import { ProcessStep } from '@core/models/process-step';
 
@@ -15,6 +17,9 @@ export class ContentService {
   readonly process: Signal<readonly ProcessStep[]> = signal(PROCESS).asReadonly();
 
   readonly organisation: Signal<readonly OrgMember[]> = signal(ORGANISATION).asReadonly();
+
+  /** Sample values for now (contactDetails().sample); the contact page labels them. */
+  readonly contactDetails: Signal<ContactDetails> = signal(CONTACT_DETAILS).asReadonly();
 
   /**
    * The chart as a tree: each person under their first manager, in chart order. Anyone

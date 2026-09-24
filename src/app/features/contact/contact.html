@@ -8,8 +8,21 @@
     <section aria-labelledby="form-heading">
       <h2 id="form-heading" i18n="@@contact.formHeading">Send us a message</h2>
       <p class="hint" i18n="@@contact.hint">All fields are required unless marked optional.</p>
+      @if (demo) {
+        <p class="demo-note" i18n="@@contact.demo.notice">
+          This form is a demo: messages aren’t sent anywhere yet.
+        </p>
+      }
 
-      @if (status() === 'sent') {
+      @if (status() === 'sent' && demo) {
+        <div #statusMessage class="notice notice--demo" tabindex="-1">
+          <p><strong i18n="@@contact.demo.sentTitle">Demo only: your message was not sent.</strong></p>
+          <p i18n="@@contact.demo.sentBody">
+            The form checked your answers. Once it’s connected, messages will reach the company by
+            email.
+          </p>
+        </div>
+      } @else if (status() === 'sent') {
         <div #statusMessage class="notice notice--success" tabindex="-1">
           <p><strong i18n="@@contact.sent.title">Thank you. Your message has been sent.</strong></p>
           <p i18n="@@contact.sent.body">We'll reply to the email address you gave us.</p>
@@ -125,10 +138,33 @@
 
     <aside class="details" aria-labelledby="office-heading">
       <h2 id="office-heading" i18n="@@contact.office.heading">Head office</h2>
-      <address i18n="@@contact.office.address">Placeholder address<br />Cambodia</address>
-      <p class="placeholder-note" i18n="@@contact.office.note">
-        Placeholder: phone, email and opening hours to be confirmed by the client.
-      </p>
+      @let contact = details();
+      @if (contact.sample) {
+        <p class="sample-tag" i18n="@@contact.details.sample">Sample details for the mock-up</p>
+      }
+      <address>
+        <p>{{ contact.address }}</p>
+        <dl>
+          <dt i18n="@@contact.details.phoneLabel">Phone</dt>
+          <dd>
+            @if (contact.sample) {
+              {{ contact.phone }}
+            } @else {
+              <a [href]="'tel:' + contact.phone.replaceAll(' ', '')">{{ contact.phone }}</a>
+            }
+          </dd>
+          <dt i18n="@@contact.details.emailLabel">Email</dt>
+          <dd>
+            @if (contact.sample) {
+              {{ contact.email }}
+            } @else {
+              <a [href]="'mailto:' + contact.email">{{ contact.email }}</a>
+            }
+          </dd>
+          <dt i18n="@@contact.details.hoursLabel">Opening hours</dt>
+          <dd>{{ contact.hours }}</dd>
+        </dl>
+      </address>
     </aside>
   </div>
 </div>

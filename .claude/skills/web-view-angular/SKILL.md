@@ -173,10 +173,15 @@ already-translated template changes its extracted source (see Languages).
   chart; never assign a photo to a name by eye.
 - Contact form: Signal Forms with `[formRoot]`/`[formField]`, an error summary of buttons that
   call `focusBoundControl()`, `aria-invalid`/`aria-describedby` per field. Topics: general,
-  quote, partnerships. Sending goes through the `CONTACT_SENDER` token, which **rejects by
-  default** until the client picks a service; its origin must then go into the CSP.
-- Placeholders stay visibly marked: the hero photo (`images/placeholders/`), the contact address
-  and details, the legal pages.
+  quote, partnerships. Sending goes through the `CONTACT_SENDER` token. The form is a **demo**
+  (`environment.contact_demo`, read through `CONTACT_DEMO`) until the client picks a service:
+  the default sender pretends to send, and the page says up front and after submitting that
+  **nothing was sent**. Never show "has been sent" unless a real sender delivered it. For the
+  real service: provide the sender, set `contact_demo: false`, and add its origin to the CSP.
+- Contact details come from `content/contact.ts` through `ContentService.contactDetails`. They
+  are **samples** for the mock-up (`sample: true`): labelled on the page, phone and email not
+  linked, phone `+855 00 000 000` so it can't ring anyone. Never put them in the JSON-LD.
+- Placeholders stay visibly marked: the hero image, the sample contact details, the demo form.
 - `/404` is a real route in each language; nginx serves the one matching the URL's language.
 - Dates: pass ISO date strings (`2026-03-14`) to `DatePipe` without a timezone argument.
 

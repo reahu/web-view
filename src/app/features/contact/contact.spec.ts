@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CONTACT_SENDER, ContactMessage } from './contact-sender';
+import { CONTACT_DEMO, CONTACT_SENDER, ContactMessage } from './contact-sender';
 import { Contact } from './contact';
 
 describe('Contact', () => {
@@ -24,18 +24,24 @@ describe('Contact', () => {
     type('message', 'Hello');
   };
 
-  beforeEach(async () => {
+  // Most tests describe the form connected to a real service; demo mode has its own tests.
+  const setup = async (demo: boolean) => {
     send = vi.fn<(message: ContactMessage) => Promise<void>>();
     await TestBed.configureTestingModule({
       imports: [Contact],
-      providers: [{ provide: CONTACT_SENDER, useValue: send }],
+      providers: [
+        { provide: CONTACT_SENDER, useValue: send },
+        { provide: CONTACT_DEMO, useValue: demo },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Contact);
     el = fixture.nativeElement;
     document.body.appendChild(el);
     await fixture.whenStable();
-  });
+  };
+
+  beforeEach(() => setup(false));
 
   afterEach(() => el.remove());
 
@@ -116,8 +122,9 @@ describe('Contact', () => {
     expect(input('name').value).toBe('Sokha Chan');
   });
 
-  it('fails honestly by default, with no endpoint configured', async () => {
+  it('fails honestly by default outside demo mode, with no endpoint configured', async () => {
     TestBed.resetTestingModule();
+    TestBed.configureTestingModule({ providers: [{ provide: CONTACT_DEMO, useValue: false }] });
     const real = TestBed.createComponent(Contact);
     const host: HTMLElement = real.nativeElement;
     await real.whenStable();
@@ -134,5 +141,34 @@ describe('Contact', () => {
 
     expect(host.querySelector('.notice--error')).not.toBeNull();
     expect(host.querySelector('.notice--success')).toBeNull();
+  });
+
+  describe('demo mode', () => {
+    beforeEach(async () => {
+      el.remove();
+      TestBed.resetTestingModule();
+      await setup(true);
+    });
+
+    it('says up front that messages are not sent', () => {
+      expect(el.querySelector('.demo-note')?.textContent).toContain('demo');
+    });
+
+    it('never claims a message was sent', async () => {
+      send.mockResolvedValue();
+      fillValid();
+      await submit();
+
+      const notice = el.querySelector<HTMLElement>('.notice--demo')!;
+      expect(notice.textContent).toContain('was not sent');
+      expect(document.activeElement).toBe(notice);
+      expect(el.querySelector('.notice--success')).toBeNull();
+    });
+  });
+
+  it('labels sample contact details and does not link their phone or email', () => {
+    expect(el.querySelector('.sample-tag')).not.toBeNull();
+    expect(el.querySelector('.details a[href^="tel:"], .details a[href^="mailto:"]')).toBeNull();
+    expect(el.querySelector('.details')?.textContent).toContain('+855 00 000 000');
   });
 });
