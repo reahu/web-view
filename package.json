@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "postbuild": "node tools/postbuild.mjs",
     "watch": "ng build --watch --configuration local",
     "test": "ng test",
     "lint": "ng lint"
