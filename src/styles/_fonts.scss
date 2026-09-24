@@ -23,6 +23,9 @@ $khmer: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC;
 @include face('Kantumruy Pro', 'kantumruy-pro-latin-ext', 400 700, $latin-ext);
 @include face('Kantumruy Pro', 'kantumruy-pro-khmer', 400 700, $khmer);
 
-@include face('Noto Serif Display', 'noto-serif-display-latin', 500 700, $latin);
-@include face('Noto Serif Display', 'noto-serif-display-latin-ext', 500 700, $latin-ext);
-@include face('Noto Serif Khmer', 'noto-serif-khmer-khmer', 500 700, $khmer);
+// Headings only ever use 600, so these are static 600 instances of the variable fonts
+// (fontTools instancer): a third of the size. Need another weight? Instance it from the
+// variable font as a new file; don't widen this range.
+@include face('Noto Serif Display', 'noto-serif-display-latin-600', 600, $latin);
+@include face('Noto Serif Display', 'noto-serif-display-latin-ext-600', 600, $latin-ext);
+@include face('Noto Serif Khmer', 'noto-serif-khmer-khmer-600', 600, $khmer);

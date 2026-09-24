@@ -205,7 +205,10 @@ already-translated template changes its extracted source (see Languages).
   headings, links, buttons) and `--c-accent` #e9a41c (the logo's gold), **only on `--c-brand`**
   (6.6:1 there, 2.1:1 on white). `--c-error` and `--c-success` are for form feedback only.
 - Typefaces: Noto Serif Display with Noto Serif Khmer for headings, Kantumruy Pro (Latin and
-  Khmer) for body text, all self-hosted.
+  Khmer) for body text, all self-hosted. The heading fonts are **static weight-600 instances**
+  (`*-600.woff2`, made with fontTools' instancer) because headings only use 600: a third of
+  the variable fonts' size, worth 3–5 Lighthouse points on Khmer pages. Keep headings at 600;
+  another weight means instancing a new file. Kantumruy Pro stays variable (400 and 600 used).
 - For media queries, `@use 'breakpoints' as bp;` then `@include bp.up(bp.$md) { … }`.
 - No drop shadows or rounded cards. Separate with `--c-mist` bands and `var(--border)` rules.
   No motion; anything added later stops under `prefers-reduced-motion`.
