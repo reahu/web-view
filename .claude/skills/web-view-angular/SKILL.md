@@ -87,6 +87,9 @@ already-translated template changes its extracted source (see Languages).
   at the root (`subPath: ""`) and an English one under `/en/` (`subPath: "en"`), each with its own
   `<base href>`, `lang` and JS. Templates are written in **English, the source language**; Khmer
   is the translation in `src/locale/messages.km.xlf`. URL slugs are English in both.
+- Keep `provideClientHydration(withI18nSupport())` in app.config.ts. Without it, hydration skips
+  every component with i18n blocks and re-renders it in the browser: the page content vanishes
+  and reappears, a 0.58 layout shift that took Lighthouse performance from 96 to 67.
 - `ng serve` and tests show the English source (`local` has `localize: false`);
   `ng serve --configuration local-km` previews Khmer.
 - **Every visible string is marked**: `i18n="@@area.name"` on elements, `i18n-<attr>` on
