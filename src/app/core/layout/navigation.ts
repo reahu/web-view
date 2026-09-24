@@ -16,9 +16,11 @@ export type NavEntry = NavLink | NavGroup;
 export const isNavGroup = (entry: NavEntry): entry is NavGroup => 'links' in entry;
 
 /** Main navigation. Header and footer both render from this, so they can't drift apart. */
-export const MAIN_NAV: readonly NavEntry[] = [{ label: 'Contact us', path: '/contact-us' }];
+export const MAIN_NAV: readonly NavEntry[] = [
+  { label: $localize`:@@nav.contact:Contact us`, path: '/contact-us' },
+];
 
 export const LEGAL_NAV: readonly NavLink[] = [
-  { label: 'Privacy policy', path: '/privacy-policy' },
-  { label: 'Terms of use', path: '/terms-of-use' },
+  { label: $localize`:@@nav.privacy:Privacy policy`, path: '/privacy-policy' },
+  { label: $localize`:@@nav.terms:Terms of use`, path: '/terms-of-use' },
 ];

@@ -14,7 +14,7 @@ export class Footer {
     ...MAIN_NAV.filter(isNavGroup),
     {
       id: 'company',
-      label: 'Company',
+      label: $localize`:@@footer.company:Company`,
       links: MAIN_NAV.filter((entry): entry is NavLink => !isNavGroup(entry)),
     },
   ];

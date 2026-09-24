@@ -1,9 +1,9 @@
 import { InjectionToken } from '@angular/core';
 
 export const CONTACT_TOPICS = [
-  { value: 'general', label: 'General enquiry' },
-  { value: 'quote', label: 'Sand supply and quotes' },
-  { value: 'partnerships', label: 'Business partnerships' },
+  { value: 'general', label: $localize`:@@contact.topic.general:General enquiry` },
+  { value: 'quote', label: $localize`:@@contact.topic.quote:Sand supply and quotes` },
+  { value: 'partnerships', label: $localize`:@@contact.topic.partnerships:Business partnerships` },
 ] as const;
 
 export type ContactTopic = (typeof CONTACT_TOPICS)[number]['value'];

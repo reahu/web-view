@@ -1,9 +1,9 @@
 <footer class="footer">
   <div class="container">
     <div class="footer__top">
-      <p class="footer__brand">Malin Koh Kong Peace Development Co., Ltd.</p>
+      <p class="footer__brand" i18n="@@footer.legalName">Malin Koh Kong Peace Development Co., Ltd.</p>
 
-      <nav class="footer__sitemap" aria-label="Footer">
+      <nav class="footer__sitemap" aria-label="Footer" i18n-aria-label="@@footer.label">
         @for (column of columns; track column.id) {
           <div>
             <h2 class="footer__heading" [id]="'footer-' + column.id">{{ column.label }}</h2>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="footer__bottom">
-      <p>© {{ year }} Malin Koh Kong Peace Development Co., Ltd. All rights reserved.</p>
+      <p i18n="@@footer.copyright">© {{ year }} Malin Koh Kong Peace Development Co., Ltd. All rights reserved.</p>
       <ul class="footer__legal" role="list">
         @for (link of legal; track link.path) {
           <li>

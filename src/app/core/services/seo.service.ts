@@ -4,15 +4,18 @@ import { Meta, Title } from '@angular/platform-browser';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
 import { environment } from '@env/environment';
 
-export const SITE_NAME = 'Malin Koh Kong Peace Development';
+/** The brand in Latin script, as registered; the JSON-LD name on pages in both languages. */
+const BRAND_NAME = 'Malin Koh Kong Peace Development';
 
 const LEGAL_NAME = 'Malin Koh Kong Peace Development Co., Ltd.';
+
+/** Title suffix and og:site_name, in the page's language. */
+export const SITE_NAME = $localize`:@@site.name:Malin Koh Kong Peace Development`;
 
 /** Header logo, from the client's organisation chart; also the JSON-LD logo (112px tall). */
 export const LOGO = { src: '/images/logo/malin-logo.webp', width: 206, height: 112 };
 
-const DEFAULT_DESCRIPTION =
-  'Malin Koh Kong Peace Development dredges and supplies sand for construction projects of every kind, in support of Cambodia’s construction sector.';
+const DEFAULT_DESCRIPTION = $localize`:@@seo.defaultDescription:Malin Koh Kong Peace Development dredges and supplies sand for construction projects of every kind, in support of Cambodia’s construction sector.`;
 
 // Placeholder until a real share image exists.
 const DEFAULT_IMAGE = '/images/placeholders/hero-1.webp';
@@ -25,7 +28,7 @@ const DEFAULT_IMAGE = '/images/placeholders/hero-1.webp';
 export const ORGANIZATION_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: SITE_NAME,
+  name: BRAND_NAME,
   legalName: LEGAL_NAME,
   // The client's own Khmer name, from the organisation chart.
   alternateName: 'ក្រុមហ៊ុន ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ឯ.ក',
@@ -56,7 +59,8 @@ export class SeoService {
   private readonly location = inject(Location);
 
   apply(page: PageSeo): void {
-    const title = page.title && page.title !== SITE_NAME ? `${page.title} | ${SITE_NAME}` : SITE_NAME;
+    const title =
+      page.title && page.title !== SITE_NAME ? `${page.title} | ${SITE_NAME}` : SITE_NAME;
     const description = page.description || DEFAULT_DESCRIPTION;
     const url = this.pageUrl(page.path);
     const image = absoluteUrl(page.image ?? DEFAULT_IMAGE);

@@ -11,15 +11,24 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
-import { FieldTree, FormField, FormRoot, email, form, maxLength, required } from '@angular/forms/signals';
 import {
-  CONTACT_SENDER,
-  CONTACT_TOPICS,
-  ContactMessage,
-  isContactTopic,
-} from './contact-sender';
+  FieldTree,
+  FormField,
+  FormRoot,
+  email,
+  form,
+  maxLength,
+  required,
+} from '@angular/forms/signals';
+import { CONTACT_SENDER, CONTACT_TOPICS, ContactMessage, isContactTopic } from './contact-sender';
 
-const EMPTY: ContactMessage = { name: '', email: '', organisation: '', topic: 'general', message: '' };
+const EMPTY: ContactMessage = {
+  name: '',
+  email: '',
+  organisation: '',
+  topic: 'general',
+  message: '',
+};
 
 /** Field order for the error summary; matches the order on the page. */
 const FIELDS = ['name', 'email', 'organisation', 'topic', 'message'] as const;
@@ -49,16 +58,22 @@ export class Contact {
   protected readonly contactForm = form(
     this.model,
     (path) => {
-      required(path.name, { message: 'Enter your name' });
-      required(path.email, { message: 'Enter your email address' });
+      required(path.name, { message: $localize`:@@contact.error.nameRequired:Enter your name` });
+      required(path.email, {
+        message: $localize`:@@contact.error.emailRequired:Enter your email address`,
+      });
       email(path.email, {
-        message: 'Enter an email address in the correct format, like name@example.com',
+        message: $localize`:@@contact.error.emailFormat:Enter an email address in the correct format, like name@example.com`,
       });
       maxLength(path.organisation, 200, {
-        message: 'Organisation must be 200 characters or fewer',
+        message: $localize`:@@contact.error.organisationLength:Organisation must be 200 characters or fewer`,
       });
-      required(path.message, { message: 'Enter your message' });
-      maxLength(path.message, 3000, { message: 'Message must be 3,000 characters or fewer' });
+      required(path.message, {
+        message: $localize`:@@contact.error.messageRequired:Enter your message`,
+      });
+      maxLength(path.message, 3000, {
+        message: $localize`:@@contact.error.messageLength:Message must be 3,000 characters or fewer`,
+      });
     },
     {
       submission: {
@@ -87,7 +102,14 @@ export class Contact {
   protected readonly errors = computed(() =>
     FIELDS.flatMap((key) => {
       const error = this.field(key)().errors()[0];
-      return error ? [{ key, message: error.message ?? 'Check this answer' }] : [];
+      return error
+        ? [
+            {
+              key,
+              message: error.message ?? $localize`:@@contact.error.fallback:Check this answer`,
+            },
+          ]
+        : [];
     }),
   );
 

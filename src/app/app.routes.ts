@@ -12,34 +12,38 @@ export const routes: Routes = [
   },
   {
     path: 'contact-us',
-    title: 'Contact us',
-    data: { description: 'How to reach Malin Koh Kong Peace Development.' },
+    title: $localize`:@@route.contact.title:Contact us`,
+    data: {
+      description: $localize`:@@route.contact.description:How to reach Malin Koh Kong Peace Development.`,
+    },
     loadComponent: () => import('@features/contact/contact').then((m) => m.Contact),
   },
   {
     path: 'privacy-policy',
-    title: 'Privacy policy',
+    title: $localize`:@@route.privacy.title:Privacy policy`,
     data: {
-      description: 'How Malin Koh Kong Peace Development collects and uses personal information.',
+      description: $localize`:@@route.privacy.description:How Malin Koh Kong Peace Development collects and uses personal information.`,
     },
     loadComponent: () => import('@features/legal/privacy/privacy').then((m) => m.Privacy),
   },
   {
     path: 'terms-of-use',
-    title: 'Terms of use',
-    data: { description: 'The terms that apply when you use this website.' },
+    title: $localize`:@@route.terms.title:Terms of use`,
+    data: {
+      description: $localize`:@@route.terms.description:The terms that apply when you use this website.`,
+    },
     loadComponent: () => import('@features/legal/terms/terms').then((m) => m.Terms),
   },
   {
     // Prerendered to /404/index.html so nginx can serve it with a real 404 status.
     path: '404',
-    title: 'Page not found',
+    title: $localize`:@@notFound.title:Page not found`,
     data: { noindex: true },
     loadComponent: () => import('@features/not-found/not-found').then((m) => m.NotFound),
   },
   {
     path: '**',
-    title: 'Page not found',
+    title: $localize`:@@notFound.title:Page not found`,
     data: { noindex: true },
     loadComponent: () => import('@features/not-found/not-found').then((m) => m.NotFound),
   },
