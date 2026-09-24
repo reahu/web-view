@@ -11,7 +11,7 @@ const BRAND_NAME = 'Malin Koh Kong Peace Development';
 const LEGAL_NAME = 'Malin Koh Kong Peace Development Co., Ltd.';
 
 /** Title suffix and og:site_name, in the page's language. */
-export const SITE_NAME = $localize`:@@site.name:Malin Koh Kong Peace Development`;
+export const SITE_NAME = $localize`:The client's Khmer name. On phones the browser may break ឌីវេឡុបមិន inside the word; say if a break point should be fixed.@@site.name:Malin Koh Kong Peace Development`;
 
 /** Header logo, from the client's organisation chart; also the JSON-LD logo (112px tall). */
 export const LOGO = { src: '/images/logo/malin-logo.webp', width: 206, height: 112 };

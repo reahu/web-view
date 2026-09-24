@@ -250,6 +250,7 @@
       <trans-unit id="footer.legalName" datatype="html">
         <source>Malin Koh Kong Peace Development Co., Ltd.</source>
         <target state="final">ក្រុមហ៊ុន ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ឯ.ក</target>
+        <note priority="1" from="description">The client&apos;s Khmer legal name, from the organisation chart. On phones it wraps inside ឌីវេឡុបមិន.</note>
         <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/footer/footer.html</context></context-group>
       </trans-unit>
       <trans-unit id="home.hero.imageAlt" datatype="html">
@@ -265,6 +266,7 @@
       <trans-unit id="home.welcome.heading" datatype="html">
         <source>Welcome to Malin Koh Kong Peace Development Co., Ltd.</source>
         <target state="final">សូមស្វាគមន៍មកកាន់ MALIN KOH KONG PEACE DEVELOPMENT CO., LTD</target>
+        <note priority="1" from="description">The client&apos;s welcome line, without its closing ។ because it&apos;s a heading. The company name is in capitals as the client wrote it; on phones it wraps over several lines.</note>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
       </trans-unit>
       <trans-unit id="layout.close" datatype="html">
@@ -604,6 +606,7 @@
       <trans-unit id="site.name" datatype="html">
         <source>Malin Koh Kong Peace Development</source>
         <target state="final">ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន</target>
+        <note priority="1" from="description">The client&apos;s Khmer name. On phones the browser may break ឌីវេឡុបមិន inside the word; say if a break point should be fixed.</note>
         <context-group purpose="location"><context context-type="sourcefile">src/app/core/services/seo.service.ts</context></context-group>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
       </trans-unit>

@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration local",
     "test": "ng test",
     "lint": "ng lint",
-    "i18n": "ng extract-i18n --output-path dist/i18n && node tools/i18n-merge.mjs"
+    "i18n": "ng extract-i18n --output-path dist/i18n && node tools/i18n-merge.mjs && node tools/i18n-review.mjs"
   },
   "private": true,
   "packageManager": "npm@11.19.0",
