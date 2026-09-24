@@ -17,7 +17,9 @@
   --c-success: #1e6b3a; // form confirmation only (6.6:1 on white)
 
   // Typefaces
-  --font-display: 'Noto Serif Display', 'Noto Serif Khmer', Georgia, 'Times New Roman', serif;
+  // Khmer headings use Kantumruy Pro (as body text): Noto Serif Khmer cost Khmer pages their
+  // Lighthouse 95. Latin headings keep Noto Serif Display.
+  --font-display: 'Noto Serif Display', 'Kantumruy Pro', Georgia, 'Times New Roman', serif;
   --font-body:
     'Kantumruy Pro', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
     sans-serif;
