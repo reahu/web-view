@@ -1,0 +1,10 @@
+<ol class="steps" role="list">
+  @for (step of steps(); track step.id) {
+    <li class="step">
+      <h3 class="step__title">{{ step.title }}</h3>
+      @if (showText()) {
+        <p class="step__text">{{ step.text }}</p>
+      }
+    </li>
+  }
+</ol>

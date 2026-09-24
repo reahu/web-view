@@ -36,8 +36,9 @@ const units = [...english.values()]
       missing.push(unit.id);
       return undefined;
     }
-    // A unit added by hand (id and target only) gets its source filled in here.
-    if (existing.source && existing.source !== unit.source) {
+    // A unit added by hand (id and target only) gets its source filled in here. Whitespace
+    // doesn't count: reformatting a template re-wraps text without changing it.
+    if (existing.source && normalise(existing.source) !== normalise(unit.source)) {
       changed.push(unit.id);
       return { ...unit, target: existing.target, state: 'needs-review-translation' };
     }
@@ -65,6 +66,10 @@ report('no Khmer yet (the production build fails until these are translated)', m
 report('English changed, Khmer marked for review', changed);
 report('removed, no longer in the app', obsolete);
 console.log(`i18n: ${units.length} strings in ${KHMER.slice(ROOT.length + 1)}`);
+
+function normalise(text) {
+  return text.replace(/\s+/g, ' ').trim();
+}
 
 function parse(xml) {
   const units = new Map();

@@ -1,0 +1,62 @@
+@use 'breakpoints' as bp;
+
+.hero {
+  --c-focus: var(--c-paper);
+  padding-block: var(--space-7);
+  background: var(--c-brand);
+  color: var(--c-paper);
+
+  @include bp.up(bp.$md) {
+    padding-block: var(--space-9);
+  }
+}
+
+.hero__inner {
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
+
+  @include bp.up(bp.$md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.hero__text > * + * {
+  margin-top: var(--space-5);
+}
+
+h1 {
+  color: var(--c-paper);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+}
+
+.hero__lead {
+  font-size: var(--fs-md);
+}
+
+// --c-accent is only allowed on --c-brand (6.6:1).
+.hero__values {
+  color: var(--c-accent);
+  font-weight: 600;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.hero__secondary {
+  border-color: var(--c-paper);
+  background: transparent;
+
+  &:hover {
+    border-color: var(--c-paper);
+    background: rgb(255 255 255 / 0.12);
+  }
+}
+
+.hero__image {
+  width: 100%;
+  height: auto;
+}

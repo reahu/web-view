@@ -1,0 +1,33 @@
+@use 'breakpoints' as bp;
+
+.values {
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: var(--border);
+}
+
+.values__list {
+  display: grid;
+  gap: var(--space-3);
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.up(bp.$sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  li {
+    padding: var(--space-4) var(--space-5);
+    background: var(--c-mist);
+    color: var(--c-brand);
+    font-family: var(--font-display);
+    font-size: var(--fs-lg);
+    font-weight: 600;
+  }
+}
+
+.values__motto {
+  margin-top: var(--space-5);
+  color: var(--c-slate);
+}

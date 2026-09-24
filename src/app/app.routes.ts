@@ -11,6 +11,22 @@ export const routes: Routes = [
     loadComponent: () => import('@features/home/home').then((m) => m.Home),
   },
   {
+    path: 'about',
+    title: $localize`:@@route.about.title:About us`,
+    data: {
+      description: $localize`:@@route.about.description:About Malin Koh Kong Peace Development, a sand dredging and supply company in Cambodia.`,
+    },
+    loadComponent: () => import('@features/about/about').then((m) => m.About),
+  },
+  {
+    path: 'services',
+    title: $localize`:@@route.services.title:Services`,
+    data: {
+      description: $localize`:@@route.services.description:How we dredge sand and supply it for construction projects of every kind.`,
+    },
+    loadComponent: () => import('@features/services/services').then((m) => m.Services),
+  },
+  {
     path: 'contact-us',
     title: $localize`:@@route.contact.title:Contact us`,
     data: {

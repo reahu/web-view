@@ -1,0 +1,27 @@
+@use 'breakpoints' as bp;
+
+.cta {
+  --c-focus: var(--c-paper);
+  padding-block: var(--space-8);
+  background: var(--c-brand);
+  color: var(--c-paper);
+
+  h2 {
+    color: var(--c-paper);
+  }
+}
+
+.cta__inner {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+
+  @include bp.up(bp.$md) {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.cta__body {
+  margin-top: var(--space-3);
+  max-width: var(--measure);
+}

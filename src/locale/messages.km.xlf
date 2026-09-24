@@ -2,6 +2,71 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" target-language="km" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="about.barge" datatype="html">
+        <source> Our 700 m³ sand-dredging barge is run by skilled operators and a team of six who work to safety standards. </source>
+        <target state="final">សាឡង់បូមខ្សាច់ចំណុះ ៧០០ ម៉ែត្រគូប របស់យើង ដំណើរការដោយអ្នកបើកបរមានជំនាញ និងក្រុមការងារចំនួន ៦ នាក់ ដែលអនុវត្តការងារតាមស្តង់ដារសុវត្ថិភាព។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="about.commitment" datatype="html">
+        <source> We are committed to quality, service and trust in support of the development of Cambodia’s construction sector. </source>
+        <target state="final">យើងប្តេជ្ញាផ្តល់ជូននូវគុណភាព សេវាកម្ម និងទំនុកចិត្ត ក្នុងការគាំទ្រការអភិវឌ្ឍវិស័យសំណង់នៅកម្ពុជា។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="about.experience" datatype="html">
+        <source> We are experienced in professionally dredging and supplying sand for construction projects of every kind. </source>
+        <target state="final">យើងមានបទពិសោធន៍ក្នុងការបូម និងផ្គត់ផ្គង់ខ្សាច់ប្រកបដោយវិជ្ជាជីវៈ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="about.title" datatype="html">
+        <source>About us</source>
+        <target state="needs-review-translation">អំពីយើង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="about.values.heading" datatype="html">
+        <source>What we stand for</source>
+        <target state="needs-review-translation">គុណតម្លៃរបស់យើង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.commitment" datatype="html">
+        <source>We are committed to quality, service and trust in support of the development of Cambodia’s construction sector.</source>
+        <target state="final">យើងប្តេជ្ញាផ្តល់ជូននូវគុណភាព សេវាកម្ម និងទំនុកចិត្ត ក្នុងការគាំទ្រការអភិវឌ្ឍវិស័យសំណង់នៅកម្ពុជា។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.experience" datatype="html">
+        <source> We are experienced in professionally dredging and supplying sand for construction projects of every kind. </source>
+        <target state="final">យើងមានបទពិសោធន៍ក្នុងការបូម និងផ្គត់ផ្គង់ខ្សាច់ប្រកបដោយវិជ្ជាជីវៈ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.motto" datatype="html">
+        <source>People · resources · prosperity</source>
+        <target state="needs-review-translation">មនុស្ស · ធនធាន · វិបុលភាព</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.tagline" datatype="html">
+        <source>Together for sustainable development</source>
+        <target state="needs-review-translation">រួមគ្នាដើម្បីការអភិវឌ្ឍប្រកបដោយចីរភាព</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.value.partnership" datatype="html">
+        <source>Strong partnership</source>
+        <target state="final">ភាពជាដៃគូដ៏រឹងមាំ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.value.quality" datatype="html">
+        <source>Quality</source>
+        <target state="final">គុណភាព</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.value.trust" datatype="html">
+        <source>Trust</source>
+        <target state="final">ទំនុកចិត្ត</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.values" datatype="html">
+        <source>Quality • Trust • Strong partnership</source>
+        <target state="final">គុណភាព • ទំនុកចិត្ត • ភាពជាដៃគូដ៏រឹងមាំ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
       <trans-unit id="contact.email.label" datatype="html">
         <source>Email address</source>
         <target state="needs-review-translation">អាសយដ្ឋានអ៊ីមែល</target>
@@ -147,6 +212,21 @@
         <target state="needs-review-translation">ការផ្គត់ផ្គង់ខ្សាច់ និងសម្រង់តម្លៃ</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact-sender.ts</context></context-group>
       </trans-unit>
+      <trans-unit id="cta.body" datatype="html">
+        <source> Tell us what you need and where, and we’ll get back to you. </source>
+        <target state="needs-review-translation">ប្រាប់យើងពីតម្រូវការ និងទីតាំងរបស់អ្នក ហើយយើងនឹងទាក់ទងទៅអ្នកវិញ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/shared/ui/quote-cta/quote-cta.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="cta.button" datatype="html">
+        <source>Request a quote</source>
+        <target state="needs-review-translation">ស្នើសុំសម្រង់តម្លៃ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/shared/ui/quote-cta/quote-cta.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="cta.heading" datatype="html">
+        <source>Need sand for your project?</source>
+        <target state="needs-review-translation">ត្រូវការខ្សាច់សម្រាប់គម្រោងរបស់អ្នកមែនទេ?</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/shared/ui/quote-cta/quote-cta.html</context></context-group>
+      </trans-unit>
       <trans-unit id="footer.company" datatype="html">
         <source>Company</source>
         <target state="needs-review-translation">ក្រុមហ៊ុន</target>
@@ -166,6 +246,21 @@
         <source>Malin Koh Kong Peace Development Co., Ltd.</source>
         <target state="final">ក្រុមហ៊ុន ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ឯ.ក</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/footer/footer.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="home.hero.imageAlt" datatype="html">
+        <source>Placeholder: a photo of the company’s dredging barge goes here</source>
+        <target state="needs-review-translation">Placeholder៖ រូបថតសាឡង់បូមខ្សាច់របស់ក្រុមហ៊ុននឹងដាក់នៅទីនេះ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="home.hero.services" datatype="html">
+        <source>Our services</source>
+        <target state="needs-review-translation">សេវាកម្មរបស់យើង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="home.welcome.heading" datatype="html">
+        <source>Welcome to Malin Koh Kong Peace Development Co., Ltd.</source>
+        <target state="final">សូមស្វាគមន៍មកកាន់ MALIN KOH KONG PEACE DEVELOPMENT CO., LTD</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
       </trans-unit>
       <trans-unit id="layout.close" datatype="html">
         <source>Close</source>
@@ -222,10 +317,17 @@
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
       </trans-unit>
+      <trans-unit id="nav.about" datatype="html">
+        <source>About us</source>
+        <target state="needs-review-translation">អំពីយើង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/navigation.ts</context></context-group>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
       <trans-unit id="nav.contact" datatype="html">
         <source>Contact us</source>
         <target state="needs-review-translation">ទំនាក់ទំនង</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/navigation.ts</context></context-group>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
       </trans-unit>
       <trans-unit id="nav.label" datatype="html">
         <source>Main</source>
@@ -235,6 +337,11 @@
       <trans-unit id="nav.privacy" datatype="html">
         <source>Privacy policy</source>
         <target state="needs-review-translation">គោលការណ៍ឯកជនភាព</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/navigation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="nav.services" datatype="html">
+        <source>Services</source>
+        <target state="needs-review-translation">សេវាកម្ម</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/navigation.ts</context></context-group>
       </trans-unit>
       <trans-unit id="nav.terms" datatype="html">
@@ -293,6 +400,52 @@
         <target state="needs-review-translation">របៀបដែលយើងប្រើប្រាស់ព័ត៌មាន</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
       </trans-unit>
+      <trans-unit id="process.depot.text" datatype="html">
+        <source>Once the barge is loaded, the sand is pumped to the company’s depot.</source>
+        <target state="final">បន្ទាប់ពីបូមខ្សាច់ចូលសាឡង់រួច ខ្សាច់ត្រូវបានបូមទៅកាន់ដេប៉ូរបស់ក្រុមហ៊ុន។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/process.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.depot.title" datatype="html">
+        <source>Pumping to the depot</source>
+        <target state="needs-review-translation">បូមទៅកាន់ដេប៉ូ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/process.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.dredging.text" datatype="html">
+        <source>Our 700 m³ sand-dredging barge is run by skilled operators and a team of six who work to safety standards.</source>
+        <target state="final">សាឡង់បូមខ្សាច់ចំណុះ ៧០០ ម៉ែត្រគូប របស់យើង ដំណើរការដោយអ្នកបើកបរមានជំនាញ និងក្រុមការងារចំនួន ៦ នាក់ ដែលអនុវត្តការងារតាមស្តង់ដារសុវត្ថិភាព។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/process.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.dredging.title" datatype="html">
+        <source>Dredging</source>
+        <target state="needs-review-translation">ការបូមខ្សាច់</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/process.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.heading" datatype="html">
+        <source>How we work</source>
+        <target state="needs-review-translation">របៀបដែលយើងធ្វើការ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/services/services.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.loading.text" datatype="html">
+        <source>There, modern excavators prepare the sand and load it onto trucks, so customers are supplied quickly.</source>
+        <target state="final">នៅទីនោះ គ្រឿងចក្រអេស្កាវ៉ាទ័រទំនើបធ្វើការរៀបចំ និងផ្ទុកខ្សាច់ចូលរថយន្តដឹកទំនិញ ដើម្បីផ្គត់ផ្គង់ជូនអតិថិជនបានយ៉ាងឆាប់រហ័ស។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/process.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.loading.title" datatype="html">
+        <source>Loading trucks</source>
+        <target state="needs-review-translation">ការផ្ទុកខ្សាច់ចូលរថយន្ត</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/process.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.about.description" datatype="html">
+        <source>About Malin Koh Kong Peace Development, a sand dredging and supply company in Cambodia.</source>
+        <target state="needs-review-translation">អំពី ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ក្រុមហ៊ុនបូម និងផ្គត់ផ្គង់ខ្សាច់នៅកម្ពុជា។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.about.title" datatype="html">
+        <source>About us</source>
+        <target state="needs-review-translation">អំពីយើង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
       <trans-unit id="route.contact.description" datatype="html">
         <source>How to reach Malin Koh Kong Peace Development.</source>
         <target state="needs-review-translation">របៀបទាក់ទងមក ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន។</target>
@@ -313,6 +466,16 @@
         <target state="needs-review-translation">គោលការណ៍ឯកជនភាព</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
       </trans-unit>
+      <trans-unit id="route.services.description" datatype="html">
+        <source>How we dredge sand and supply it for construction projects of every kind.</source>
+        <target state="needs-review-translation">របៀបដែលយើងបូម និងផ្គត់ផ្គង់ខ្សាច់ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.services.title" datatype="html">
+        <source>Services</source>
+        <target state="needs-review-translation">សេវាកម្ម</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
       <trans-unit id="route.terms.description" datatype="html">
         <source>The terms that apply when you use this website.</source>
         <target state="needs-review-translation">លក្ខខណ្ឌដែលអនុវត្តនៅពេលអ្នកប្រើប្រាស់គេហទំព័រនេះ។</target>
@@ -327,6 +490,16 @@
         <source>Malin Koh Kong Peace Development dredges and supplies sand for construction projects of every kind, in support of Cambodia’s construction sector.</source>
         <target state="needs-review-translation">ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន បូម និងផ្គត់ផ្គង់ខ្សាច់ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ ក្នុងការគាំទ្រការអភិវឌ្ឍវិស័យសំណង់នៅកម្ពុជា។</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/core/services/seo.service.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="services.lead" datatype="html">
+        <source> Professional sand dredging and supply for construction projects of every kind. </source>
+        <target state="needs-review-translation">ការបូម និងផ្គត់ផ្គង់ខ្សាច់ប្រកបដោយវិជ្ជាជីវៈ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/services/services.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="services.title" datatype="html">
+        <source>Services</source>
+        <target state="needs-review-translation">សេវាកម្ម</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/services/services.html</context></context-group>
       </trans-unit>
       <trans-unit id="site.name" datatype="html">
         <source>Malin Koh Kong Peace Development</source>
