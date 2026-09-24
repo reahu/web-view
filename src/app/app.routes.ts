@@ -13,13 +13,15 @@ export const routes: Routes = [
   {
     path: 'contact-us',
     title: 'Contact us',
-    data: { description: 'How to reach Royal Group of Cambodia in Phnom Penh.' },
+    data: { description: 'How to reach Malin Koh Kong Peace Development.' },
     loadComponent: () => import('@features/contact/contact').then((m) => m.Contact),
   },
   {
     path: 'privacy-policy',
     title: 'Privacy policy',
-    data: { description: 'How Royal Group of Cambodia collects and uses personal information.' },
+    data: {
+      description: 'How Malin Koh Kong Peace Development collects and uses personal information.',
+    },
     loadComponent: () => import('@features/legal/privacy/privacy').then((m) => m.Privacy),
   },
   {

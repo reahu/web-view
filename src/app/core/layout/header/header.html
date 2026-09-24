@@ -1,7 +1,12 @@
 <header class="header">
   <div class="container header__bar">
     <a class="brand" routerLink="/">
-      Royal Group<span class="visually-hidden"> of Cambodia, home page</span>
+      <img
+        [ngSrc]="logo.src"
+        [width]="logo.width"
+        [height]="logo.height"
+        alt="Malin Koh Kong Peace Development, home page"
+      />
     </a>
 
     <!-- DOM order = visual order at every width: nav (inline when wide), then menu. -->

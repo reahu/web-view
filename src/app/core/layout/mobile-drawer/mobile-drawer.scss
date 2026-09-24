@@ -15,7 +15,7 @@
 }
 
 .panel {
-  --c-focus: var(--c-navy);
+  --c-focus: var(--c-brand);
 
   position: absolute;
   inset-block: 0;
@@ -35,7 +35,7 @@
   padding: 0 var(--space-2);
   border: 0;
   background: none;
-  color: var(--c-navy);
+  color: var(--c-brand);
   cursor: pointer;
 }
 

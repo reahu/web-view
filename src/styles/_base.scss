@@ -33,7 +33,7 @@ h4 {
   font-family: var(--font-display);
   font-weight: 600;
   line-height: var(--lh-tight);
-  color: var(--c-navy);
+  color: var(--c-brand);
   text-wrap: balance;
 }
 
@@ -69,7 +69,7 @@ video {
 }
 
 a {
-  color: var(--c-navy);
+  color: var(--c-brand);
   text-underline-offset: 0.2em;
   text-decoration-thickness: 1px;
 
@@ -162,9 +162,9 @@ textarea {
   gap: var(--space-2);
   min-height: 2.75rem;
   padding: 0 var(--space-5);
-  border: 1px solid var(--c-navy);
+  border: 1px solid var(--c-brand);
   border-radius: var(--radius-control);
-  background: var(--c-navy);
+  background: var(--c-brand);
   color: var(--c-paper);
   font-weight: 600;
   text-decoration: none;
@@ -178,18 +178,18 @@ textarea {
 
 .button--secondary {
   background: transparent;
-  color: var(--c-navy);
+  color: var(--c-brand);
 
   &:hover {
     background: var(--c-mist);
-    border-color: var(--c-navy);
+    border-color: var(--c-brand);
   }
 }
 
 .button--on-dark {
   border-color: var(--c-paper);
   background: var(--c-paper);
-  color: var(--c-navy);
+  color: var(--c-brand);
 
   &:hover {
     background: var(--c-mist);

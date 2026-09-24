@@ -23,7 +23,7 @@
   padding: var(--space-2) 0;
   border: 0;
   background: none;
-  color: var(--c-navy);
+  color: var(--c-brand);
   font-size: var(--fs-md);
   text-align: start;
   text-decoration: none;
@@ -86,7 +86,7 @@
   }
 
   .nav__group {
-    --c-focus: var(--c-navy);
+    --c-focus: var(--c-brand);
 
     position: absolute;
     top: 100%;
@@ -100,7 +100,7 @@
 
   .nav__sublink {
     padding: var(--space-2) var(--space-4);
-    color: var(--c-navy);
+    color: var(--c-brand);
 
     &:hover {
       background: var(--c-mist);

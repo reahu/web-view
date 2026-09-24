@@ -19,7 +19,7 @@ describe('Footer', () => {
   });
 
   it('shows the current year', () => {
-    expect(el.textContent).toContain(`© ${new Date().getFullYear()} Royal Group of Cambodia`);
+    expect(el.textContent).toContain(`© ${new Date().getFullYear()} Malin Koh Kong Peace Development Co., Ltd.`);
   });
 
   it('links to every page in the main navigation', () => {

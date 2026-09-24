@@ -4,24 +4,33 @@ import { Meta, Title } from '@angular/platform-browser';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
 import { environment } from '@env/environment';
 
-export const SITE_NAME = 'Royal Group of Cambodia';
+export const SITE_NAME = 'Malin Koh Kong Peace Development';
+
+const LEGAL_NAME = 'Malin Koh Kong Peace Development Co., Ltd.';
+
+/** Header logo, from the client's organisation chart; also the JSON-LD logo (112px tall). */
+export const LOGO = { src: '/images/logo/malin-logo.webp', width: 206, height: 112 };
 
 const DEFAULT_DESCRIPTION =
-  'Royal Group of Cambodia is a Cambodian group of companies working in telecoms and media, finance, insurance, property, hospitality, infrastructure, energy and consumer goods.';
+  'Malin Koh Kong Peace Development dredges and supplies sand for construction projects of every kind, in support of Cambodia’s construction sector.';
 
 // Placeholder until a real share image exists.
 const DEFAULT_IMAGE = '/images/placeholders/hero-1.webp';
 
 /**
  * schema.org Organization for the home page. Only confirmed facts go here: structured data
- * isn't visible, so a placeholder can't be marked as one. Add logo (the current one is a
- * placeholder), address, telephone, email, foundingDate and sameAs once the client confirms them.
+ * isn't visible, so a placeholder can't be marked as one. Add address, telephone, email,
+ * foundingDate and sameAs once the client confirms them.
  */
 export const ORGANIZATION_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: SITE_NAME,
+  legalName: LEGAL_NAME,
+  // The client's own Khmer name, from the organisation chart.
+  alternateName: 'ក្រុមហ៊ុន ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ឯ.ក',
   url: `${environment.site_url}/`,
+  logo: `${environment.site_url}${LOGO.src}`,
   description: DEFAULT_DESCRIPTION,
 };
 

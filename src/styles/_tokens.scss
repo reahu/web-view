@@ -3,15 +3,16 @@
 
 :root {
   // Color
-  --c-navy: #0e2a47; // brand, header, hero, links, buttons
-  --c-gilt: #c9a55c; // hero accent only, and only on navy (fails contrast on white)
+  // Brand colours from the client's organisation chart: background green and logo gold.
+  --c-brand: #03321e; // header, hero, links, buttons (14.2:1 with white)
+  --c-accent: #e9a41c; // accents only, and only on --c-brand (6.6:1 there, 2.1:1 on white)
   --c-ink: #14181f; // body text
   --c-slate: #5a6472; // secondary text, dates, captions
   --c-mist: #eef0f2; // alternating section bands
   --c-line: #c9ced6; // 1px rules and borders
   --c-paper: #ffffff; // page background
 
-  --c-focus: var(--c-navy);
+  --c-focus: var(--c-brand);
   --c-error: #b3261e; // form errors only (6.5:1 on white)
   --c-success: #1e6b3a; // form confirmation only (6.6:1 on white)
 

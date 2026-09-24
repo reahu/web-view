@@ -2,9 +2,7 @@ import { InjectionToken } from '@angular/core';
 
 export const CONTACT_TOPICS = [
   { value: 'general', label: 'General enquiry' },
-  { value: 'investors', label: 'Investor relations' },
-  { value: 'media', label: 'Media and press' },
-  { value: 'careers', label: 'Careers' },
+  { value: 'quote', label: 'Sand supply and quotes' },
   { value: 'partnerships', label: 'Business partnerships' },
 ] as const;
 

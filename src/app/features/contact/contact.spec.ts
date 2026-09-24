@@ -40,13 +40,13 @@ describe('Contact', () => {
   afterEach(() => el.remove());
 
   it('preselects the topic from the query parameter and ignores unknown ones', async () => {
-    fixture.componentRef.setInput('topic', 'investors');
+    fixture.componentRef.setInput('topic', 'quote');
     await fixture.whenStable();
-    expect(input('topic').value).toBe('investors');
+    expect(input('topic').value).toBe('quote');
 
     fixture.componentRef.setInput('topic', 'nonsense');
     await fixture.whenStable();
-    expect(input('topic').value).toBe('investors');
+    expect(input('topic').value).toBe('quote');
   });
 
   it('shows no errors before the user submits', () => {
@@ -85,7 +85,7 @@ describe('Contact', () => {
 
   it('sends a valid message, confirms it and clears the form', async () => {
     send.mockResolvedValue();
-    fixture.componentRef.setInput('topic', 'media');
+    fixture.componentRef.setInput('topic', 'partnerships');
     await fixture.whenStable();
     fillValid();
     await submit();
@@ -94,14 +94,14 @@ describe('Contact', () => {
       name: 'Sokha Chan',
       email: 'sokha@example.com',
       organisation: '',
-      topic: 'media',
+      topic: 'partnerships',
       message: 'Hello',
     });
     const notice = el.querySelector<HTMLElement>('.notice--success')!;
     expect(notice.textContent).toContain('has been sent');
     expect(document.activeElement).toBe(notice);
     expect(input('name').value).toBe('');
-    expect(input('topic').value).toBe('media');
+    expect(input('topic').value).toBe('partnerships');
     expect(el.querySelector('[aria-invalid="true"]')).toBeNull();
   });
 

@@ -32,7 +32,7 @@ type FieldKey = (typeof FIELDS)[number];
   templateUrl: './contact.html',
 })
 export class Contact {
-  /** From the ?topic= query parameter, e.g. /contact-us?topic=investors. */
+  /** From the ?topic= query parameter, e.g. /contact-us?topic=quote. */
   readonly topic = input<string>();
 
   private readonly send = inject(CONTACT_SENDER);
