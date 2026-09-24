@@ -18,13 +18,19 @@
     @for (node of nodes; track node.member.id) {
       <li class="org__item">
         <div class="person">
-          <p class="person__name">{{ node.member.name }}</p>
-          <p class="person__role">{{ node.member.role }}</p>
-          @if (node.alsoReportsTo.length) {
-            <p class="person__also" i18n="@@organisation.alsoReportsTo">
-              Also reports to {{ namesOf(node.alsoReportsTo) }}
-            </p>
+          @if (node.member.photo) {
+            <!-- The name is right beside it, so the photo needs no text alternative. -->
+            <img class="person__photo" [ngSrc]="node.member.photo" width="56" height="70" alt="" />
           }
+          <div class="person__text">
+            <p class="person__name">{{ node.member.name }}</p>
+            <p class="person__role">{{ node.member.role }}</p>
+            @if (node.alsoReportsTo.length) {
+              <p class="person__also" i18n="@@organisation.alsoReportsTo">
+                Also reports to {{ namesOf(node.alsoReportsTo) }}
+              </p>
+            }
+          </div>
         </div>
         @if (node.reports.length) {
           <ng-container

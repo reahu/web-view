@@ -1,4 +1,4 @@
-import { NgTemplateOutlet } from '@angular/common';
+import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { Component, LOCALE_ID, inject } from '@angular/core';
 import { OrgMember } from '@core/models/org-member';
 import { ContentService } from '@core/services/content.service';
@@ -9,7 +9,7 @@ import { ContentService } from '@core/services/content.service';
  * named in text.
  */
 @Component({
-  imports: [NgTemplateOutlet],
+  imports: [NgOptimizedImage, NgTemplateOutlet],
   selector: 'rg-organisation',
   styleUrl: './organisation.scss',
   templateUrl: './organisation.html',

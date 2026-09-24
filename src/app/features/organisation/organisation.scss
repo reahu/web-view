@@ -18,10 +18,24 @@
 }
 
 .person {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
   max-width: 24rem;
   padding: var(--space-3) var(--space-4);
   border-left: 3px solid var(--c-brand);
   background: var(--c-mist);
+}
+
+.person__photo {
+  flex-shrink: 0;
+  width: 3.5rem;
+  height: auto;
+  background: var(--c-paper);
+}
+
+.person__text {
+  min-width: 0;
 }
 
 .person__name {
@@ -48,6 +62,15 @@
 
     > .org__item + .org__item {
       margin-top: 0;
+    }
+
+    // Columns are narrow: photo above the name, as on the printed chart, and a smaller indent.
+    .person {
+      flex-direction: column;
+    }
+
+    .org {
+      padding-left: var(--space-3);
     }
   }
 }

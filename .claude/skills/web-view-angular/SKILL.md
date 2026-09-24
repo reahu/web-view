@@ -166,7 +166,11 @@ already-translated template changes its extracted source (see Languages).
   to `/contact-us?topic=quote`), `rg-external-link` (always use it for off-site links).
 - Organisation: `content/organisation.ts` lists people with `reportsTo` ids;
   `ContentService.orgChart` nests each under their first manager, and the page names any
-  second manager in text. Names and titles only: **no photos** until each person agrees.
+  second manager in text. Portraits (`images/people/<id>.webp`, 112×140, shown at 56×70 with
+  `alt=""` because the name is beside them) come from the chart; everyone agreed to theirs being
+  online (user, 2026-09-24). A person's `photo` is optional: leave it out for anyone who
+  hasn't agreed. The photos were matched to names by locating each portrait on the rendered
+  chart; never assign a photo to a name by eye.
 - Contact form: Signal Forms with `[formRoot]`/`[formField]`, an error summary of buttons that
   call `focusBoundControl()`, `aria-invalid`/`aria-describedby` per field. Topics: general,
   quote, partnerships. Sending goes through the `CONTACT_SENDER` token, which **rejects by

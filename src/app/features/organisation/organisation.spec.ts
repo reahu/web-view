@@ -33,6 +33,17 @@ describe('Organisation', () => {
     ]);
   });
 
+  it('shows each portrait beside its own name, with an empty alt', () => {
+    const people = [...el.querySelectorAll('.person')];
+    expect(people.length).toBe(14);
+    for (const person of people) {
+      const name = person.querySelector('.person__name')!.textContent!.trim();
+      const img = person.querySelector('img')!;
+      expect(img.getAttribute('alt')).toBe('');
+      expect(img.getAttribute('src')).toBe(`/images/people/${name.toLowerCase().replace(/ /g, '-')}.webp`);
+    }
+  });
+
   it('names a second manager in text', () => {
     const notes = [...el.querySelectorAll('.person__also')].map((p) => p.textContent?.trim());
     expect(notes).toEqual(['Also reports to Hok Cheaven', 'Also reports to Cai Rixin']);
