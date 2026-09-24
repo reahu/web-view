@@ -10,7 +10,10 @@
       />
     </a>
 
-    <!-- DOM order = visual order at every width: nav (inline when wide), then menu. -->
+    <!--
+      DOM order = visual order at every width: nav (inline when wide), language, menu.
+      The language switch stays outside the drawer so it's one tap away on phones.
+    -->
     <rg-mobile-drawer
       id="site-nav"
       label="Site menu"
@@ -20,6 +23,8 @@
     >
       <rg-nav-menu />
     </rg-mobile-drawer>
+
+    <rg-language-switch />
 
     <button
       #menuToggle

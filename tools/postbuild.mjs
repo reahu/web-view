@@ -9,6 +9,8 @@
 // 2. sitemap.xml: every prerendered route whose page is indexable and canonical to itself,
 //    in both languages (Khmer at /, English under /en). noindex pages and redirect stubs (no
 //    canonical) drop out; an indexable page whose canonical points elsewhere fails the build.
+//    Each URL carries its language alternates (hreflang), read from the page; they must
+//    agree both ways and point at pages in the sitemap.
 // 3. robots.txt: allows everything and points to the sitemap.
 //
 // The site origin is read from the home page's canonical link, which SeoService writes from
@@ -78,7 +80,26 @@ for (const { route, head } of pages) {
     // e.g. an English page whose canonical lost the /en prefix.
     fail(`${route} has canonical ${canonical}, expected ${url}`);
   } else {
-    included.push(url);
+    included.push({ url, alternates: alternatesOf(head) });
+  }
+}
+
+// Language alternates must point at pages in the sitemap and agree both ways: each page
+// in a group lists the same set, including itself (search engines ignore one-way links).
+const byUrl = new Map(included.map((page) => [page.url, page]));
+for (const { url, alternates } of included) {
+  const hrefs = Object.values(alternates);
+  if (!hrefs.includes(url)) {
+    fail(`${url} doesn't list itself among its language alternates (hreflang)`);
+  }
+  for (const href of hrefs) {
+    const other = byUrl.get(href);
+    if (!other) {
+      fail(`${url} lists ${href} as an alternate, but no indexable page has that URL`);
+    }
+    if (JSON.stringify(other.alternates) !== JSON.stringify(alternates)) {
+      fail(`${url} and ${href} list different language alternates`);
+    }
   }
 }
 
@@ -86,8 +107,16 @@ await writeFile(
   join(BROWSER, 'sitemap.xml'),
   [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...included.map((url) => `  <url><loc>${escapeXml(url)}</loc></url>`),
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    ...included.flatMap(({ url, alternates }) => [
+      '  <url>',
+      `    <loc>${escapeXml(url)}</loc>`,
+      ...Object.entries(alternates).map(
+        ([hreflang, href]) =>
+          `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${escapeXml(href)}"/>`,
+      ),
+      '  </url>',
+    ]),
     '</urlset>',
     '',
   ].join('\n'),
@@ -163,6 +192,16 @@ function pageFile(route) {
 
 function canonicalOf(head) {
   return tags(head, 'link').find((attrs) => attrs.rel === 'canonical')?.href;
+}
+
+/** hreflang → href, sorted by hreflang so pages can be compared. */
+function alternatesOf(head) {
+  return Object.fromEntries(
+    tags(head, 'link')
+      .filter((attrs) => attrs.rel === 'alternate' && attrs.hreflang)
+      .map((attrs) => [attrs.hreflang, attrs.href])
+      .sort(([a], [b]) => a.localeCompare(b)),
+  );
 }
 
 function robotsOf(head) {

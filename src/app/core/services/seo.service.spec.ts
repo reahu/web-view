@@ -70,6 +70,42 @@ describe('SeoService', () => {
     expect(content('name="robots"')).toBe('index, follow');
   });
 
+  describe('language alternates', () => {
+    const alternates = () =>
+      Object.fromEntries(
+        [...document.head.querySelectorAll('link[rel="alternate"][hreflang]')].map((link) => [
+          link.getAttribute('hreflang'),
+          link.getAttribute('href'),
+        ]),
+      );
+
+    it('links every language and x-default (Khmer), without query or fragment', () => {
+      service.apply({ path: '/services?x=1#main' });
+      expect(alternates()).toEqual({
+        km: `${environment.site_url}/services`,
+        en: `${environment.site_url}/en/services`,
+        'x-default': `${environment.site_url}/services`,
+      });
+      service.apply({ path: '/' });
+      expect(alternates()).toEqual({
+        km: `${environment.site_url}/`,
+        en: `${environment.site_url}/en`,
+        'x-default': `${environment.site_url}/`,
+      });
+    });
+
+    it('leaves them off noindex pages', () => {
+      service.apply({ path: '/services' });
+      service.apply({ path: '/nope', noindex: true });
+      expect(alternates()).toEqual({});
+    });
+
+    it('sets og:locale for the build (English in tests)', () => {
+      service.apply({ path: '/' });
+      expect(content('property="og:locale"')).toBe('en_US');
+    });
+  });
+
   describe('JSON-LD', () => {
     const scripts = () => document.head.querySelectorAll('script[type="application/ld+json"]');
 

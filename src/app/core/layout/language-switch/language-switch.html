@@ -1,0 +1,9 @@
+@for (link of links(); track link.language.code) {
+  <a
+    class="switch"
+    [href]="link.href"
+    [attr.hreflang]="link.language.code"
+    [attr.lang]="link.language.code"
+    >{{ link.language.label }}</a
+  >
+}

@@ -1,7 +1,8 @@
 import { DOCUMENT, Location } from '@angular/common';
-import { Injectable, Service, inject } from '@angular/core';
+import { Injectable, LOCALE_ID, Service, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
+import { LANGUAGES, languageFor, languagePath } from '@core/i18n/languages';
 import { environment } from '@env/environment';
 
 /** The brand in Latin script, as registered; the JSON-LD name on pages in both languages. */
@@ -50,13 +51,17 @@ export interface PageSeo {
   jsonLd?: object;
 }
 
-/** Writes the document title, meta description, canonical link, Open Graph tags and JSON-LD. */
+/**
+ * Writes the document title, meta description, canonical link, language alternates,
+ * Open Graph tags and JSON-LD.
+ */
 @Service()
 export class SeoService {
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
   private readonly location = inject(Location);
+  private readonly language = languageFor(inject(LOCALE_ID));
 
   apply(page: PageSeo): void {
     const title =
@@ -75,10 +80,37 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:description', content: description });
     this.meta.updateTag({ property: 'og:url', content: url });
     this.meta.updateTag({ property: 'og:image', content: image });
+    this.meta.updateTag({ property: 'og:locale', content: this.language.ogLocale });
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
 
     this.setCanonical(url);
+    this.setAlternates(page.noindex ? undefined : page.path);
     this.setJsonLd(page.jsonLd);
+  }
+
+  /**
+   * <link rel="alternate" hreflang> for the page in every language, plus x-default (Khmer).
+   * Omitted on noindex pages. tools/postbuild.mjs checks each pair points both ways.
+   */
+  private setAlternates(path: string | undefined): void {
+    for (const link of this.document.head.querySelectorAll('link[rel="alternate"][hreflang]')) {
+      link.remove();
+    }
+    if (path === undefined) {
+      return;
+    }
+    const page = path.split(/[?#]/, 1)[0] || '/';
+    const alternates = [
+      ...LANGUAGES.map((language) => [language.code, language] as const),
+      ['x-default', LANGUAGES[0]] as const,
+    ];
+    for (const [hreflang, language] of alternates) {
+      const link = this.document.createElement('link');
+      link.setAttribute('rel', 'alternate');
+      link.setAttribute('hreflang', hreflang);
+      link.setAttribute('href', absoluteUrl(languagePath(language, page)));
+      this.document.head.appendChild(link);
+    }
   }
 
   /**
