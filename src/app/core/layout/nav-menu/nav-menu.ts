@@ -1,8 +1,8 @@
-import { Component, ElementRef, inject, signal } from '@angular/core';
+import { Component, ElementRef, inject, input, signal } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter, map } from 'rxjs';
-import { MAIN_NAV, NavGroup, isNavGroup } from '../navigation';
+import { MAIN_NAV, NavEntry, NavGroup, isNavGroup } from '../navigation';
 
 /**
  * Main navigation using the disclosure pattern: group parents are buttons with
@@ -24,7 +24,8 @@ export class NavMenu {
   private readonly host: HTMLElement = inject(ElementRef).nativeElement;
   private readonly router = inject(Router);
 
-  protected readonly entries = MAIN_NAV;
+  /** The site's menu; tests pass their own, since MAIN_NAV may have no groups. */
+  readonly entries = input<readonly NavEntry[]>(MAIN_NAV);
   protected readonly isNavGroup = isNavGroup;
   protected readonly openGroup = signal<string | null>(null);
 

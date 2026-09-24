@@ -4,10 +4,9 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 import { MobileDrawer } from '../mobile-drawer/mobile-drawer';
 import { NavMenu } from '../nav-menu/nav-menu';
-import { SearchOverlay } from '../search-overlay/search-overlay';
 
 @Component({
-  imports: [RouterLink, MobileDrawer, NavMenu, SearchOverlay],
+  imports: [RouterLink, MobileDrawer, NavMenu],
   selector: 'rg-header',
   styleUrl: './header.scss',
   templateUrl: './header.html',

@@ -27,8 +27,6 @@ const POLICY = {
   // Prerendered pages carry component <style> blocks and style="" attributes (NgOptimizedImage
   // `fill`, CSS custom properties); hashing or nonces aren't possible for those in static output.
   'style-src': ["'self'", "'unsafe-inline'"],
-  // rg-video-facade's player, loaded on click.
-  'frame-src': ['https://www.youtube-nocookie.com'],
   'object-src': ["'none'"],
   // These two don't fall back to default-src.
   'base-uri': ["'self'"],

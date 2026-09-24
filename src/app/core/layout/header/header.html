@@ -4,7 +4,7 @@
       Royal Group<span class="visually-hidden"> of Cambodia, home page</span>
     </a>
 
-    <!-- DOM order = visual order at every width: nav (inline when wide), search, menu. -->
+    <!-- DOM order = visual order at every width: nav (inline when wide), then menu. -->
     <rg-mobile-drawer
       id="site-nav"
       label="Site menu"
@@ -13,14 +13,6 @@
     >
       <rg-nav-menu />
     </rg-mobile-drawer>
-
-    <button #searchButton type="button" class="header__button" (click)="search.open()">
-      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-        <circle cx="7" cy="7" r="5.25" fill="none" stroke="currentColor" stroke-width="1.5" />
-        <path d="M11 11l4 4" stroke="currentColor" stroke-width="1.5" />
-      </svg>
-      <span class="header__button-label">Search</span>
-    </button>
 
     <button
       #menuToggle
@@ -37,5 +29,3 @@
     </button>
   </div>
 </header>
-
-<rg-search-overlay #search (closed)="searchButton.focus()" />
