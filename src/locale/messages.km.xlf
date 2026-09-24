@@ -342,20 +342,14 @@
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
       </trans-unit>
       <trans-unit id="legal.notice" datatype="html">
-        <source> Placeholder text. This page must be replaced with wording approved by the client&apos;s legal counsel before launch. </source>
-        <target state="needs-review-translation">អត្ថបទ placeholder។ ទំព័រនេះត្រូវជំនួសដោយខ្លឹមសារដែលទីប្រឹក្សាច្បាប់របស់ក្រុមហ៊ុនបានអនុម័ត មុនពេលដាក់ឱ្យប្រើប្រាស់។</target>
-        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
-        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
-      </trans-unit>
-      <trans-unit id="legal.placeholderSection" datatype="html">
-        <source>Placeholder copy for this section.</source>
-        <target state="needs-review-translation">អត្ថបទ placeholder សម្រាប់ផ្នែកនេះ។</target>
+        <source> Draft wording, for the company’s legal adviser to review before launch. Items in square brackets still need to be confirmed. </source>
+        <target state="needs-review-translation">ខ្លឹមសារនេះជាសេចក្តីព្រាង សម្រាប់ឱ្យទីប្រឹក្សាច្បាប់របស់ក្រុមហ៊ុនពិនិត្យ មុនពេលដាក់ឱ្យប្រើប្រាស់។ ព័ត៌មានក្នុងវង់ក្រចក [ ] ត្រូវបញ្ជាក់បន្ថែម។</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
       </trans-unit>
       <trans-unit id="legal.updated" datatype="html">
-        <source>Last updated: placeholder date</source>
-        <target state="needs-review-translation">ធ្វើបច្ចុប្បន្នភាពចុងក្រោយ៖ កាលបរិច្ឆេទ placeholder</target>
+        <source>Last updated: 24 September 2026 (draft)</source>
+        <target state="needs-review-translation">ធ្វើបច្ចុប្បន្នភាពចុងក្រោយ៖ ២៤ កញ្ញា ២០២៦ (សេចក្តីព្រាង)</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
       </trans-unit>
@@ -492,9 +486,24 @@
         <target state="needs-review-translation">ព័ត៌មានដែលយើងប្រមូល</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
       </trans-unit>
+      <trans-unit id="privacy.collect.form" datatype="html">
+        <source> If you use the contact form, we receive what you type in it: your name, email address, organisation (if you give one), the topic you choose and your message. </source>
+        <target state="needs-review-translation">ប្រសិនបើអ្នកប្រើទម្រង់ទំនាក់ទំនង យើងទទួលបានព័ត៌មានដែលអ្នកបានបំពេញ៖ ឈ្មោះ អាសយដ្ឋានអ៊ីមែល ស្ថាប័ន (ប្រសិនបើអ្នកផ្តល់ឱ្យ) ប្រធានបទដែលអ្នកជ្រើសរើស និងសាររបស់អ្នក។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.collect.logs" datatype="html">
+        <source> Like most websites, our web server records basic technical details of each visit: your IP address, the page requested, the time, and your browser’s name and version. </source>
+        <target state="needs-review-translation">ដូចគេហទំព័រភាគច្រើនដែរ ម៉ាស៊ីនមេរបស់យើងកត់ត្រាព័ត៌មានបច្ចេកទេសមូលដ្ឋាននៃការចូលមើលនីមួយៗ៖ អាសយដ្ឋាន IP របស់អ្នក ទំព័រដែលបានស្នើសុំ ពេលវេលា និងឈ្មោះ និងកំណែកម្មវិធីរុករករបស់អ្នក។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
       <trans-unit id="privacy.cookies" datatype="html">
         <source>Cookies</source>
         <target state="needs-review-translation">ខូគី (Cookies)</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.cookies.body" datatype="html">
+        <source> This website doesn’t use cookies or similar technologies, and it doesn’t use analytics, advertising or tracking tools. It loads no content from other websites. </source>
+        <target state="needs-review-translation">គេហទំព័រនេះមិនប្រើខូគី ឬបច្ចេកវិទ្យាស្រដៀងគ្នា ហើយមិនប្រើឧបករណ៍វិភាគ ការផ្សាយពាណិជ្ជកម្ម ឬការតាមដានទេ។ វាមិនទាញយកមាតិកាពីគេហទំព័រផ្សេងទៀតទេ។</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
       </trans-unit>
       <trans-unit id="privacy.lead" datatype="html">
@@ -507,14 +516,29 @@
         <target state="needs-review-translation">រយៈពេលដែលយើងរក្សាទុក</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
       </trans-unit>
+      <trans-unit id="privacy.retention.body" datatype="html">
+        <source> We keep contact form messages for as long as we need them to deal with your enquiry, and no longer than [period]. Server records are deleted after [period]. </source>
+        <target state="needs-review-translation">យើងរក្សាទុកសារពីទម្រង់ទំនាក់ទំនងក្នុងរយៈពេលដែលយើងត្រូវការសម្រាប់ដោះស្រាយសំណើរបស់អ្នក ហើយមិនលើសពី [រយៈពេល]។ កំណត់ត្រាម៉ាស៊ីនមេត្រូវបានលុបចោលបន្ទាប់ពី [រយៈពេល]។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
       <trans-unit id="privacy.rights" datatype="html">
         <source>Your rights</source>
         <target state="needs-review-translation">សិទ្ធិរបស់អ្នក</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
       </trans-unit>
+      <trans-unit id="privacy.rights.body" datatype="html">
+        <source> You can ask us what information we hold about you, and ask us to correct or delete it. Write to us through the contact form and we’ll reply within [period]. </source>
+        <target state="needs-review-translation">អ្នកអាចសួរយើងអំពីព័ត៌មានដែលយើងមានអំពីអ្នក ហើយស្នើឱ្យយើងកែតម្រូវ ឬលុបវាចោល។ សូមសរសេរមកយើងតាមទម្រង់ទំនាក់ទំនង ហើយយើងនឹងឆ្លើយតបក្នុងរយៈពេល [រយៈពេល]។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
       <trans-unit id="privacy.sharing" datatype="html">
         <source>Sharing and transfers</source>
         <target state="needs-review-translation">ការចែករំលែក និងការផ្ទេរ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.sharing.body" datatype="html">
+        <source> We share your information only with companies that help us run the website, such as our hosting provider and [the service that delivers contact form messages], and only as far as they need it to do that. [Say where these providers store data, if outside Cambodia.] We may also share it if the law requires us to. </source>
+        <target state="needs-review-translation">យើងចែករំលែកព័ត៌មានរបស់អ្នកតែជាមួយក្រុមហ៊ុនដែលជួយយើងដំណើរការគេហទំព័រ ដូចជាអ្នកផ្តល់សេវាបង្ហោះគេហទំព័រ និង [សេវាដែលបញ្ជូនសារពីទម្រង់ទំនាក់ទំនង] ហើយត្រឹមតែកម្រិតដែលពួកគេត្រូវការដើម្បីធ្វើការងារនោះប៉ុណ្ណោះ។ [បញ្ជាក់ទីកន្លែងដែលអ្នកផ្តល់សេវាទាំងនេះរក្សាទុកទិន្នន័យ ប្រសិនបើនៅក្រៅប្រទេសកម្ពុជា។] យើងក៏អាចចែករំលែកព័ត៌មាននេះ ប្រសិនបើច្បាប់តម្រូវ។</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
       </trans-unit>
       <trans-unit id="privacy.title" datatype="html">
@@ -525,6 +549,11 @@
       <trans-unit id="privacy.use" datatype="html">
         <source>How we use it</source>
         <target state="needs-review-translation">របៀបដែលយើងប្រើប្រាស់ព័ត៌មាន</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.use.body" datatype="html">
+        <source> We use contact form messages only to reply to you and deal with your enquiry. We use server records only to keep the website running and secure. We don’t use your information for advertising, and we don’t sell it. </source>
+        <target state="needs-review-translation">យើងប្រើសារពីទម្រង់ទំនាក់ទំនងសម្រាប់តែឆ្លើយតប និងដោះស្រាយសំណើរបស់អ្នកប៉ុណ្ណោះ។ យើងប្រើកំណត់ត្រាម៉ាស៊ីនមេសម្រាប់តែរក្សាដំណើរការ និងសុវត្ថិភាពរបស់គេហទំព័រប៉ុណ្ណោះ។ យើងមិនប្រើព័ត៌មានរបស់អ្នកសម្រាប់ការផ្សាយពាណិជ្ជកម្ម ហើយយើងមិនលក់វាទេ។</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
       </trans-unit>
       <trans-unit id="process.depot.text" datatype="html">
@@ -655,9 +684,19 @@
         <target state="needs-review-translation">ការផ្លាស់ប្តូរលក្ខខណ្ឌទាំងនេះ</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
       </trans-unit>
+      <trans-unit id="terms.changes.body" datatype="html">
+        <source> We may update these terms. The date at the top of this page shows when they last changed. </source>
+        <target state="needs-review-translation">យើងអាចធ្វើបច្ចុប្បន្នភាពលក្ខខណ្ឌទាំងនេះ។ កាលបរិច្ឆេទនៅខាងលើទំព័រនេះបង្ហាញពីពេលដែលលក្ខខណ្ឌត្រូវបានផ្លាស់ប្តូរចុងក្រោយ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
       <trans-unit id="terms.disclaimer" datatype="html">
         <source>Disclaimer</source>
         <target state="needs-review-translation">ការបដិសេធការទទួលខុសត្រូវ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.disclaimer.body" datatype="html">
+        <source> We work to keep the information on this website accurate and up to date, but we can’t guarantee it. As far as the law allows, we aren’t liable for any loss that comes from relying on it. </source>
+        <target state="needs-review-translation">យើងខិតខំរក្សាព័ត៌មាននៅលើគេហទំព័រនេះឱ្យត្រឹមត្រូវ និងទាន់សម័យ ប៉ុន្តែយើងមិនអាចធានាបានទេ។ ក្នុងកម្រិតដែលច្បាប់អនុញ្ញាត យើងមិនទទួលខុសត្រូវចំពោះការខាតបង់ណាមួយដែលកើតចេញពីការពឹងផ្អែកលើព័ត៌មាននេះទេ។</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
       </trans-unit>
       <trans-unit id="terms.ip" datatype="html">
@@ -665,9 +704,19 @@
         <target state="needs-review-translation">កម្មសិទ្ធិបញ្ញា</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
       </trans-unit>
+      <trans-unit id="terms.ip.body" datatype="html">
+        <source> The text, logo, photos and design of this website belong to the company or are used with permission. You may view them and share links to this website, but you may not copy or reuse them without our written permission. </source>
+        <target state="needs-review-translation">អត្ថបទ ឡូហ្គោ រូបថត និងការរចនានៃគេហទំព័រនេះ ជាកម្មសិទ្ធិរបស់ក្រុមហ៊ុន ឬត្រូវបានប្រើប្រាស់ដោយមានការអនុញ្ញាត។ អ្នកអាចមើល និងចែករំលែកតំណភ្ជាប់ទៅគេហទំព័រនេះ ប៉ុន្តែមិនអាចចម្លង ឬប្រើប្រាស់ឡើងវិញដោយគ្មានការអនុញ្ញាតជាលាយលក្ខណ៍អក្សរពីយើងទេ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
       <trans-unit id="terms.law" datatype="html">
         <source>Governing law</source>
         <target state="needs-review-translation">ច្បាប់គ្រប់គ្រង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.law.body" datatype="html">
+        <source> These terms are governed by the laws of the Kingdom of Cambodia, and any dispute will be dealt with by the courts of Cambodia. </source>
+        <target state="needs-review-translation">លក្ខខណ្ឌទាំងនេះស្ថិតនៅក្រោមច្បាប់នៃព្រះរាជាណាចក្រកម្ពុជា ហើយវិវាទណាមួយនឹងត្រូវដោះស្រាយដោយតុលាការនៃព្រះរាជាណាចក្រកម្ពុជា។</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
       </trans-unit>
       <trans-unit id="terms.lead" datatype="html">
@@ -680,6 +729,11 @@
         <target state="needs-review-translation">តំណភ្ជាប់ទៅគេហទំព័រផ្សេងទៀត</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
       </trans-unit>
+      <trans-unit id="terms.links.body" datatype="html">
+        <source> If this website links to another website, we don’t control that website and aren’t responsible for its content. </source>
+        <target state="needs-review-translation">ប្រសិនបើគេហទំព័រនេះភ្ជាប់ទៅគេហទំព័រផ្សេង យើងមិនគ្រប់គ្រងគេហទំព័រនោះ ហើយមិនទទួលខុសត្រូវចំពោះខ្លឹមសាររបស់វាទេ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
       <trans-unit id="terms.title" datatype="html">
         <source>Terms of use</source>
         <target state="needs-review-translation">លក្ខខណ្ឌប្រើប្រាស់</target>
@@ -688,6 +742,11 @@
       <trans-unit id="terms.using" datatype="html">
         <source>Using this website</source>
         <target state="needs-review-translation">ការប្រើប្រាស់គេហទំព័រនេះ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.using.body" datatype="html">
+        <source> This website gives general information about Malin Koh Kong Peace Development Co., Ltd. and its services. It isn’t an offer to supply sand or any other service: prices and quantities are agreed separately, in writing. </source>
+        <target state="needs-review-translation">គេហទំព័រនេះផ្តល់ព័ត៌មានទូទៅអំពីក្រុមហ៊ុន ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ឯ.ក និងសេវាកម្មរបស់ក្រុមហ៊ុន។ វាមិនមែនជាការផ្តល់ជូនដើម្បីផ្គត់ផ្គង់ខ្សាច់ ឬសេវាកម្មផ្សេងទៀតទេ៖ តម្លៃ និងបរិមាណត្រូវព្រមព្រៀងគ្នាដាច់ដោយឡែកជាលាយលក្ខណ៍អក្សរ។</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
       </trans-unit>
     </body>

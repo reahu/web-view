@@ -30,7 +30,7 @@ src/app/
   shared/ui/             section-heading/, external-link/, process-steps/, quote-cta/
   features/
     home/  about/  services/  organisation/  contact/  not-found/
-    legal/               privacy/, terms/ (placeholder text until the client's lawyers supply it)
+    legal/               privacy/, terms/ (draft wording for legal review; [brackets] = to confirm)
   content/               process.ts, organisation.ts (typed arrays)
 src/locale/              messages.km.xlf: the Khmer translation, English source alongside
 src/styles/              styles.scss → _fonts, _tokens, _base; _breakpoints (no CSS output)
@@ -182,6 +182,10 @@ already-translated template changes its extracted source (see Languages).
   are **samples** for the mock-up (`sample: true`): labelled on the page, phone and email not
   linked, phone `+855 00 000 000` so it can't ring anyone. Never put them in the JSON-LD.
 - Placeholders stay visibly marked: the hero image, the sample contact details, the demo form.
+- Privacy policy and terms are **drafts** describing what the site really does (no cookies,
+  storage, analytics or third-party requests; nginx access logs; contact form). Anything not
+  known is in [square brackets] for the company's legal adviser. If the site starts using
+  cookies, analytics, embeds or a form service, update the privacy policy in the same change.
 - `/404` is a real route in each language; nginx serves the one matching the URL's language.
 - Dates: pass ISO date strings (`2026-03-14`) to `DatePipe` without a timezone argument.
 
