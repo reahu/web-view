@@ -1,6 +1,6 @@
 ---
 name: web-view-angular
-description: Project conventions for the web-view Angular 22 app, a prerendered static rebuild of the Royal Group of Cambodia corporate site (standalone, zoneless, signals, ContentService). Use this skill whenever you add or change anything under web-view/src or web-view/public — a page, route, component, service, model, content entry, form, layout piece, image, font or global style — even if the user just says "add a page for X" or "add a company" without mentioning Angular or the folder structure.
+description: Project conventions for the web-view Angular 22 app, a prerendered static rebuild of the Royal Group of Cambodia corporate site (standalone, zoneless, signals, ContentService). Use this skill whenever you add or change anything under web-view/src or web-view/public — a page, route, component, service, model, content entry, form, layout piece, image, font or global style — even if the user just says "add a page for X" or "add a company" without mentioning Angular or the folder structure. Also use it before touching nginx.conf, security-headers.conf, the Dockerfile, tools/postbuild.mjs (CSP, sitemap, robots) or the CI workflow, or when adding any third-party script, iframe, font, API or form endpoint.
 ---
 
 # web-view Angular conventions
@@ -87,7 +87,10 @@ Keep the generated `.spec.ts`.
 - `rg-mobile-drawer` wraps the single `rg-nav-menu`: inline from `$md`, modal side panel below
   it. Its TS breakpoint (`COMPACT_QUERY`) must match `$md`.
 - SEO is route-driven: give each route a `title` and `data: { description }` (and
-  `noindex: true` where needed); `SeoTitleStrategy` calls `SeoService.apply`. Dynamic routes
+  `noindex: true` where needed, `jsonLd` for structured data); `SeoTitleStrategy` calls
+  `SeoService.apply`, which also removes JSON-LD on routes without it. JSON-LD holds
+  **confirmed facts only**: it's invisible, so a placeholder can't be marked as one
+  (`ORGANIZATION_JSON_LD` leaves out logo, address, phone and social profiles for now). Dynamic routes
   use a title `ResolveFn` plus `resolve: { description }`. Absolute URLs use
   `environment.site_url`.
 - The skip link's href is built from the current path, because `<base href="/">` turns a bare
@@ -119,6 +122,32 @@ Keep the generated `.spec.ts`.
 - Dates: pass ISO date strings (`2026-03-14`) to `DatePipe` without a timezone argument;
   Angular reads date-only strings as local dates, so `'UTC'` shifts them by a day east of UTC.
 
+## Build output, headers and CI (phase 7)
+
+- **Build with `npm run build`**, never `npx ng build` alone: npm's `postbuild` hook runs
+  `tools/postbuild.mjs` on `dist/web-view/browser`. It's Node built-ins only and safe to re-run.
+- The script writes each page's **Content-Security-Policy `<meta>`** with SHA-256 hashes of
+  that page's inline scripts (Angular's event-replay contract and per-page bootstrap).
+  `security.autoCsp` in angular.json **can't be used**: the builder throws when prerendering is
+  on. It also swaps the critical-CSS `onload="this.media='all'"` for one hashed listener.
+- CSP rules for new code: no inline event handlers (`onclick=`, `onload=`) or hand-written inline
+  scripts in `index.html`; the build fails on handlers. `script-src` never gets
+  `'unsafe-inline'`; `style-src` has it (prerendered `<style>` blocks and `style=""`). Any new
+  origin (API, form service, embed, font CDN) goes in `POLICY` in `tools/postbuild.mjs`
+  (`connect-src`/`form-action`/`frame-src`…), or the browser blocks it.
+- The script also writes **sitemap.xml** (every prerendered route whose page has no `noindex`
+  and a canonical pointing at itself) and **robots.txt**. The origin comes from the home page's
+  canonical, i.e. `environment.site_url`. A new route appears in the sitemap automatically.
+- nginx: shared headers live in `security-headers.conf` (nosniff, referrer, `frame-ancestors`,
+  `X-Frame-Options`, `Permissions-Policy`). Every `location` that calls `add_header` must also
+  `include security-headers.conf;` because a location's add_header replaces the inherited ones,
+  and headers on 4xx responses need `always`. The Dockerfile copies the file.
+- nginx serves `/404`, `/404/`, `/index.csr.html` as 404, and `/social`, `/social/`,
+  `/social/index.html` as 301 to `/latest-news`. Hashed JS/CSS and `/fonts/*.woff2` are
+  immutable for a year: fonts aren't hashed, so replacing one means renaming it.
+- CI (`.github/workflows/ci.yml`): pull requests to `main` run `npm ci`, lint, test and
+  `npm run build` on Node 22 (same as the Dockerfile).
+
 ## Styles
 
 - Tokens are CSS custom properties in `_tokens.scss` (colors `--c-*`, `--font-*`, `--fs-*`,
@@ -139,7 +168,12 @@ visible or screen-reader "opens in a new tab" cue.
 ## Before calling work done
 
 ```bash
-npx ng build          # production + prerender (fails if a :slug route lacks params)
+npm run build         # production + prerender + postbuild (CSP, sitemap, robots)
 npx ng lint
 npx ng test --watch=false
 ```
+
+`ng build` fails if a `:slug` route lacks params; postbuild fails on an inline event handler
+or a home page without a canonical. For anything touching nginx or the CSP, also build the
+image (`docker build -t web-view .`), run it and check the pages in a browser: CSP violations
+appear only there.
