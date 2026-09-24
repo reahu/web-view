@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
@@ -15,10 +15,11 @@ import { filter, map } from 'rxjs';
 export class App {
   private readonly document = inject(DOCUMENT);
   private readonly router = inject(Router);
+  private readonly location = inject(Location);
 
   /**
-   * With <base href="/"> a bare "#main" would resolve to "/#main" and jump home,
-   * so the skip link points at the current path.
+   * With a <base href> a bare "#main" would resolve to the language's home page, so the
+   * skip link points at the current path, including the base ("/en/…" in English).
    */
   protected readonly skipHref = toSignal(
     this.router.events.pipe(
@@ -34,6 +35,6 @@ export class App {
   }
 
   private mainHref(): string {
-    return `${this.router.url.split(/[?#]/, 1)[0]}#main`;
+    return `${this.location.prepareExternalUrl(this.router.url.split(/[?#]/, 1)[0])}#main`;
   }
 }

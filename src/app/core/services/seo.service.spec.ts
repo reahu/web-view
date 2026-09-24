@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import { APP_BASE_HREF, DOCUMENT } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 import { Meta, Title } from '@angular/platform-browser';
 import { environment } from '@env/environment';
@@ -14,13 +14,15 @@ describe('SeoService', () => {
   const canonical = () =>
     document.head.querySelector('link[rel="canonical"]')?.getAttribute('href');
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
+  const setup = (baseHref: string) => {
+    TestBed.configureTestingModule({ providers: [{ provide: APP_BASE_HREF, useValue: baseHref }] });
     service = TestBed.inject(SeoService);
     meta = TestBed.inject(Meta);
     title = TestBed.inject(Title);
     document = TestBed.inject(DOCUMENT);
-  });
+  };
+
+  beforeEach(() => setup('/'));
 
   it('suffixes page titles with the site name', () => {
     service.apply({ title: 'Investors', path: '/investors' });
@@ -49,6 +51,16 @@ describe('SeoService', () => {
     expect(document.head.querySelectorAll('link[rel="canonical"]').length).toBe(1);
     expect(canonical()).toBe(`${environment.site_url}/media`);
     expect(content('property="og:url"')).toBe(`${environment.site_url}/media`);
+  });
+
+  it('prefixes page URLs with the language base href, without a trailing slash', () => {
+    TestBed.resetTestingModule();
+    setup('/en/');
+    service.apply({ path: '/csr' });
+    expect(canonical()).toBe(`${environment.site_url}/en/csr`);
+    service.apply({ path: '/' });
+    expect(canonical()).toBe(`${environment.site_url}/en`);
+    expect(content('property="og:url"')).toBe(`${environment.site_url}/en`);
   });
 
   it('marks pages noindex on request', () => {

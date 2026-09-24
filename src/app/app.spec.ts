@@ -1,3 +1,4 @@
+import { APP_BASE_HREF } from '@angular/common';
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Router, provideRouter } from '@angular/router';
@@ -7,12 +8,16 @@ import { App } from './app';
 class TestPage {}
 
 describe('App', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  const setup = (baseHref: string) =>
+    TestBed.configureTestingModule({
       imports: [App],
-      providers: [provideRouter([{ path: '**', component: TestPage }])],
+      providers: [
+        provideRouter([{ path: '**', component: TestPage }]),
+        { provide: APP_BASE_HREF, useValue: baseHref },
+      ],
     }).compileComponents();
-  });
+
+  beforeEach(() => setup('/'));
 
   it('renders the landmarks in order', async () => {
     const fixture = TestBed.createComponent(App);
@@ -31,6 +36,17 @@ describe('App', () => {
 
     const skip = (fixture.nativeElement as HTMLElement).querySelector('.skip-link');
     expect(skip?.getAttribute('href')).toBe('/csr#main');
+  });
+
+  it('keeps the language prefix in the skip link on English pages', async () => {
+    TestBed.resetTestingModule();
+    await setup('/en/');
+    const fixture = TestBed.createComponent(App);
+    await TestBed.inject(Router).navigateByUrl('/csr');
+    await fixture.whenStable();
+
+    const skip = (fixture.nativeElement as HTMLElement).querySelector('.skip-link');
+    expect(skip?.getAttribute('href')).toBe('/en/csr#main');
   });
 
   it('moves focus to main from the skip link', async () => {

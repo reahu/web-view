@@ -6,8 +6,9 @@
 //    refuses to run alongside prerendering, and the inline scripts differ per page (the
 //    event-replay bootstrap lists that page's events), so no single header could list them.
 //    frame-ancestors can't be set from <meta>; nginx sends it (security-headers.conf).
-// 2. sitemap.xml: every prerendered route whose page is indexable and canonical to itself.
-//    /404 (noindex) and /social (a redirect stub with no canonical) drop out by that rule.
+// 2. sitemap.xml: every prerendered route whose page is indexable and canonical to itself,
+//    in both languages (Khmer at /, English under /en). noindex pages and redirect stubs (no
+//    canonical) drop out; an indexable page whose canonical points elsewhere fails the build.
 // 3. robots.txt: allows everything and points to the sitemap.
 //
 // The site origin is read from the home page's canonical link, which SeoService writes from
@@ -73,8 +74,11 @@ for (const { route, head } of pages) {
   const canonical = canonicalOf(head);
   if (/\bnoindex\b/.test(robotsOf(head) ?? '')) {
     console.log(`postbuild: sitemap skips ${route} (noindex)`);
+  } else if (!canonical) {
+    console.log(`postbuild: sitemap skips ${route} (no canonical: a redirect stub)`);
   } else if (canonical !== url) {
-    console.log(`postbuild: sitemap skips ${route} (canonical is ${canonical ?? 'missing'})`);
+    // e.g. an English page whose canonical lost the /en prefix.
+    fail(`${route} has canonical ${canonical}, expected ${url}`);
   } else {
     included.push(url);
   }

@@ -8,7 +8,8 @@
     "postbuild": "node tools/postbuild.mjs",
     "watch": "ng build --watch --configuration local",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "i18n": "ng extract-i18n --output-path dist/i18n && node tools/i18n-merge.mjs"
   },
   "private": true,
   "packageManager": "npm@11.19.0",
@@ -30,6 +31,7 @@
     "@angular/build": "22.1.8",
     "@angular/cli": "22.1.8",
     "@angular/compiler-cli": "22.1.7",
+    "@angular/localize": "^22.1.7",
     "@eslint/js": "^10.0.1",
     "@types/node": "^20.17.19",
     "angular-eslint": "22.5.0",

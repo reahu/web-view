@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
 import { Injectable, Service, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
@@ -44,11 +44,12 @@ export class SeoService {
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
+  private readonly location = inject(Location);
 
   apply(page: PageSeo): void {
     const title = page.title && page.title !== SITE_NAME ? `${page.title} | ${SITE_NAME}` : SITE_NAME;
     const description = page.description || DEFAULT_DESCRIPTION;
-    const url = absoluteUrl(page.path.split(/[?#]/, 1)[0] || '/');
+    const url = this.pageUrl(page.path);
     const image = absoluteUrl(page.image ?? DEFAULT_IMAGE);
 
     this.title.setTitle(title);
@@ -65,6 +66,16 @@ export class SeoService {
 
     this.setCanonical(url);
     this.setJsonLd(page.jsonLd);
+  }
+
+  /**
+   * Absolute URL of a page in the current language: the base href supplies the language
+   * prefix ("/en/…"). No trailing slash, so the English home page is "/en", like every
+   * other page and like the route list the sitemap is built from.
+   */
+  private pageUrl(path: string): string {
+    const external = this.location.prepareExternalUrl(path.split(/[?#]/, 1)[0] || '/');
+    return absoluteUrl(external.length > 1 ? external.replace(/\/$/, '') : external);
   }
 
   private setJsonLd(data: object | undefined): void {
