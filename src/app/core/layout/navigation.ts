@@ -19,6 +19,7 @@ export const isNavGroup = (entry: NavEntry): entry is NavGroup => 'links' in ent
 export const MAIN_NAV: readonly NavEntry[] = [
   { label: $localize`:@@nav.about:About us`, path: '/about' },
   { label: $localize`:@@nav.services:Services`, path: '/services' },
+  { label: $localize`:@@nav.organisation:Organisation`, path: '/organisation' },
   { label: $localize`:@@nav.contact:Contact us`, path: '/contact-us' },
 ];
 

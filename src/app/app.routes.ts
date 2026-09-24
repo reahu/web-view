@@ -27,6 +27,14 @@ export const routes: Routes = [
     loadComponent: () => import('@features/services/services').then((m) => m.Services),
   },
   {
+    path: 'organisation',
+    title: $localize`:@@route.organisation.title:Organisation structure`,
+    data: {
+      description: $localize`:@@route.organisation.description:Who leads Malin Koh Kong Peace Development and how its teams are organised.`,
+    },
+    loadComponent: () => import('@features/organisation/organisation').then((m) => m.Organisation),
+  },
+  {
     path: 'contact-us',
     title: $localize`:@@route.contact.title:Contact us`,
     data: {

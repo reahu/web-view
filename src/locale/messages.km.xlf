@@ -17,6 +17,11 @@
         <target state="final">យើងមានបទពិសោធន៍ក្នុងការបូម និងផ្គត់ផ្គង់ខ្សាច់ប្រកបដោយវិជ្ជាជីវៈ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ។</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
       </trans-unit>
+      <trans-unit id="about.teamLink" datatype="html">
+        <source>See who leads the company</source>
+        <target state="needs-review-translation">មើលអ្នកដឹកនាំក្រុមហ៊ុន</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
       <trans-unit id="about.title" datatype="html">
         <source>About us</source>
         <target state="needs-review-translation">អំពីយើង</target>
@@ -334,6 +339,11 @@
         <target state="needs-review-translation">ម៉ឺនុយចម្បង</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/nav-menu/nav-menu.html</context></context-group>
       </trans-unit>
+      <trans-unit id="nav.organisation" datatype="html">
+        <source>Organisation</source>
+        <target state="final">រចនាសម្ព័ន្ធ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/navigation.ts</context></context-group>
+      </trans-unit>
       <trans-unit id="nav.privacy" datatype="html">
         <source>Privacy policy</source>
         <target state="needs-review-translation">គោលការណ៍ឯកជនភាព</target>
@@ -359,6 +369,86 @@
         <target state="needs-review-translation">រកមិនឃើញទំព័រ</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
         <context-group purpose="location"><context context-type="sourcefile">src/app/features/not-found/not-found.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.am" datatype="html">
+        <source>Administration Manager</source>
+        <target state="needs-review-translation">អ្នកគ្រប់គ្រងរដ្ឋបាល</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.cashier" datatype="html">
+        <source>Cashier</source>
+        <target state="needs-review-translation">បេឡាករ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.ceo" datatype="html">
+        <source>Chief Executive Officer</source>
+        <target state="needs-review-translation">នាយកប្រតិបត្តិ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.cto" datatype="html">
+        <source>Chief Technical Officer</source>
+        <target state="needs-review-translation">នាយកបច្ចេកទេស</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.ddir" datatype="html">
+        <source>Director of Domestic &amp; International Relations</source>
+        <target state="needs-review-translation">នាយកទំនាក់ទំនងក្នុងស្រុក និងអន្តរជាតិ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.eaer" datatype="html">
+        <source>Executive Assistant &amp; External Relations</source>
+        <target state="needs-review-translation">ជំនួយការប្រតិបត្តិ និងទំនាក់ទំនងខាងក្រៅ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.fd" datatype="html">
+        <source>Finance Director</source>
+        <target state="needs-review-translation">នាយកហិរញ្ញវត្ថុ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.ird" datatype="html">
+        <source>International Relations Director</source>
+        <target state="needs-review-translation">នាយកទំនាក់ទំនងអន្តរជាតិ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.kpm" datatype="html">
+        <source>Koh Kong Provincial Manager</source>
+        <target state="needs-review-translation">អ្នកគ្រប់គ្រងខេត្តកោះកុង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.mm" datatype="html">
+        <source>Machinery Manager</source>
+        <target state="needs-review-translation">អ្នកគ្រប់គ្រងគ្រឿងចក្រ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.president" datatype="html">
+        <source>President</source>
+        <target state="needs-review-translation">ប្រធាន</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.sm" datatype="html">
+        <source>Site Manager</source>
+        <target state="needs-review-translation">អ្នកគ្រប់គ្រងការដ្ឋាន</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.technician" datatype="html">
+        <source>Technician</source>
+        <target state="needs-review-translation">អ្នកបច្ចេកទេស</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="organisation.alsoReportsTo" datatype="html">
+        <source> Also reports to <x id="INTERPOLATION" equiv-text="{{ namesOf(node.alsoReportsTo) }}"/> </source>
+        <target state="needs-review-translation">ក៏រាយការណ៍ជូន <x id="INTERPOLATION" equiv-text="{{ namesOf(node.alsoReportsTo) }}"/> ផងដែរ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/organisation/organisation.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="organisation.lead" datatype="html">
+        <source> The people who lead Malin Koh Kong Peace Development and its teams. </source>
+        <target state="needs-review-translation">អ្នកដឹកនាំ និងក្រុមការងាររបស់ ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/organisation/organisation.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="organisation.title" datatype="html">
+        <source>Organisation structure</source>
+        <target state="final">រចនាសម្ព័ន្ធ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/organisation/organisation.html</context></context-group>
       </trans-unit>
       <trans-unit id="privacy.collect" datatype="html">
         <source>Information we collect</source>
@@ -454,6 +544,16 @@
       <trans-unit id="route.contact.title" datatype="html">
         <source>Contact us</source>
         <target state="needs-review-translation">ទំនាក់ទំនង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.organisation.description" datatype="html">
+        <source>Who leads Malin Koh Kong Peace Development and how its teams are organised.</source>
+        <target state="needs-review-translation">អ្នកដឹកនាំ ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន និងរបៀបរៀបចំក្រុមការងារ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.organisation.title" datatype="html">
+        <source>Organisation structure</source>
+        <target state="final">រចនាសម្ព័ន្ធ</target>
         <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
       </trans-unit>
       <trans-unit id="route.privacy.description" datatype="html">
