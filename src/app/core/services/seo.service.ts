@@ -12,6 +12,19 @@ const DEFAULT_DESCRIPTION =
 // Placeholder until a real share image exists.
 const DEFAULT_IMAGE = '/images/placeholders/hero-1.webp';
 
+/**
+ * schema.org Organization for the home page. Only confirmed facts go here: structured data
+ * isn't visible, so a placeholder can't be marked as one. Add logo (the current one is a
+ * placeholder), address, telephone, email, foundingDate and sameAs once the client confirms them.
+ */
+export const ORGANIZATION_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE_NAME,
+  url: `${environment.site_url}/`,
+  description: DEFAULT_DESCRIPTION,
+};
+
 export interface PageSeo {
   /** Page name without the site suffix; empty or undefined for the home page. */
   title?: string;
@@ -21,9 +34,11 @@ export interface PageSeo {
   /** Root-relative image path for social previews. */
   image?: string;
   noindex?: boolean;
+  /** schema.org structured data; pages without it get none. */
+  jsonLd?: object;
 }
 
-/** Writes the document title, meta description, canonical link and Open Graph tags. */
+/** Writes the document title, meta description, canonical link, Open Graph tags and JSON-LD. */
 @Service()
 export class SeoService {
   private readonly title = inject(Title);
@@ -49,6 +64,22 @@ export class SeoService {
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
 
     this.setCanonical(url);
+    this.setJsonLd(page.jsonLd);
+  }
+
+  private setJsonLd(data: object | undefined): void {
+    let script = this.document.head.querySelector('script[type="application/ld+json"]');
+    if (!data) {
+      script?.remove();
+      return;
+    }
+    if (!script) {
+      script = this.document.createElement('script');
+      script.setAttribute('type', 'application/ld+json');
+      this.document.head.appendChild(script);
+    }
+    // Escaping `<` keeps a "</script>" inside a value from closing the element.
+    script.textContent = JSON.stringify(data).replace(/</g, '\\u003c');
   }
 
   private setCanonical(url: string): void {
@@ -64,7 +95,7 @@ export class SeoService {
 
 /**
  * Applies SEO on every navigation from the route's `title` and its `data`:
- * `description` (string) and `noindex` (boolean).
+ * `description` (string), `noindex` (boolean) and `jsonLd` (object).
  */
 @Injectable()
 export class SeoTitleStrategy extends TitleStrategy {
@@ -79,6 +110,7 @@ export class SeoTitleStrategy extends TitleStrategy {
       title: this.buildTitle(snapshot),
       description: leaf.data['description'] as string | undefined,
       noindex: leaf.data['noindex'] === true,
+      jsonLd: leaf.data['jsonLd'] as object | undefined,
       path: snapshot.url,
     });
   }

@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, Routes } from '@angular/router';
 import { Company } from '@core/models/company';
 import { ContentService } from '@core/services/content.service';
-import { SITE_NAME } from '@core/services/seo.service';
+import { ORGANIZATION_JSON_LD, SITE_NAME } from '@core/services/seo.service';
 
 const companyFor = (route: ActivatedRouteSnapshot): Company | undefined =>
   inject(ContentService)
@@ -10,11 +10,13 @@ const companyFor = (route: ActivatedRouteSnapshot): Company | undefined =>
     .find((company) => company.slug === route.paramMap.get('slug'));
 
 // Slugs match the original royalgroup.com.kh URLs; don't rename them.
-// `data.description` feeds the meta description (see SeoTitleStrategy).
+// `data.description` feeds the meta description and `data.jsonLd` the structured data
+// (see SeoTitleStrategy).
 export const routes: Routes = [
   {
     path: '',
     title: SITE_NAME,
+    data: { jsonLd: ORGANIZATION_JSON_LD },
     loadComponent: () => import('@features/home/home').then((m) => m.Home),
   },
   {

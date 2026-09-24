@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 import { Meta, Title } from '@angular/platform-browser';
 import { environment } from '@env/environment';
-import { SITE_NAME, SeoService } from './seo.service';
+import { ORGANIZATION_JSON_LD, SITE_NAME, SeoService } from './seo.service';
 
 describe('SeoService', () => {
   let service: SeoService;
@@ -56,5 +56,33 @@ describe('SeoService', () => {
     expect(content('name="robots"')).toBe('noindex');
     service.apply({ title: 'Media', path: '/media' });
     expect(content('name="robots"')).toBe('index, follow');
+  });
+
+  describe('JSON-LD', () => {
+    const scripts = () => document.head.querySelectorAll('script[type="application/ld+json"]');
+
+    it('writes one block and removes it on pages without structured data', () => {
+      service.apply({ path: '/', jsonLd: ORGANIZATION_JSON_LD });
+      service.apply({ path: '/', jsonLd: ORGANIZATION_JSON_LD });
+      expect(scripts().length).toBe(1);
+      expect(JSON.parse(scripts()[0].textContent ?? '')).toEqual(ORGANIZATION_JSON_LD);
+
+      service.apply({ title: 'Media', path: '/media' });
+      expect(scripts().length).toBe(0);
+    });
+
+    it('cannot be closed early by a value containing </script>', () => {
+      service.apply({ path: '/', jsonLd: { name: '</script><script>alert(1)</script>' } });
+      expect(scripts()[0].textContent).not.toContain('</script>');
+      expect(JSON.parse(scripts()[0].textContent ?? '').name).toBe('</script><script>alert(1)</script>');
+    });
+
+    it('describes the organisation at the site origin', () => {
+      expect(ORGANIZATION_JSON_LD).toMatchObject({
+        '@type': 'Organization',
+        name: SITE_NAME,
+        url: `${environment.site_url}/`,
+      });
+    });
   });
 });
