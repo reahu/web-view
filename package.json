@@ -9,6 +9,8 @@
     "watch": "ng build --watch --configuration local",
     "test": "ng test",
     "lint": "ng lint",
+    "preview:staging": "npm run build -- --configuration staging && node tools/cloudflare.mjs && wrangler dev --env staging",
+    "deploy:staging": "npm run build -- --configuration staging && node tools/cloudflare.mjs && wrangler deploy --env staging",
     "i18n": "ng extract-i18n --output-path dist/i18n && node tools/i18n-merge.mjs && node tools/i18n-review.mjs"
   },
   "private": true,
@@ -40,6 +42,7 @@
     "prettier": "^3.8.1",
     "typescript": "~6.0.3",
     "typescript-eslint": "8.69.0",
-    "vitest": "^4.0.8"
+    "vitest": "^4.0.8",
+    "wrangler": "^4.141.0"
   }
 }

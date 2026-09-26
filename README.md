@@ -10,6 +10,21 @@ Angular 22 · standalone · zoneless · signals · Vitest.
 | `npm run build -- --configuration <local\|dev\|staging\|production>` | Build (default `production`) |
 | `npm test` | Unit tests (Vitest) |
 | `docker build --build-arg configuration=staging -t web-view .` | Container image served by nginx |
+| `npm run preview:staging` | Staging build served locally by Wrangler (http://localhost:8787), with Cloudflare's routing and headers |
+| `npm run deploy:staging` | Staging build deployed to Cloudflare, on workers.dev (run `npx wrangler login` once first) |
+
+## Deployment
+
+Cloudflare Workers static assets ([wrangler.jsonc](wrangler.jsonc)). Staging is the Worker `malin-web-staging` on workers.dev. Production waits for the .com.kh domain.
+
+Cloudflare builds from GitHub (Workers Builds): every push to `main` deploys staging, and other branches get a preview. The Worker's build settings in the Cloudflare dashboard:
+
+| Setting | Value |
+|---|---|
+| Build command | `npm run build -- --configuration staging && node tools/cloudflare.mjs` |
+| Deploy command | `npx wrangler deploy --env staging` |
+| Preview command | `npx wrangler preview --env staging` |
+| Production branch | `main` |
 
 ## Project structure
 
