@@ -39,6 +39,9 @@ testem.log
 /typings
 __screenshots__/
 
+# Cloudflare Wrangler (local dev state)
+.wrangler/
+
 # System files
 .DS_Store
 Thumbs.db

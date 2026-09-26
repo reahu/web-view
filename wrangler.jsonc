@@ -1,0 +1,24 @@
+// Cloudflare Workers static assets: serves the prerendered site in dist/web-view/browser as it
+// is, with no Worker code. tools/cloudflare.mjs prepares that folder after the build.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "malin-web",
+  "compatibility_date": "2026-09-25",
+  "assets": {
+    "directory": "./dist/web-view/browser",
+    // /about serves about/index.html and /about/ redirects to /about, matching the canonical
+    // URLs, which never end in a slash.
+    "html_handling": "drop-trailing-slash",
+    // Unknown URLs get the nearest 404.html with a 404 status: en/404.html under /en/.
+    "not_found_handling": "404-page",
+  },
+  // Production is only for the .com.kh domain, added as a custom domain under "routes" once
+  // it's approved. It never gets a workers.dev address, which would duplicate the site.
+  "workers_dev": false,
+  "env": {
+    // Worker "malin-web-staging" on workers.dev. Staging builds are noindex throughout.
+    "staging": {
+      "workers_dev": true,
+    },
+  },
+}

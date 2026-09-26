@@ -10,6 +10,29 @@ Angular 22 · standalone · zoneless · signals · Vitest.
 | `npm run build -- --configuration <local\|dev\|staging\|production>` | Build (default `production`) |
 | `npm test` | Unit tests (Vitest) |
 | `docker build --build-arg configuration=staging -t web-view .` | Container image served by nginx |
+| `npm run preview:staging` | Staging build served locally by Wrangler (http://localhost:8787), with Cloudflare's routing and headers |
+| `npm run deploy:staging` | Staging build deployed to Cloudflare from your machine (run `npx wrangler login` once first). Normally a push to `main` does this |
+
+## Deployment
+
+GitHub → Cloudflare: the site is hosted on Cloudflare Workers static assets ([wrangler.jsonc](wrangler.jsonc)), and Cloudflare builds it from this repository by itself (Workers Builds). Deploys need no GitHub Actions workflow or API token; [ci.yml](.github/workflows/ci.yml) only checks pull requests.
+
+- A push to `main` deploys staging, the Worker `malin-web-staging`: https://malin-web-staging.reahu-seak.workers.dev (noindex).
+- A push to any other branch builds a Preview with its own URL, linked from the pull request.
+- Production waits for the .com.kh domain.
+
+The Worker was created from this repository in the Cloudflare dashboard (**Workers & Pages → Create → Import a repository**, GitHub, `reahu/web-view`) with these settings, which can be changed later under its **Settings → Build**:
+
+| Setting | Value |
+|---|---|
+| Project name | `malin-web-staging` (must match the Worker that `--env staging` deploys) |
+| Git branch | `main` |
+| Build command | `npm run build -- --configuration staging && node tools/cloudflare.mjs` |
+| Deploy command | `npx wrangler deploy --env staging` |
+| Preview command | `npx wrangler preview --env staging` |
+| Root directory | empty (the repository root) |
+
+Cloudflare's build image uses Node 24, which Angular 22 supports.
 
 ## Project structure
 
