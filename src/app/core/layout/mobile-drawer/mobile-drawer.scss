@@ -1,0 +1,63 @@
+@use 'breakpoints' as bp;
+
+// Compact: fixed overlay (the host is the backdrop), hidden until open. Hidden by CSS
+// rather than JS so the prerendered page never flashes an open drawer.
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  visibility: hidden;
+  background: rgb(20 24 31 / 0.55);
+}
+
+:host(.is-open) {
+  visibility: visible;
+}
+
+.panel {
+  --c-focus: var(--c-brand);
+
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  width: min(24rem, 100%);
+  overflow-y: auto;
+  padding: var(--space-3) var(--space-5) var(--space-7);
+  background: var(--c-paper);
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  margin: 0 0 var(--space-3) auto;
+  padding: 0 var(--space-2);
+  border: 0;
+  background: none;
+  color: var(--c-brand);
+  cursor: pointer;
+}
+
+// Wide: a plain inline wrapper.
+@include bp.up(bp.$md) {
+  :host {
+    position: static;
+    visibility: visible;
+    background: none;
+  }
+
+  .panel {
+    --c-focus: inherit;
+
+    position: static;
+    width: auto;
+    overflow: visible;
+    padding: 0;
+    background: none;
+  }
+
+  .close {
+    display: none;
+  }
+}

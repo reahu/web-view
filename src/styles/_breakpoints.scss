@@ -1,0 +1,12 @@
+// Breakpoints can't be CSS custom properties inside media queries, so they live here.
+// Emits no CSS; safe to `@use 'breakpoints' as bp;` from any component stylesheet.
+
+$sm: 40rem; // 640
+$md: 60rem; // 960
+$lg: 75rem; // 1200
+
+@mixin up($min) {
+  @media (min-width: $min) {
+    @content;
+  }
+}

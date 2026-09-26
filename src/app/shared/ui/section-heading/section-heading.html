@@ -1,0 +1,13 @@
+<div class="row">
+  @if (level() === 3) {
+    <h3 [attr.id]="headingId() ?? null">{{ heading() }}</h3>
+  } @else {
+    <h2 [attr.id]="headingId() ?? null">{{ heading() }}</h2>
+  }
+  @if (linkLabel() && linkPath()) {
+    <a class="link" [routerLink]="linkPath()">{{ linkLabel() }}</a>
+  }
+</div>
+@if (intro()) {
+  <p class="lead">{{ intro() }}</p>
+}

@@ -1,0 +1,75 @@
+@use 'breakpoints' as bp;
+
+.header {
+  --c-focus: var(--c-paper);
+
+  background: var(--c-brand);
+  color: var(--c-paper);
+}
+
+.header__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 4.5rem;
+
+  @include bp.up(bp.$md) {
+    gap: var(--space-6);
+  }
+}
+
+.brand {
+  flex-shrink: 0;
+  margin-right: auto;
+  padding-block: var(--space-2);
+
+  img {
+    width: auto;
+    height: 3.5rem; // 56px; the file is 2x
+  }
+}
+
+.header__button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0 var(--space-3);
+  border: 1px solid rgb(255 255 255 / 0.5);
+  border-radius: var(--radius-control);
+  background: none;
+  color: var(--c-paper);
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--c-paper);
+  }
+}
+
+// Icon-only on the narrowest screens; the name stays for assistive tech.
+.header__button-label {
+  @media (max-width: 26rem) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+@include bp.up(bp.$md) {
+  .header__toggle {
+    display: none;
+  }
+
+  .header__button:not(.header__toggle) {
+    border-color: transparent;
+    padding-inline: var(--space-2);
+
+    &:hover {
+      border-color: rgb(255 255 255 / 0.5);
+    }
+  }
+}

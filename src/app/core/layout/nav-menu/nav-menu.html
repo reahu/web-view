@@ -1,0 +1,50 @@
+<nav class="nav" aria-label="Main" i18n-aria-label="@@nav.label">
+  <ul class="nav__list" role="list">
+    @for (entry of entries(); track entry.label) {
+      <li class="nav__item">
+        @if (isNavGroup(entry)) {
+          <button
+            type="button"
+            class="nav__trigger"
+            [id]="'nav-trigger-' + entry.id"
+            [attr.aria-expanded]="openGroup() === entry.id"
+            [attr.aria-controls]="'nav-group-' + entry.id"
+            [class.is-active]="isGroupActive(entry)"
+            (click)="toggle(entry.id)"
+          >
+            {{ entry.label }}
+            <svg class="nav__chevron" viewBox="0 0 12 8" width="12" height="8" aria-hidden="true">
+              <path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+          </button>
+          <ul
+            class="nav__group"
+            role="list"
+            [id]="'nav-group-' + entry.id"
+            [hidden]="openGroup() !== entry.id"
+          >
+            @for (link of entry.links; track link.path) {
+              <li>
+                <a
+                  class="nav__sublink"
+                  [routerLink]="link.path"
+                  routerLinkActive="is-active"
+                  ariaCurrentWhenActive="page"
+                  >{{ link.label }}</a
+                >
+              </li>
+            }
+          </ul>
+        } @else {
+          <a
+            class="nav__link"
+            [routerLink]="entry.path"
+            routerLinkActive="is-active"
+            ariaCurrentWhenActive="page"
+            >{{ entry.label }}</a
+          >
+        }
+      </li>
+    }
+  </ul>
+</nav>

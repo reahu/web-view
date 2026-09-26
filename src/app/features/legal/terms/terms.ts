@@ -1,0 +1,10 @@
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+@Component({
+  imports: [RouterLink],
+  selector: 'rg-terms',
+  styleUrl: './terms.scss',
+  templateUrl: './terms.html',
+})
+export class Terms {}

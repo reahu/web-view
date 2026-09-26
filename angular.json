@@ -3,7 +3,8 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "analytics": "ef43b5b0-be8d-4ce9-b8ea-8c5b65cab29e"
+    "analytics": "ef43b5b0-be8d-4ce9-b8ea-8c5b65cab29e",
+    "schematicCollections": ["angular-eslint"]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -16,7 +17,19 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "rg",
+      "i18n": {
+        "sourceLocale": {
+          "code": "en",
+          "subPath": "en"
+        },
+        "locales": {
+          "km": {
+            "translation": "src/locale/messages.km.xlf",
+            "subPath": ""
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular/build:application",
@@ -30,21 +43,30 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles/styles.scss"
-            ],
+            "styles": ["src/styles/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/styles"
-              ]
-            }
+              "includePaths": ["src/styles"]
+            },
+            "server": "src/main.server.ts",
+            "outputMode": "static",
+            "polyfills": ["@angular/localize/init"],
+            "localize": true,
+            "i18nMissingTranslation": "error"
           },
           "configurations": {
             "local": {
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "localize": false
+            },
+            "local-km": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "localize": ["km"]
             },
             "dev": {
               "fileReplacements": [
@@ -109,6 +131,9 @@
             "local": {
               "buildTarget": "web-view:build:local"
             },
+            "local-km": {
+              "buildTarget": "web-view:build:local-km"
+            },
             "dev": {
               "buildTarget": "web-view:build:dev"
             },
@@ -123,6 +148,18 @@
         },
         "test": {
           "builder": "@angular/build:unit-test",
+          "options": {
+            "buildTarget": "web-view:build:local"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "web-view:build:local"
           }

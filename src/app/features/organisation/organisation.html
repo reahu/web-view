@@ -1,0 +1,44 @@
+<div class="container page">
+  <header class="page-header">
+    <h1 i18n="@@organisation.title">Organisation structure</h1>
+    <p class="lead" i18n="@@organisation.lead">
+      The people who lead Malin Koh Kong Peace Development and its teams.
+    </p>
+  </header>
+
+  <ng-container
+    [ngTemplateOutlet]="branch"
+    [ngTemplateOutletContext]="{ $implicit: chart(), depth: 1 }"
+  />
+</div>
+
+<!-- depth 3 is the CEO's departments, shown side by side on wide screens. -->
+<ng-template #branch let-nodes let-depth="depth">
+  <ul class="org" [class.org--departments]="depth === 3" role="list">
+    @for (node of nodes; track node.member.id) {
+      <li class="org__item">
+        <div class="person">
+          @if (node.member.photo) {
+            <!-- The name is right beside it, so the photo needs no text alternative. -->
+            <img class="person__photo" [ngSrc]="node.member.photo" width="56" height="70" alt="" />
+          }
+          <div class="person__text">
+            <p class="person__name">{{ node.member.name }}</p>
+            <p class="person__role">{{ node.member.role }}</p>
+            @if (node.alsoReportsTo.length) {
+              <p class="person__also" i18n="@@organisation.alsoReportsTo">
+                Also reports to {{ namesOf(node.alsoReportsTo) }}
+              </p>
+            }
+          </div>
+        </div>
+        @if (node.reports.length) {
+          <ng-container
+            [ngTemplateOutlet]="branch"
+            [ngTemplateOutletContext]="{ $implicit: node.reports, depth: depth + 1 }"
+          />
+        }
+      </li>
+    }
+  </ul>
+</ng-template>

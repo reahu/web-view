@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="km" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="about.barge" datatype="html">
+        <source> Our 700 m³ sand-dredging barge is run by skilled operators and a team of six who work to safety standards. </source>
+        <target state="final">សាឡង់បូមខ្សាច់ចំណុះ ៧០០ ម៉ែត្រគូប របស់យើង ដំណើរការដោយអ្នកបើកបរមានជំនាញ និងក្រុមការងារចំនួន ៦ នាក់ ដែលអនុវត្តការងារតាមស្តង់ដារសុវត្ថិភាព។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="about.commitment" datatype="html">
+        <source> We are committed to quality, service and trust in support of the development of Cambodia’s construction sector. </source>
+        <target state="final">យើងប្តេជ្ញាផ្តល់ជូននូវគុណភាព សេវាកម្ម និងទំនុកចិត្ត ក្នុងការគាំទ្រការអភិវឌ្ឍវិស័យសំណង់នៅកម្ពុជា។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="about.experience" datatype="html">
+        <source> We are experienced in professionally dredging and supplying sand for construction projects of every kind. </source>
+        <target state="final">យើងមានបទពិសោធន៍ក្នុងការបូម និងផ្គត់ផ្គង់ខ្សាច់ប្រកបដោយវិជ្ជាជីវៈ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="about.teamLink" datatype="html">
+        <source>See who leads the company</source>
+        <target state="needs-review-translation">មើលអ្នកដឹកនាំក្រុមហ៊ុន</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="about.title" datatype="html">
+        <source>About us</source>
+        <target state="needs-review-translation">អំពីយើង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="about.values.heading" datatype="html">
+        <source>What we stand for</source>
+        <target state="needs-review-translation">គុណតម្លៃរបស់យើង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.commitment" datatype="html">
+        <source>We are committed to quality, service and trust in support of the development of Cambodia’s construction sector.</source>
+        <target state="final">យើងប្តេជ្ញាផ្តល់ជូននូវគុណភាព សេវាកម្ម និងទំនុកចិត្ត ក្នុងការគាំទ្រការអភិវឌ្ឍវិស័យសំណង់នៅកម្ពុជា។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.experience" datatype="html">
+        <source> We are experienced in professionally dredging and supplying sand for construction projects of every kind. </source>
+        <target state="final">យើងមានបទពិសោធន៍ក្នុងការបូម និងផ្គត់ផ្គង់ខ្សាច់ប្រកបដោយវិជ្ជាជីវៈ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.motto" datatype="html">
+        <source>People · resources · prosperity</source>
+        <target state="needs-review-translation">មនុស្ស · ធនធាន · វិបុលភាព</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.tagline" datatype="html">
+        <source>Together for sustainable development</source>
+        <target state="needs-review-translation">រួមគ្នាដើម្បីការអភិវឌ្ឍប្រកបដោយចីរភាព</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.value.partnership" datatype="html">
+        <source>Strong partnership</source>
+        <target state="final">ភាពជាដៃគូដ៏រឹងមាំ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.value.quality" datatype="html">
+        <source>Quality</source>
+        <target state="final">គុណភាព</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.value.trust" datatype="html">
+        <source>Trust</source>
+        <target state="final">ទំនុកចិត្ត</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/about/about.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="company.values" datatype="html">
+        <source>Quality • Trust • Strong partnership</source>
+        <target state="final">គុណភាព • ទំនុកចិត្ត • ភាពជាដៃគូដ៏រឹងមាំ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.demo.notice" datatype="html">
+        <source> This form is a demo: messages aren’t sent anywhere yet. </source>
+        <target state="needs-review-translation">ទម្រង់នេះជាការសាកល្បង៖ សារមិនទាន់ត្រូវបានផ្ញើទៅកន្លែងណាទេ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.demo.sentBody" datatype="html">
+        <source> The form checked your answers. Once it’s connected, messages will reach the company by email. </source>
+        <target state="needs-review-translation">ទម្រង់បានពិនិត្យចម្លើយរបស់អ្នករួចហើយ។ នៅពេលភ្ជាប់រួច សារនឹងផ្ញើទៅក្រុមហ៊ុនតាមអ៊ីមែល។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.demo.sentTitle" datatype="html">
+        <source>Demo only: your message was not sent.</source>
+        <target state="needs-review-translation">សាកល្បងប៉ុណ្ណោះ៖ សាររបស់អ្នកមិនត្រូវបានផ្ញើទេ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.details.address" datatype="html">
+        <source>Street 000, Koh Kong Province, Cambodia</source>
+        <target state="needs-review-translation">ផ្លូវលេខ ០០០ ខេត្តកោះកុង ប្រទេសកម្ពុជា</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/contact.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.details.emailLabel" datatype="html">
+        <source>Email</source>
+        <target state="needs-review-translation">អ៊ីមែល</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.details.hours" datatype="html">
+        <source>Monday to Saturday, 8:00 to 17:00</source>
+        <target state="needs-review-translation">ថ្ងៃច័ន្ទ ដល់ ថ្ងៃសៅរ៍ ម៉ោង ៨:០០ ដល់ ១៧:០០</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/contact.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.details.hoursLabel" datatype="html">
+        <source>Opening hours</source>
+        <target state="needs-review-translation">ម៉ោងធ្វើការ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.details.phoneLabel" datatype="html">
+        <source>Phone</source>
+        <target state="needs-review-translation">ទូរសព្ទ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.details.sample" datatype="html">
+        <source>Sample details for the mock-up</source>
+        <target state="needs-review-translation">ព័ត៌មានគំរូសម្រាប់ការបង្ហាញ (mock-up)</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.email.label" datatype="html">
+        <source>Email address</source>
+        <target state="needs-review-translation">អាសយដ្ឋានអ៊ីមែល</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.error.emailFormat" datatype="html">
+        <source>Enter an email address in the correct format, like name@example.com</source>
+        <target state="needs-review-translation">សូមបញ្ចូលអាសយដ្ឋានអ៊ីមែលតាមទម្រង់ត្រឹមត្រូវ ឧទាហរណ៍ name@example.com</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.error.emailRequired" datatype="html">
+        <source>Enter your email address</source>
+        <target state="needs-review-translation">សូមបញ្ចូលអាសយដ្ឋានអ៊ីមែលរបស់អ្នក</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.error.fallback" datatype="html">
+        <source>Check this answer</source>
+        <target state="needs-review-translation">សូមពិនិត្យចម្លើយនេះ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.error.messageLength" datatype="html">
+        <source>Message must be 3,000 characters or fewer</source>
+        <target state="needs-review-translation">សារត្រូវមានមិនលើសពី ៣០០០ តួអក្សរ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.error.messageRequired" datatype="html">
+        <source>Enter your message</source>
+        <target state="needs-review-translation">សូមបញ្ចូលសាររបស់អ្នក</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.error.nameRequired" datatype="html">
+        <source>Enter your name</source>
+        <target state="needs-review-translation">សូមបញ្ចូលឈ្មោះរបស់អ្នក</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.error.organisationLength" datatype="html">
+        <source>Organisation must be 200 characters or fewer</source>
+        <target state="needs-review-translation">ឈ្មោះស្ថាប័នត្រូវមានមិនលើសពី ២០០ តួអក្សរ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.errorPrefix" datatype="html">
+        <source>Error: </source>
+        <target state="needs-review-translation">កំហុស៖ </target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.failed.body" datatype="html">
+        <source>Your answers are still in the form. Please try again later.</source>
+        <target state="needs-review-translation">ព័ត៌មានដែលអ្នកបានបំពេញនៅតែមាននៅក្នុងទម្រង់។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.failed.title" datatype="html">
+        <source>Sorry, your message couldn&apos;t be sent.</source>
+        <target state="needs-review-translation">សូមអភ័យទោស សាររបស់អ្នកមិនអាចផ្ញើបានទេ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.formHeading" datatype="html">
+        <source>Send us a message</source>
+        <target state="needs-review-translation">ផ្ញើសារមកយើង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.hint" datatype="html">
+        <source>All fields are required unless marked optional.</source>
+        <target state="needs-review-translation">សូមបំពេញគ្រប់ប្រអប់ លើកលែងតែប្រអប់ដែលសម្គាល់ថា «មិនបង្ខំ»។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.lead" datatype="html">
+        <source>Send us a message and the right team will reply by email.</source>
+        <target state="needs-review-translation">ផ្ញើសារមកយើង ហើយក្រុមការងារដែលពាក់ព័ន្ធនឹងឆ្លើយតបតាមអ៊ីមែល។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.message.label" datatype="html">
+        <source>Your message</source>
+        <target state="needs-review-translation">សាររបស់អ្នក</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.name.label" datatype="html">
+        <source>Full name</source>
+        <target state="needs-review-translation">ឈ្មោះពេញ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.office.heading" datatype="html">
+        <source>Head office</source>
+        <target state="needs-review-translation">ការិយាល័យកណ្តាល</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.organisation.label" datatype="html">
+        <source>Organisation (optional)</source>
+        <target state="needs-review-translation">ស្ថាប័ន (មិនបង្ខំ)</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.sent.body" datatype="html">
+        <source>We&apos;ll reply to the email address you gave us.</source>
+        <target state="needs-review-translation">យើងនឹងឆ្លើយតបទៅអាសយដ្ឋានអ៊ីមែលដែលអ្នកបានផ្តល់ឱ្យ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.sent.title" datatype="html">
+        <source>Thank you. Your message has been sent.</source>
+        <target state="needs-review-translation">សូមអរគុណ។ សាររបស់អ្នកត្រូវបានផ្ញើហើយ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.submit" datatype="html">
+        <source> Send message </source>
+        <target state="needs-review-translation">ផ្ញើសារ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.summary.title" datatype="html">
+        <source>There is a problem</source>
+        <target state="needs-review-translation">មានបញ្ហា</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.title" datatype="html">
+        <source>Contact us</source>
+        <target state="needs-review-translation">ទំនាក់ទំនង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.topic.general" datatype="html">
+        <source>General enquiry</source>
+        <target state="needs-review-translation">សំណួរទូទៅ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact-sender.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.topic.label" datatype="html">
+        <source>What is your message about?</source>
+        <target state="needs-review-translation">សាររបស់អ្នកទាក់ទងនឹងអ្វី?</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.topic.partnerships" datatype="html">
+        <source>Business partnerships</source>
+        <target state="needs-review-translation">ភាពជាដៃគូអាជីវកម្ម</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact-sender.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="contact.topic.quote" datatype="html">
+        <source>Sand supply and quotes</source>
+        <target state="needs-review-translation">ការផ្គត់ផ្គង់ខ្សាច់ និងសម្រង់តម្លៃ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/contact/contact-sender.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="cta.body" datatype="html">
+        <source> Tell us what you need and where, and we’ll get back to you. </source>
+        <target state="needs-review-translation">ប្រាប់យើងពីតម្រូវការ និងទីតាំងរបស់អ្នក ហើយយើងនឹងទាក់ទងទៅអ្នកវិញ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/shared/ui/quote-cta/quote-cta.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="cta.button" datatype="html">
+        <source>Request a quote</source>
+        <target state="needs-review-translation">ស្នើសុំសម្រង់តម្លៃ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/shared/ui/quote-cta/quote-cta.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="cta.heading" datatype="html">
+        <source>Need sand for your project?</source>
+        <target state="needs-review-translation">ត្រូវការខ្សាច់សម្រាប់គម្រោងរបស់អ្នកមែនទេ?</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/shared/ui/quote-cta/quote-cta.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="footer.company" datatype="html">
+        <source>Company</source>
+        <target state="needs-review-translation">ក្រុមហ៊ុន</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/footer/footer.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="footer.copyright" datatype="html">
+        <source>© <x id="INTERPOLATION" equiv-text="{{ year }}"/> Malin Koh Kong Peace Development Co., Ltd. All rights reserved.</source>
+        <target state="needs-review-translation">© <x id="INTERPOLATION" equiv-text="{{ year }}"/> ក្រុមហ៊ុន ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ឯ.ក។ រក្សាសិទ្ធិគ្រប់យ៉ាង។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/footer/footer.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="footer.label" datatype="html">
+        <source>Footer</source>
+        <target state="needs-review-translation">ម៉ឺនុយបាតទំព័រ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/footer/footer.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="footer.legalName" datatype="html">
+        <source>Malin Koh Kong Peace Development Co., Ltd.</source>
+        <target state="final">ក្រុមហ៊ុន ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ឯ.ក</target>
+        <note priority="1" from="description">The client&apos;s Khmer legal name, from the organisation chart. On phones it wraps inside ឌីវេឡុបមិន.</note>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/footer/footer.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="home.hero.imageAlt" datatype="html">
+        <source>Placeholder: a photo of the company’s dredging barge goes here</source>
+        <target state="needs-review-translation">Placeholder៖ រូបថតសាឡង់បូមខ្សាច់របស់ក្រុមហ៊ុននឹងដាក់នៅទីនេះ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="home.hero.services" datatype="html">
+        <source>Our services</source>
+        <target state="needs-review-translation">សេវាកម្មរបស់យើង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="home.welcome.heading" datatype="html">
+        <source>Welcome to Malin Koh Kong Peace Development Co., Ltd.</source>
+        <target state="final">សូមស្វាគមន៍មកកាន់ MALIN KOH KONG PEACE DEVELOPMENT CO., LTD</target>
+        <note priority="1" from="description">The client&apos;s welcome line, without its closing ។ because it&apos;s a heading. The company name is in capitals as the client wrote it; on phones it wraps over several lines.</note>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="layout.close" datatype="html">
+        <source>Close</source>
+        <target state="needs-review-translation">បិទ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/mobile-drawer/mobile-drawer.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="layout.logoAlt" datatype="html">
+        <source>Malin Koh Kong Peace Development, home page</source>
+        <target state="needs-review-translation">ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ទំព័រដើម</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/header/header.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="layout.menu" datatype="html">
+        <source>Menu</source>
+        <target state="needs-review-translation">ម៉ឺនុយ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/header/header.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="layout.siteMenu" datatype="html">
+        <source>Site menu</source>
+        <target state="needs-review-translation">ម៉ឺនុយគេហទំព័រ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/header/header.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="layout.skipLink" datatype="html">
+        <source>Skip to main content</source>
+        <target state="needs-review-translation">រំលងទៅមាតិកាចម្បង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="legal.contact" datatype="html">
+        <source>Questions about this page can be sent through our <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/contact-us&quot;&gt;"/>contact form<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
+        <target state="needs-review-translation">សំណួរអំពីទំព័រនេះ អាចផ្ញើតាម<x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/contact-us&quot;&gt;"/>ទម្រង់ទំនាក់ទំនង<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>របស់យើង។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="legal.contactHeading" datatype="html">
+        <source>Contact</source>
+        <target state="needs-review-translation">ទំនាក់ទំនង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="legal.notice" datatype="html">
+        <source> Draft wording, for the company’s legal adviser to review before launch. Items in square brackets still need to be confirmed. </source>
+        <target state="needs-review-translation">ខ្លឹមសារនេះជាសេចក្តីព្រាង សម្រាប់ឱ្យទីប្រឹក្សាច្បាប់របស់ក្រុមហ៊ុនពិនិត្យ មុនពេលដាក់ឱ្យប្រើប្រាស់។ ព័ត៌មានក្នុងវង់ក្រចក [ ] ត្រូវបញ្ជាក់បន្ថែម។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="legal.updated" datatype="html">
+        <source>Last updated: 24 September 2026 (draft)</source>
+        <target state="needs-review-translation">ធ្វើបច្ចុប្បន្នភាពចុងក្រោយ៖ ២៤ កញ្ញា ២០២៦ (សេចក្តីព្រាង)</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="nav.about" datatype="html">
+        <source>About us</source>
+        <target state="needs-review-translation">អំពីយើង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/navigation.ts</context></context-group>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="nav.contact" datatype="html">
+        <source>Contact us</source>
+        <target state="needs-review-translation">ទំនាក់ទំនង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/navigation.ts</context></context-group>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="nav.label" datatype="html">
+        <source>Main</source>
+        <target state="needs-review-translation">ម៉ឺនុយចម្បង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/nav-menu/nav-menu.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="nav.organisation" datatype="html">
+        <source>Organisation</source>
+        <target state="final">រចនាសម្ព័ន្ធ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/navigation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="nav.privacy" datatype="html">
+        <source>Privacy policy</source>
+        <target state="needs-review-translation">គោលការណ៍ឯកជនភាព</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/navigation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="nav.services" datatype="html">
+        <source>Services</source>
+        <target state="needs-review-translation">សេវាកម្ម</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/navigation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="nav.terms" datatype="html">
+        <source>Terms of use</source>
+        <target state="needs-review-translation">លក្ខខណ្ឌប្រើប្រាស់</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/layout/navigation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="notFound.body" datatype="html">
+        <source>The page you asked for doesn’t exist or has moved. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/&quot;&gt;"/>Go to the home page<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
+        <target state="needs-review-translation">ទំព័រដែលអ្នកស្វែងរកមិនមាន ឬត្រូវបានផ្លាស់ទី។ <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/&quot;&gt;"/>ត្រឡប់ទៅទំព័រដើម<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/not-found/not-found.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="notFound.title" datatype="html">
+        <source>Page not found</source>
+        <target state="needs-review-translation">រកមិនឃើញទំព័រ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/not-found/not-found.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.am" datatype="html">
+        <source>Administration Manager</source>
+        <target state="needs-review-translation">អ្នកគ្រប់គ្រងរដ្ឋបាល</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.cashier" datatype="html">
+        <source>Cashier</source>
+        <target state="needs-review-translation">បេឡាករ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.ceo" datatype="html">
+        <source>Chief Executive Officer</source>
+        <target state="needs-review-translation">នាយកប្រតិបត្តិ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.cto" datatype="html">
+        <source>Chief Technical Officer</source>
+        <target state="needs-review-translation">នាយកបច្ចេកទេស</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.ddir" datatype="html">
+        <source>Director of Domestic &amp; International Relations</source>
+        <target state="needs-review-translation">នាយកទំនាក់ទំនងក្នុងស្រុក និងអន្តរជាតិ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.eaer" datatype="html">
+        <source>Executive Assistant &amp; External Relations</source>
+        <target state="needs-review-translation">ជំនួយការប្រតិបត្តិ និងទំនាក់ទំនងខាងក្រៅ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.fd" datatype="html">
+        <source>Finance Director</source>
+        <target state="needs-review-translation">នាយកហិរញ្ញវត្ថុ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.ird" datatype="html">
+        <source>International Relations Director</source>
+        <target state="needs-review-translation">នាយកទំនាក់ទំនងអន្តរជាតិ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.kpm" datatype="html">
+        <source>Koh Kong Provincial Manager</source>
+        <target state="needs-review-translation">អ្នកគ្រប់គ្រងខេត្តកោះកុង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.mm" datatype="html">
+        <source>Machinery Manager</source>
+        <target state="needs-review-translation">អ្នកគ្រប់គ្រងគ្រឿងចក្រ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.president" datatype="html">
+        <source>President</source>
+        <target state="needs-review-translation">ប្រធាន</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.sm" datatype="html">
+        <source>Site Manager</source>
+        <target state="needs-review-translation">អ្នកគ្រប់គ្រងការដ្ឋាន</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="org.role.technician" datatype="html">
+        <source>Technician</source>
+        <target state="needs-review-translation">អ្នកបច្ចេកទេស</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/organisation.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="organisation.alsoReportsTo" datatype="html">
+        <source> Also reports to <x id="INTERPOLATION" equiv-text="{{ namesOf(node.alsoReportsTo) }}"/> </source>
+        <target state="needs-review-translation">ក៏រាយការណ៍ជូន <x id="INTERPOLATION" equiv-text="{{ namesOf(node.alsoReportsTo) }}"/> ផងដែរ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/organisation/organisation.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="organisation.lead" datatype="html">
+        <source> The people who lead Malin Koh Kong Peace Development and its teams. </source>
+        <target state="needs-review-translation">អ្នកដឹកនាំ និងក្រុមការងាររបស់ ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/organisation/organisation.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="organisation.title" datatype="html">
+        <source>Organisation structure</source>
+        <target state="final">រចនាសម្ព័ន្ធ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/organisation/organisation.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.collect" datatype="html">
+        <source>Information we collect</source>
+        <target state="needs-review-translation">ព័ត៌មានដែលយើងប្រមូល</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.collect.form" datatype="html">
+        <source> If you use the contact form, we receive what you type in it: your name, email address, organisation (if you give one), the topic you choose and your message. </source>
+        <target state="needs-review-translation">ប្រសិនបើអ្នកប្រើទម្រង់ទំនាក់ទំនង យើងទទួលបានព័ត៌មានដែលអ្នកបានបំពេញ៖ ឈ្មោះ អាសយដ្ឋានអ៊ីមែល ស្ថាប័ន (ប្រសិនបើអ្នកផ្តល់ឱ្យ) ប្រធានបទដែលអ្នកជ្រើសរើស និងសាររបស់អ្នក។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.collect.logs" datatype="html">
+        <source> Like most websites, our web server records basic technical details of each visit: your IP address, the page requested, the time, and your browser’s name and version. </source>
+        <target state="needs-review-translation">ដូចគេហទំព័រភាគច្រើនដែរ ម៉ាស៊ីនមេរបស់យើងកត់ត្រាព័ត៌មានបច្ចេកទេសមូលដ្ឋាននៃការចូលមើលនីមួយៗ៖ អាសយដ្ឋាន IP របស់អ្នក ទំព័រដែលបានស្នើសុំ ពេលវេលា និងឈ្មោះ និងកំណែកម្មវិធីរុករករបស់អ្នក។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.cookies" datatype="html">
+        <source>Cookies</source>
+        <target state="needs-review-translation">ខូគី (Cookies)</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.cookies.body" datatype="html">
+        <source> This website doesn’t use cookies or similar technologies, and it doesn’t use analytics, advertising or tracking tools. It loads no content from other websites. </source>
+        <target state="needs-review-translation">គេហទំព័រនេះមិនប្រើខូគី ឬបច្ចេកវិទ្យាស្រដៀងគ្នា ហើយមិនប្រើឧបករណ៍វិភាគ ការផ្សាយពាណិជ្ជកម្ម ឬការតាមដានទេ។ វាមិនទាញយកមាតិកាពីគេហទំព័រផ្សេងទៀតទេ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.lead" datatype="html">
+        <source>How Malin Koh Kong Peace Development collects, uses and protects personal information.</source>
+        <target state="needs-review-translation">របៀបដែល ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ប្រមូល ប្រើប្រាស់ និងការពារព័ត៌មានផ្ទាល់ខ្លួន។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.retention" datatype="html">
+        <source>How long we keep it</source>
+        <target state="needs-review-translation">រយៈពេលដែលយើងរក្សាទុក</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.retention.body" datatype="html">
+        <source> We keep contact form messages for as long as we need them to deal with your enquiry, and no longer than [period]. Server records are deleted after [period]. </source>
+        <target state="needs-review-translation">យើងរក្សាទុកសារពីទម្រង់ទំនាក់ទំនងក្នុងរយៈពេលដែលយើងត្រូវការសម្រាប់ដោះស្រាយសំណើរបស់អ្នក ហើយមិនលើសពី [រយៈពេល]។ កំណត់ត្រាម៉ាស៊ីនមេត្រូវបានលុបចោលបន្ទាប់ពី [រយៈពេល]។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.rights" datatype="html">
+        <source>Your rights</source>
+        <target state="needs-review-translation">សិទ្ធិរបស់អ្នក</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.rights.body" datatype="html">
+        <source> You can ask us what information we hold about you, and ask us to correct or delete it. Write to us through the contact form and we’ll reply within [period]. </source>
+        <target state="needs-review-translation">អ្នកអាចសួរយើងអំពីព័ត៌មានដែលយើងមានអំពីអ្នក ហើយស្នើឱ្យយើងកែតម្រូវ ឬលុបវាចោល។ សូមសរសេរមកយើងតាមទម្រង់ទំនាក់ទំនង ហើយយើងនឹងឆ្លើយតបក្នុងរយៈពេល [រយៈពេល]។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.sharing" datatype="html">
+        <source>Sharing and transfers</source>
+        <target state="needs-review-translation">ការចែករំលែក និងការផ្ទេរ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.sharing.body" datatype="html">
+        <source> We share your information only with companies that help us run the website, such as our hosting provider and [the service that delivers contact form messages], and only as far as they need it to do that. [Say where these providers store data, if outside Cambodia.] We may also share it if the law requires us to. </source>
+        <target state="needs-review-translation">យើងចែករំលែកព័ត៌មានរបស់អ្នកតែជាមួយក្រុមហ៊ុនដែលជួយយើងដំណើរការគេហទំព័រ ដូចជាអ្នកផ្តល់សេវាបង្ហោះគេហទំព័រ និង [សេវាដែលបញ្ជូនសារពីទម្រង់ទំនាក់ទំនង] ហើយត្រឹមតែកម្រិតដែលពួកគេត្រូវការដើម្បីធ្វើការងារនោះប៉ុណ្ណោះ។ [បញ្ជាក់ទីកន្លែងដែលអ្នកផ្តល់សេវាទាំងនេះរក្សាទុកទិន្នន័យ ប្រសិនបើនៅក្រៅប្រទេសកម្ពុជា។] យើងក៏អាចចែករំលែកព័ត៌មាននេះ ប្រសិនបើច្បាប់តម្រូវ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.title" datatype="html">
+        <source>Privacy policy</source>
+        <target state="needs-review-translation">គោលការណ៍ឯកជនភាព</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.use" datatype="html">
+        <source>How we use it</source>
+        <target state="needs-review-translation">របៀបដែលយើងប្រើប្រាស់ព័ត៌មាន</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="privacy.use.body" datatype="html">
+        <source> We use contact form messages only to reply to you and deal with your enquiry. We use server records only to keep the website running and secure. We don’t use your information for advertising, and we don’t sell it. </source>
+        <target state="needs-review-translation">យើងប្រើសារពីទម្រង់ទំនាក់ទំនងសម្រាប់តែឆ្លើយតប និងដោះស្រាយសំណើរបស់អ្នកប៉ុណ្ណោះ។ យើងប្រើកំណត់ត្រាម៉ាស៊ីនមេសម្រាប់តែរក្សាដំណើរការ និងសុវត្ថិភាពរបស់គេហទំព័រប៉ុណ្ណោះ។ យើងមិនប្រើព័ត៌មានរបស់អ្នកសម្រាប់ការផ្សាយពាណិជ្ជកម្ម ហើយយើងមិនលក់វាទេ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/privacy/privacy.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.depot.text" datatype="html">
+        <source>Once the barge is loaded, the sand is pumped to the company’s depot.</source>
+        <target state="final">បន្ទាប់ពីបូមខ្សាច់ចូលសាឡង់រួច ខ្សាច់ត្រូវបានបូមទៅកាន់ដេប៉ូរបស់ក្រុមហ៊ុន។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/process.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.depot.title" datatype="html">
+        <source>Pumping to the depot</source>
+        <target state="needs-review-translation">បូមទៅកាន់ដេប៉ូ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/process.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.dredging.text" datatype="html">
+        <source>Our 700 m³ sand-dredging barge is run by skilled operators and a team of six who work to safety standards.</source>
+        <target state="final">សាឡង់បូមខ្សាច់ចំណុះ ៧០០ ម៉ែត្រគូប របស់យើង ដំណើរការដោយអ្នកបើកបរមានជំនាញ និងក្រុមការងារចំនួន ៦ នាក់ ដែលអនុវត្តការងារតាមស្តង់ដារសុវត្ថិភាព។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/process.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.dredging.title" datatype="html">
+        <source>Dredging</source>
+        <target state="needs-review-translation">ការបូមខ្សាច់</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/process.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.heading" datatype="html">
+        <source>How we work</source>
+        <target state="needs-review-translation">របៀបដែលយើងធ្វើការ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/services/services.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.loading.text" datatype="html">
+        <source>There, modern excavators prepare the sand and load it onto trucks, so customers are supplied quickly.</source>
+        <target state="final">នៅទីនោះ គ្រឿងចក្រអេស្កាវ៉ាទ័រទំនើបធ្វើការរៀបចំ និងផ្ទុកខ្សាច់ចូលរថយន្តដឹកទំនិញ ដើម្បីផ្គត់ផ្គង់ជូនអតិថិជនបានយ៉ាងឆាប់រហ័ស។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/process.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="process.loading.title" datatype="html">
+        <source>Loading trucks</source>
+        <target state="needs-review-translation">ការផ្ទុកខ្សាច់ចូលរថយន្ត</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/content/process.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.about.description" datatype="html">
+        <source>About Malin Koh Kong Peace Development, a sand dredging and supply company in Cambodia.</source>
+        <target state="needs-review-translation">អំពី ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ក្រុមហ៊ុនបូម និងផ្គត់ផ្គង់ខ្សាច់នៅកម្ពុជា។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.about.title" datatype="html">
+        <source>About us</source>
+        <target state="needs-review-translation">អំពីយើង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.contact.description" datatype="html">
+        <source>How to reach Malin Koh Kong Peace Development.</source>
+        <target state="needs-review-translation">របៀបទាក់ទងមក ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.contact.title" datatype="html">
+        <source>Contact us</source>
+        <target state="needs-review-translation">ទំនាក់ទំនង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.organisation.description" datatype="html">
+        <source>Who leads Malin Koh Kong Peace Development and how its teams are organised.</source>
+        <target state="needs-review-translation">អ្នកដឹកនាំ ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន និងរបៀបរៀបចំក្រុមការងារ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.organisation.title" datatype="html">
+        <source>Organisation structure</source>
+        <target state="final">រចនាសម្ព័ន្ធ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.privacy.description" datatype="html">
+        <source>How Malin Koh Kong Peace Development collects and uses personal information.</source>
+        <target state="needs-review-translation">របៀបដែល ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ប្រមូល និងប្រើប្រាស់ព័ត៌មានផ្ទាល់ខ្លួន។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.privacy.title" datatype="html">
+        <source>Privacy policy</source>
+        <target state="needs-review-translation">គោលការណ៍ឯកជនភាព</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.services.description" datatype="html">
+        <source>How we dredge sand and supply it for construction projects of every kind.</source>
+        <target state="needs-review-translation">របៀបដែលយើងបូម និងផ្គត់ផ្គង់ខ្សាច់ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.services.title" datatype="html">
+        <source>Services</source>
+        <target state="needs-review-translation">សេវាកម្ម</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.terms.description" datatype="html">
+        <source>The terms that apply when you use this website.</source>
+        <target state="needs-review-translation">លក្ខខណ្ឌដែលអនុវត្តនៅពេលអ្នកប្រើប្រាស់គេហទំព័រនេះ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="route.terms.title" datatype="html">
+        <source>Terms of use</source>
+        <target state="needs-review-translation">លក្ខខណ្ឌប្រើប្រាស់</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/app.routes.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="seo.defaultDescription" datatype="html">
+        <source>Malin Koh Kong Peace Development dredges and supplies sand for construction projects of every kind, in support of Cambodia’s construction sector.</source>
+        <target state="needs-review-translation">ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន បូម និងផ្គត់ផ្គង់ខ្សាច់ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ ក្នុងការគាំទ្រការអភិវឌ្ឍវិស័យសំណង់នៅកម្ពុជា។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/services/seo.service.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="seo.shareImageAlt" datatype="html">
+        <source>The Malin logo with the company name in English and Khmer</source>
+        <target state="needs-review-translation">ឡូហ្គោ ម៉ាលីន ជាមួយឈ្មោះក្រុមហ៊ុនជាភាសាអង់គ្លេស និងខ្មែរ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/services/seo.service.ts</context></context-group>
+      </trans-unit>
+      <trans-unit id="services.lead" datatype="html">
+        <source> Professional sand dredging and supply for construction projects of every kind. </source>
+        <target state="needs-review-translation">ការបូម និងផ្គត់ផ្គង់ខ្សាច់ប្រកបដោយវិជ្ជាជីវៈ សម្រាប់គម្រោងសំណង់គ្រប់ប្រភេទ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/services/services.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="services.title" datatype="html">
+        <source>Services</source>
+        <target state="needs-review-translation">សេវាកម្ម</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/services/services.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="site.name" datatype="html">
+        <source>Malin Koh Kong Peace Development</source>
+        <target state="final">ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន</target>
+        <note priority="1" from="description">The client&apos;s Khmer name. On phones the browser may break ឌីវេឡុបមិន inside the word; say if a break point should be fixed.</note>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/core/services/seo.service.ts</context></context-group>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/home/home.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.changes" datatype="html">
+        <source>Changes to these terms</source>
+        <target state="needs-review-translation">ការផ្លាស់ប្តូរលក្ខខណ្ឌទាំងនេះ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.changes.body" datatype="html">
+        <source> We may update these terms. The date at the top of this page shows when they last changed. </source>
+        <target state="needs-review-translation">យើងអាចធ្វើបច្ចុប្បន្នភាពលក្ខខណ្ឌទាំងនេះ។ កាលបរិច្ឆេទនៅខាងលើទំព័រនេះបង្ហាញពីពេលដែលលក្ខខណ្ឌត្រូវបានផ្លាស់ប្តូរចុងក្រោយ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.disclaimer" datatype="html">
+        <source>Disclaimer</source>
+        <target state="needs-review-translation">ការបដិសេធការទទួលខុសត្រូវ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.disclaimer.body" datatype="html">
+        <source> We work to keep the information on this website accurate and up to date, but we can’t guarantee it. As far as the law allows, we aren’t liable for any loss that comes from relying on it. </source>
+        <target state="needs-review-translation">យើងខិតខំរក្សាព័ត៌មាននៅលើគេហទំព័រនេះឱ្យត្រឹមត្រូវ និងទាន់សម័យ ប៉ុន្តែយើងមិនអាចធានាបានទេ។ ក្នុងកម្រិតដែលច្បាប់អនុញ្ញាត យើងមិនទទួលខុសត្រូវចំពោះការខាតបង់ណាមួយដែលកើតចេញពីការពឹងផ្អែកលើព័ត៌មាននេះទេ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.ip" datatype="html">
+        <source>Intellectual property</source>
+        <target state="needs-review-translation">កម្មសិទ្ធិបញ្ញា</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.ip.body" datatype="html">
+        <source> The text, logo, photos and design of this website belong to the company or are used with permission. You may view them and share links to this website, but you may not copy or reuse them without our written permission. </source>
+        <target state="needs-review-translation">អត្ថបទ ឡូហ្គោ រូបថត និងការរចនានៃគេហទំព័រនេះ ជាកម្មសិទ្ធិរបស់ក្រុមហ៊ុន ឬត្រូវបានប្រើប្រាស់ដោយមានការអនុញ្ញាត។ អ្នកអាចមើល និងចែករំលែកតំណភ្ជាប់ទៅគេហទំព័រនេះ ប៉ុន្តែមិនអាចចម្លង ឬប្រើប្រាស់ឡើងវិញដោយគ្មានការអនុញ្ញាតជាលាយលក្ខណ៍អក្សរពីយើងទេ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.law" datatype="html">
+        <source>Governing law</source>
+        <target state="needs-review-translation">ច្បាប់គ្រប់គ្រង</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.law.body" datatype="html">
+        <source> These terms are governed by the laws of the Kingdom of Cambodia, and any dispute will be dealt with by the courts of Cambodia. </source>
+        <target state="needs-review-translation">លក្ខខណ្ឌទាំងនេះស្ថិតនៅក្រោមច្បាប់នៃព្រះរាជាណាចក្រកម្ពុជា ហើយវិវាទណាមួយនឹងត្រូវដោះស្រាយដោយតុលាការនៃព្រះរាជាណាចក្រកម្ពុជា។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.lead" datatype="html">
+        <source>The terms that apply when you use this website.</source>
+        <target state="needs-review-translation">លក្ខខណ្ឌដែលអនុវត្តនៅពេលអ្នកប្រើប្រាស់គេហទំព័រនេះ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.links" datatype="html">
+        <source>Links to other websites</source>
+        <target state="needs-review-translation">តំណភ្ជាប់ទៅគេហទំព័រផ្សេងទៀត</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.links.body" datatype="html">
+        <source> If this website links to another website, we don’t control that website and aren’t responsible for its content. </source>
+        <target state="needs-review-translation">ប្រសិនបើគេហទំព័រនេះភ្ជាប់ទៅគេហទំព័រផ្សេង យើងមិនគ្រប់គ្រងគេហទំព័រនោះ ហើយមិនទទួលខុសត្រូវចំពោះខ្លឹមសាររបស់វាទេ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.title" datatype="html">
+        <source>Terms of use</source>
+        <target state="needs-review-translation">លក្ខខណ្ឌប្រើប្រាស់</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.using" datatype="html">
+        <source>Using this website</source>
+        <target state="needs-review-translation">ការប្រើប្រាស់គេហទំព័រនេះ</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+      <trans-unit id="terms.using.body" datatype="html">
+        <source> This website gives general information about Malin Koh Kong Peace Development Co., Ltd. and its services. It isn’t an offer to supply sand or any other service: prices and quantities are agreed separately, in writing. </source>
+        <target state="needs-review-translation">គេហទំព័រនេះផ្តល់ព័ត៌មានទូទៅអំពីក្រុមហ៊ុន ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ឯ.ក និងសេវាកម្មរបស់ក្រុមហ៊ុន។ វាមិនមែនជាការផ្តល់ជូនដើម្បីផ្គត់ផ្គង់ខ្សាច់ ឬសេវាកម្មផ្សេងទៀតទេ៖ តម្លៃ និងបរិមាណត្រូវព្រមព្រៀងគ្នាដាច់ដោយឡែកជាលាយលក្ខណ៍អក្សរ។</target>
+        <context-group purpose="location"><context context-type="sourcefile">src/app/features/legal/terms/terms.html</context></context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

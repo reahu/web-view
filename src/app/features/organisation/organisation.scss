@@ -1,0 +1,76 @@
+@use 'breakpoints' as bp;
+
+.org {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Each level indents from a rule that joins it to its manager.
+.org .org {
+  margin-top: var(--space-3);
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--c-line);
+}
+
+.org__item + .org__item {
+  margin-top: var(--space-3);
+}
+
+.person {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  max-width: 24rem;
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--c-brand);
+  background: var(--c-mist);
+}
+
+.person__photo {
+  flex-shrink: 0;
+  width: 3.5rem;
+  height: auto;
+  background: var(--c-paper);
+}
+
+.person__text {
+  min-width: 0;
+}
+
+.person__name {
+  color: var(--c-brand);
+  font-weight: 600;
+}
+
+.person__role,
+.person__also {
+  color: var(--c-slate);
+  font-size: var(--fs-sm);
+}
+
+.person__also {
+  margin-top: var(--space-1);
+}
+
+// Like the printed chart: the CEO's departments side by side.
+@include bp.up(bp.$lg) {
+  .org--departments {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-4);
+
+    > .org__item + .org__item {
+      margin-top: 0;
+    }
+
+    // Columns are narrow: photo above the name, as on the printed chart, and a smaller indent.
+    .person {
+      flex-direction: column;
+    }
+
+    .org {
+      padding-left: var(--space-3);
+    }
+  }
+}

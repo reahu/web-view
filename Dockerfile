@@ -12,6 +12,7 @@ RUN npm run build -- --configuration ${configuration}
 # ---- Runtime stage ----
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY security-headers.conf /etc/nginx/security-headers.conf
 COPY --from=build /app/dist/web-view/browser /usr/share/nginx/html
 
 EXPOSE 80

@@ -1,0 +1,61 @@
+<section class="hero" aria-labelledby="home-title">
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <h1 id="home-title" i18n="@@site.name">Malin Koh Kong Peace Development</h1>
+      <p class="hero__lead" i18n="@@company.experience">
+        We are experienced in professionally dredging and supplying sand for construction projects
+        of every kind.
+      </p>
+      <p class="hero__values" i18n="@@company.values">Quality • Trust • Strong partnership</p>
+      <div class="hero__actions">
+        <a class="button button--on-dark" routerLink="/services" i18n="@@home.hero.services"
+          >Our services</a
+        >
+        <a class="button hero__secondary" routerLink="/contact-us" i18n="@@nav.contact"
+          >Contact us</a
+        >
+      </div>
+    </div>
+    <!-- Placeholder until the client sends a photo of the barge or depot. -->
+    <img
+      class="hero__image"
+      ngSrc="/images/placeholders/hero-1.webp"
+      width="1920"
+      height="1080"
+      priority
+      alt="Placeholder: a photo of the company’s dredging barge goes here"
+      i18n-alt="@@home.hero.imageAlt"
+    />
+  </div>
+</section>
+
+<section class="section" aria-labelledby="welcome-title">
+  <div class="container">
+    <rg-section-heading
+      headingId="welcome-title"
+      heading="Welcome to Malin Koh Kong Peace Development Co., Ltd."
+      i18n-heading="The client's welcome line, without its closing ។ because it's a heading. The company name is in capitals as the client wrote it; on phones it wraps over several lines.@@home.welcome.heading"
+      intro="We are committed to quality, service and trust in support of the development of Cambodia’s construction sector."
+      i18n-intro="@@company.commitment"
+      linkLabel="About us"
+      i18n-linkLabel="@@nav.about"
+      linkPath="/about"
+    />
+  </div>
+</section>
+
+<section class="section section--mist" aria-labelledby="process-title">
+  <div class="container">
+    <rg-section-heading
+      headingId="process-title"
+      heading="How we work"
+      i18n-heading="@@process.heading"
+      linkLabel="Our services"
+      i18n-linkLabel="@@home.hero.services"
+      linkPath="/services"
+    />
+    <rg-process-steps [steps]="steps()" [showText]="false" />
+  </div>
+</section>
+
+<rg-quote-cta />
