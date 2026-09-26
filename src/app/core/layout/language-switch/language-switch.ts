@@ -7,7 +7,8 @@ import { filter, map } from 'rxjs';
 /**
  * Links to the current page in the other language. A plain link, not routerLink: each
  * language is a separate build, so switching loads the other one. Prerendered with the
- * right URL, so it works before the app starts.
+ * right URL, so it works before the app starts. It shows the language's flag; the link's
+ * text, for screen readers, is the language's name in itself.
  */
 @Component({
   selector: 'rg-language-switch',

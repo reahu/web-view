@@ -36,6 +36,13 @@ describe('LanguageSwitch', () => {
     expect(link.getAttribute('lang')).toBe('km');
   });
 
+  it('shows a flag and leaves the name to screen readers', async () => {
+    const link = await setup('km', '/about');
+    expect(link.querySelectorAll('svg')).toHaveLength(1);
+    expect(link.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true');
+    expect(link.querySelector('.visually-hidden')?.textContent).toBe('English');
+  });
+
   it('maps the home pages and keeps the query string', async () => {
     expect((await setup('km', '/')).getAttribute('href')).toBe('/en');
     TestBed.resetTestingModule();

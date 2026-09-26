@@ -1,6 +1,6 @@
 export interface Language {
   code: 'km' | 'en';
-  /** The language's name in itself, as the switch shows it. Never translated. */
+  /** The language's name in itself: the switch's text for screen readers. Never translated. */
   label: string;
   /** Before the page path in URLs. Must match the locale's subPath in angular.json. */
   prefix: string;
