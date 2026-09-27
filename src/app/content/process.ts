@@ -1,8 +1,8 @@
 import { ProcessStep } from '@core/models/process-step';
 
-// Each step's text is one sentence of the client's own description (their Khmer is the
-// original; see src/i18n/km.json). Don't add claims the client hasn't made,
-// e.g. that the company delivers: the text only says trucks are loaded for customers.
+// Each step's text is part of the client's own description of their sand business (their
+// Khmer is the original; see src/i18n/km.json). Don't add claims the client hasn't made,
+// or make their figures exact: the barge holds "about" 700 m³ and its crew is "about" six.
 export const PROCESS: readonly ProcessStep[] = [
   {
     id: 'dredging',
@@ -15,8 +15,8 @@ export const PROCESS: readonly ProcessStep[] = [
     text: 'process.depot.text',
   },
   {
-    id: 'loading',
-    title: 'process.loading.title',
-    text: 'process.loading.text',
+    id: 'delivery',
+    title: 'process.delivery.title',
+    text: 'process.delivery.text',
   },
 ];

@@ -1,13 +1,11 @@
 <section class="cta" aria-labelledby="quote-cta-title">
   <div class="container cta__inner">
     <div>
-      <h2 id="quote-cta-title">{{ 'cta.heading' | translate }}</h2>
-      <p class="cta__body">{{ 'cta.body' | translate }}</p>
+      <h2 id="quote-cta-title">{{ heading() | translate }}</h2>
+      <p class="cta__body">{{ body() | translate }}</p>
     </div>
-    <a
-      class="button button--on-dark"
-      [routerLink]="'/contact-us' | langPath"
-      >{{ 'cta.button' | translate }}</a
-    >
+    <a class="button button--on-dark" [routerLink]="'/contact-us' | langPath">{{
+      action() | translate
+    }}</a>
   </div>
 </section>

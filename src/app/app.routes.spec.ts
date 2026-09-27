@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
-import { TitleStrategy, provideRouter } from '@angular/router';
+import { Router, TitleStrategy, provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { SeoTitleStrategy } from '@core/services/seo.service';
 import { routes } from './app.routes';
@@ -34,11 +34,25 @@ describe('routes', () => {
   });
 
   it('titles the page in its language', async () => {
+    await harness.navigateByUrl('/en/services/sand');
+    expect(TestBed.inject(Title).getTitle()).toBe(
+      'Sand dredging, supply and transport | Malin Koh Kong Peace Development',
+    );
+
+    await harness.navigateByUrl('/services/minerals');
+    expect(TestBed.inject(Title).getTitle()).toBe(
+      'ការស្វែងរុករករ៉ែ និងអាជ្ញាបណ្ណរ៉ែ | ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន',
+    );
+  });
+
+  it('sends the old services address to the home page, keeping the language', async () => {
     await harness.navigateByUrl('/en/services');
-    expect(TestBed.inject(Title).getTitle()).toBe('Services | Malin Koh Kong Peace Development');
+    expect(TestBed.inject(Router).url).toBe('/en');
+    expect(heading()).toContain('Welcome to');
 
     await harness.navigateByUrl('/services');
-    expect(TestBed.inject(Title).getTitle()).toBe('សេវាកម្ម | ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន');
+    expect(TestBed.inject(Router).url).toBe('/');
+    expect(lang()).toBe('km');
   });
 
   it('shows unknown pages as not found, in the language of the URL', async () => {

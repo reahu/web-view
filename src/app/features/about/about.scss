@@ -13,8 +13,13 @@
   padding: 0;
   list-style: none;
 
+  // Two by two until all four fit on one row.
   @include bp.up(bp.$sm) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp.up(bp.$lg) {
+    grid-template-columns: repeat(4, 1fr);
   }
 
   li {

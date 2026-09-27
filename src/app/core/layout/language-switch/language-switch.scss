@@ -2,73 +2,110 @@
   position: relative;
 }
 
-// Matches the header's Menu button.
+// A frosted pill on the header green. Matches the header's Menu button.
 .switch__button {
   display: flex;
   align-items: center;
   gap: var(--space-2);
   min-width: 2.75rem;
   min-height: 2.75rem;
-  padding: 0 var(--space-3);
-  border: 1px solid rgb(255 255 255 / 0.5);
-  border-radius: var(--radius-control);
+  padding: 0 var(--space-4);
+  border: 1px solid rgb(255 255 255 / 0.24);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.08);
   color: var(--c-paper);
+  font-size: var(--fs-sm);
+  font-weight: 500;
   cursor: pointer;
   list-style: none; // no disclosure triangle
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
 
   &::-webkit-details-marker {
     display: none;
   }
 
-  &:hover {
-    border-color: var(--c-paper);
+  &:hover,
+  .switch[open] & {
+    border-color: rgb(255 255 255 / 0.45);
+    background: rgb(255 255 255 / 0.16);
   }
 }
 
+// --c-accent is only allowed on --c-brand; on the pill's tint it's still 5.3:1 (4:1 on hover).
 .switch__globe {
   flex-shrink: 0;
+  color: var(--c-accent);
 }
 
 .switch__chevron {
-  transition: transform 0.15s;
+  opacity: 0.75;
+  transition: transform 0.2s;
 }
 
 .switch[open] .switch__chevron {
   transform: rotate(180deg);
 }
 
-// A white panel under the button, like the main menu's groups.
+// A floating white card under the button, like the main menu's groups.
 .switch__menu {
   --c-focus: var(--c-brand);
 
   position: absolute;
-  top: calc(100% + var(--space-1));
+  top: calc(100% + var(--space-2));
   right: 0;
   z-index: 10;
-  min-width: 11rem;
+  display: grid;
+  gap: 2px;
+  min-width: 12rem;
   margin: 0;
-  padding: var(--space-2) 0;
-  border: var(--border);
+  padding: var(--space-2);
+  border-radius: var(--radius-panel);
   background: var(--c-paper);
+  box-shadow: var(--shadow-panel);
   list-style: none;
+  transform-origin: top right;
+}
+
+// <details> renders its content on opening, which starts the animation.
+.switch[open] .switch__menu {
+  animation: switch-in 0.16s ease-out;
+}
+
+@keyframes switch-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.25rem) scale(0.98);
+  }
 }
 
 .switch__item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-3);
+  gap: var(--space-4);
   min-height: 2.75rem;
-  padding: 0 var(--space-4);
-  color: var(--c-brand);
+  padding: 0 var(--space-3);
+  border-radius: calc(var(--radius-panel) - var(--space-1));
+  color: var(--c-ink);
   text-decoration: none;
   white-space: nowrap;
+  transition: background-color 0.12s;
+
+  // Inside the item: the items sit 2px apart, so an outside ring would overlap the next.
+  &:focus-visible {
+    outline-offset: -2px;
+  }
 }
 
 a.switch__item:hover {
   background: var(--c-mist);
+  color: var(--c-brand);
 }
 
 .is-current {
+  background: color-mix(in srgb, var(--c-brand) 8%, var(--c-paper));
+  color: var(--c-brand);
   font-weight: 600;
 }

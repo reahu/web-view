@@ -9,7 +9,7 @@ describe('ContentService', () => {
 
   it('lists the process steps in order, each with a title and text', () => {
     const steps = content.process();
-    expect(steps.map((step) => step.id)).toEqual(['dredging', 'depot', 'loading']);
+    expect(steps.map((step) => step.id)).toEqual(['dredging', 'depot', 'delivery']);
     for (const step of steps) {
       expect(step.title).toBeTruthy();
       expect(step.text).toBeTruthy();

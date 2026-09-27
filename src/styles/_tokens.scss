@@ -27,6 +27,8 @@
   --font-body:
     'Kantumruy Pro', var(--font-cjk), system-ui, -apple-system, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
+  // Khmer display lettering, as on the client's printed chart. One weight: never bold it.
+  --font-moul: 'Khmer OS Moul Light', var(--font-body);
 
   // Type scale: ratio 1.25, 17px body
   --fs-xs: 0.8125rem; // 13
@@ -65,5 +67,11 @@
   // Shape
   --radius-control: 2px;
   --radius-card: 0.5rem; // organisation chart boxes
+  --radius-panel: 0.75rem; // dropdown menus
+  --radius-media: 1.25rem; // feature photos
+  --radius-pill: 999px; // header buttons
   --border: 1px solid var(--c-line);
+
+  // Elevation: dropdowns float over the page on a soft, green-tinted shadow.
+  --shadow-panel: 0 0 0 1px rgb(3 50 30 / 0.06), 0 0.75rem 2rem -0.5rem rgb(3 50 30 / 0.3);
 }

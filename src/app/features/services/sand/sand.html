@@ -1,0 +1,31 @@
+<div class="container page">
+  <header class="page-header">
+    <h1>{{ 'sand.title' | translate }}</h1>
+    <p class="lead">{{ 'company.sand.intro' | translate }}</p>
+  </header>
+
+  <div class="prose">
+    <p>{{ 'sand.focus' | translate }}</p>
+  </div>
+
+  <section class="process" aria-labelledby="process-title">
+    <h2 id="process-title" class="process__title">{{ 'process.heading' | translate }}</h2>
+    <rg-process-steps [steps]="steps()" />
+  </section>
+
+  <div class="prose">
+    <h2>{{ 'sand.supply.heading' | translate }}</h2>
+    <p>{{ 'sand.supply.chain' | translate }}</p>
+    <p>{{ 'sand.supply.maintenance' | translate }}</p>
+
+    <h2>{{ 'sand.commitment.heading' | translate }}</h2>
+    <p>{{ 'sand.commitment.goal' | translate }}</p>
+    <p>{{ 'sand.commitment.pledge' | translate }}</p>
+  </div>
+</div>
+
+<rg-quote-cta
+  [heading]="'cta.sand.heading'"
+  [body]="'cta.sand.body'"
+  [action]="'cta.sand.action'"
+/>

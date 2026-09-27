@@ -1,9 +1,9 @@
 import { Service, Signal, computed, signal } from '@angular/core';
 import { CONTACT_DETAILS } from '@content/contact';
-import { ORGANISATION } from '@content/organisation';
+import { ORGANISATION, ORGANISATION_HEADING } from '@content/organisation';
 import { PROCESS } from '@content/process';
 import { ContactDetails } from '@core/models/contact-details';
-import { OrgMember, OrgNode } from '@core/models/org-member';
+import { OrgHeading, OrgMember, OrgNode } from '@core/models/org-member';
 import { ProcessStep } from '@core/models/process-step';
 
 /**
@@ -13,10 +13,12 @@ import { ProcessStep } from '@core/models/process-step';
  */
 @Service()
 export class ContentService {
-  /** The company's work, in order: dredging, pumping to the depot, loading trucks. */
+  /** How the company supplies sand, in order: dredging, the depot, stockpiling and delivery. */
   readonly process: Signal<readonly ProcessStep[]> = signal(PROCESS).asReadonly();
 
   readonly organisation: Signal<readonly OrgMember[]> = signal(ORGANISATION).asReadonly();
+
+  readonly orgHeading: Signal<OrgHeading> = signal(ORGANISATION_HEADING).asReadonly();
 
   readonly contactDetails: Signal<ContactDetails> = signal(CONTACT_DETAILS).asReadonly();
 

@@ -81,7 +81,7 @@ describe('SeoService', () => {
     service.apply({ path: '/' });
     expect(title.getTitle()).toBe('ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន');
     expect(content('property="og:site_name"')).toBe('ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន');
-    expect(content('name="description"')).toContain('បូម និងផ្គត់ផ្គង់ខ្សាច់');
+    expect(content('name="description"')).toContain('ផ្គត់ផ្គង់ខ្សាច់');
     expect(content('property="og:locale"')).toBe('km_KH');
   });
 
@@ -167,7 +167,7 @@ describe('SeoService', () => {
         '@type': 'Organization',
         name: SITE_NAME,
         url: `${environment.site_url}/`,
-        description: expect.stringContaining('dredges and supplies sand'),
+        description: expect.stringContaining('supplies sand'),
       });
     });
   });

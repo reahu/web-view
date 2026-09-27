@@ -1,4 +1,17 @@
+import { Language } from '@core/i18n/languages';
 import { TranslationKey } from '@core/i18n/translations';
+
+/** A line printed in one script, tagged with its language so it's read and shaped right. */
+export interface ScriptLine {
+  lang: Language['code'];
+  text: string;
+}
+
+/** The printed chart's heading, in all its scripts at once: the same on every language's page. */
+export interface OrgHeading {
+  company: readonly ScriptLine[];
+  title: readonly ScriptLine[];
+}
 
 /** A person on the organisation chart. */
 export interface OrgMember {

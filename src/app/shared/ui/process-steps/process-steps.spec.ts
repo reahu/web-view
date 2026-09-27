@@ -23,7 +23,7 @@ describe('ProcessSteps', () => {
     expect(el.querySelector('ol')).not.toBeNull();
     expect([...el.querySelectorAll('li h3')].map((h) => h.textContent?.trim())).toEqual([
       'Dredging',
-      'Pumping to the depot',
+      'Transfer to the depot',
     ]);
     expect(el.querySelectorAll('.step__text').length).toBe(2);
   });

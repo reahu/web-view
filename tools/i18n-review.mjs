@@ -23,9 +23,11 @@ const LANGUAGES = {
 const GROUPS = [
   ['Every page: header, menu and footer', ['site', 'layout', 'nav', 'footer', 'link', 'seo']],
   ['Home', ['home']],
-  ['Company description (Home and About)', ['company']],
+  ['Company description (Home, About and the service pages)', ['company']],
   ['About', ['about']],
-  ['Services and how the company works', ['services', 'process', 'cta']],
+  ['Sand dredging, supply and transport', ['sand', 'process']],
+  ['Mineral exploration and mining licensing', ['minerals']],
+  ['Calls to action at the foot of pages', ['cta']],
   ['Organisation chart', ['organisation', 'org']],
   ['Contact form', ['contact']],
   ['Privacy policy and terms of use', ['legal', 'privacy', 'terms']],

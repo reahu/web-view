@@ -68,11 +68,27 @@ describe('Organisation', () => {
     }
   });
 
-  it('marks the President and CEO as leads and the five department heads', () => {
+  it('colours the name plates as printed: leads, the teams, and the people under a pair', () => {
     const names = (selector: string) =>
       [...el.querySelectorAll(`${selector} .person__name`)].map((p) => p.textContent?.trim());
     expect(names('.person--lead')).toEqual(['Sor Bunmalin', 'Cheng Phally']);
-    expect(names('.person--head').length).toBe(5);
+    expect(names('.person--team')).toEqual([
+      'Zhang Quanjian',
+      'Khun Chanthol',
+      'Sroy Chendy',
+      'Cha Vin',
+      'Shang Deyao',
+    ]);
+    expect(names('.person--shared')).toEqual(['Vith Sreymey', 'Ya Ratha']);
+  });
+
+  it('heads the chart with the company and title in all three scripts, as printed', () => {
+    const lines = (selector: string) =>
+      [...el.querySelectorAll(`${selector} > span`)].map((span) => span.getAttribute('lang'));
+    expect(lines('.board__company')).toEqual(['km', 'en', 'zh-Hans']);
+    expect(lines('h1')).toEqual(['km', 'en', 'zh-Hans']);
+    expect(el.querySelector('h1 [lang="en"]')?.textContent).toBe('Organizational structure');
+    expect(el.querySelector('.board__logo')?.getAttribute('alt')).toBe('');
   });
 
   it('names a second manager for screen readers, hidden where the bracket shows it', () => {

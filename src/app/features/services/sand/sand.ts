@@ -4,12 +4,13 @@ import { ContentService } from '@core/services/content.service';
 import { ProcessSteps } from '@shared/ui/process-steps/process-steps';
 import { QuoteCta } from '@shared/ui/quote-cta/quote-cta';
 
+/** Sand dredging, supply and transport, in the client's words. */
 @Component({
   imports: [ProcessSteps, QuoteCta, TranslatePipe],
-  selector: 'rg-services',
-  styleUrl: './services.scss',
-  templateUrl: './services.html',
+  selector: 'rg-sand',
+  styleUrl: './sand.scss',
+  templateUrl: './sand.html',
 })
-export class Services {
+export class Sand {
   protected readonly steps = inject(ContentService).process;
 }

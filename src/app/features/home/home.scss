@@ -3,7 +3,10 @@
 .hero {
   --c-focus: var(--c-paper);
   padding-block: var(--space-7);
-  background: var(--c-brand);
+  // A faint light behind the photo gives the flat green some depth.
+  background:
+    radial-gradient(36rem 28rem at 78% 50%, rgb(255 255 255 / 0.07), transparent 70%),
+    var(--c-brand);
   color: var(--c-paper);
 
   @include bp.up(bp.$md) {
@@ -47,17 +50,90 @@ h1 {
   gap: var(--space-3);
 }
 
-.hero__secondary {
-  border-color: var(--c-paper);
-  background: transparent;
+// The photo on a gold frame, offset toward the text, with a dot grid above its far corner.
+.hero__media {
+  --offset: var(--space-3);
 
-  &:hover {
-    border-color: var(--c-paper);
-    background: rgb(255 255 255 / 0.12);
+  position: relative;
+  isolation: isolate; // keeps the decorations (z-index -1) above the hero's background
+  margin: 0 var(--offset) var(--offset) var(--offset);
+
+  @include bp.up(bp.$md) {
+    --offset: var(--space-5);
+
+    margin-inline-end: 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: var(--offset) var(--offset) calc(-1 * var(--offset)) calc(-1 * var(--offset));
+    z-index: -1;
+    border: 2px solid var(--c-accent);
+    border-radius: var(--radius-media);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(-2 * var(--offset));
+    right: calc(-1 * var(--offset));
+    z-index: -1;
+    width: 7rem;
+    height: 5rem;
+    background: radial-gradient(
+        circle,
+        color-mix(in srgb, var(--c-accent) 60%, transparent) 1.5px,
+        transparent 2px
+      )
+      0 0 / 1rem 1rem;
   }
 }
 
 .hero__image {
   width: 100%;
   height: auto;
+  border-radius: var(--radius-media);
+  box-shadow: 0 2rem 3rem -1.5rem rgb(0 0 0 / 0.6);
+  // A hairline highlight so the photo's edge reads against the dark green.
+  outline: 1px solid rgb(255 255 255 / 0.12);
+  outline-offset: -1px;
+}
+
+.services {
+  display: grid;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.up(bp.$md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.service {
+  position: relative;
+  padding: var(--space-5);
+  border-top: 2px solid var(--c-brand);
+  background: var(--c-paper);
+
+  h3 a {
+    text-decoration: none;
+
+    // Stretched over the card, so the whole card is the link's target.
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  &:hover h3 a {
+    text-decoration: underline;
+  }
+
+  p {
+    margin-top: var(--space-3);
+  }
 }

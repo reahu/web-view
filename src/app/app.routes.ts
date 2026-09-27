@@ -30,12 +30,27 @@ const PAGES: Page[] = [
     loadComponent: () => import('@features/about/about').then((m) => m.About),
   },
   {
-    path: 'services',
-    title: 'route.services.title',
+    path: 'services/sand',
+    title: 'route.sand.title',
     data: {
-      description: 'route.services.description',
+      description: 'route.sand.description',
     },
-    loadComponent: () => import('@features/services/services').then((m) => m.Services),
+    loadComponent: () => import('@features/services/sand/sand').then((m) => m.Sand),
+  },
+  {
+    path: 'services/minerals',
+    title: 'route.minerals.title',
+    data: {
+      description: 'route.minerals.description',
+    },
+    loadComponent: () => import('@features/services/minerals/minerals').then((m) => m.Minerals),
+  },
+  {
+    // The single Services page became the two above. Its old address goes to the home page,
+    // which introduces both, in the same language.
+    path: 'services',
+    pathMatch: 'full',
+    redirectTo: '',
   },
   {
     path: 'organisation',

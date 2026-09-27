@@ -1,4 +1,19 @@
-import { OrgMember } from '@core/models/org-member';
+import { OrgHeading, OrgMember } from '@core/models/org-member';
+
+// The chart's heading, as printed: the company and the title in Khmer, English and Chinese.
+// Letter case is the page's (the print is in capitals), so screen readers don't spell it out.
+export const ORGANISATION_HEADING: OrgHeading = {
+  company: [
+    { lang: 'km', text: 'ក្រុមហ៊ុន ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ឯ.ក' },
+    { lang: 'en', text: 'Malin Koh Kong Peace Development Co., Ltd.' },
+    { lang: 'zh-Hans', text: '马林戈公和平发展有限公司' },
+  ],
+  title: [
+    { lang: 'km', text: 'រចនាសម្ព័ន្ធ' },
+    { lang: 'en', text: 'Organizational structure' },
+    { lang: 'zh-Hans', text: '组织架构' },
+  ],
+};
 
 // From the client's organisation chart (PDF), in its left-to-right order. Photos are the
 // chart's own portraits; everyone agreed to theirs being online (user, 2026-09-24).

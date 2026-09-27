@@ -28,3 +28,7 @@ $khmer: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC;
 // variable font as a new file; don't widen this range.
 @include face('Noto Serif Display', 'noto-serif-display-latin-600', 600, $latin);
 @include face('Noto Serif Display', 'noto-serif-display-latin-ext-600', 600, $latin-ext);
+
+// The organisation chart's Khmer heading, in the printed chart's Moul (user, 2026-09-27).
+// Khmer only (pyftsubset, from the Windows font file), so it's 28 kB; only that page loads it.
+@include face('Khmer OS Moul Light', 'khmer-os-moul-light-khmer', 400, $khmer);

@@ -1,0 +1,11 @@
+.steps,
+.licences {
+  li + li {
+    margin-top: var(--space-2);
+  }
+}
+
+// Khmer numerals on Khmer pages, as in the sand process steps.
+.steps:lang(km) {
+  list-style-type: khmer;
+}

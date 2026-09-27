@@ -22,11 +22,14 @@ describe('Home', () => {
     );
   });
 
-  it('summarises the process with titles only and links to the services page', () => {
-    expect(el.querySelectorAll('rg-process-steps li').length).toBe(3);
-    expect(el.querySelector('rg-process-steps .step__text')).toBeNull();
+  it('introduces both services and links to each one’s page', () => {
+    expect([...el.querySelectorAll('.service h3')].map((h) => h.textContent?.trim())).toEqual([
+      'Sand dredging, supply and transport',
+      'Mineral exploration and mining licensing',
+    ]);
     const hrefs = [...el.querySelectorAll('a')].map((a) => a.getAttribute('href'));
-    expect(hrefs).toContain('/en/services');
+    expect(hrefs).toContain('/en/services/sand');
+    expect(hrefs).toContain('/en/services/minerals');
     expect(hrefs).toContain('/en/contact-us');
   });
 

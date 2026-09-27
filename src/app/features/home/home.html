@@ -2,37 +2,50 @@
   <div class="container hero__inner">
     <div class="hero__text">
       <h1 id="home-title">{{ 'home.welcome.heading' | translate }}</h1>
-      <p class="hero__lead">{{ 'company.experience' | translate }}</p>
+      <p class="hero__lead">{{ 'home.hero.lead' | translate }}</p>
       <p class="hero__values">{{ 'company.values' | translate }}</p>
       <div class="hero__actions">
-        <a class="button button--on-dark" [routerLink]="'/services' | langPath">{{
-          'home.hero.services' | translate
+        <a class="button button--on-dark" [routerLink]="'/services/sand' | langPath">{{
+          'nav.sand' | translate
         }}</a>
-        <a class="button hero__secondary" [routerLink]="'/contact-us' | langPath">{{
-          'nav.contact' | translate
+        <a class="button button--on-dark" [routerLink]="'/services/minerals' | langPath">{{
+          'nav.minerals' | translate
         }}</a>
       </div>
     </div>
-    <img
-      class="hero__image"
-      ngSrc="/images/photos/hall.webp"
-      width="1280"
-      height="960"
-      priority
-      [alt]="'home.hero.imageAlt' | translate"
-    />
+    <div class="hero__media">
+      <img
+        class="hero__image"
+        ngSrc="/images/photos/hall.webp"
+        width="1280"
+        height="960"
+        priority
+        [alt]="'home.hero.imageAlt' | translate"
+      />
+    </div>
   </div>
 </section>
 
-<section class="section section--mist" aria-labelledby="process-title">
+<section class="section section--mist" aria-labelledby="services-title">
   <div class="container">
     <rg-section-heading
-      headingId="process-title"
-      [heading]="'process.heading' | translate"
-      [linkLabel]="'home.hero.services' | translate"
-      linkPath="/services"
+      headingId="services-title"
+      [heading]="'home.services.heading' | translate"
     />
-    <rg-process-steps [steps]="steps()" [showText]="false" />
+    <ul class="services" role="list">
+      <li class="service">
+        <h3>
+          <a [routerLink]="'/services/sand' | langPath">{{ 'sand.title' | translate }}</a>
+        </h3>
+        <p>{{ 'company.sand.summary' | translate }}</p>
+      </li>
+      <li class="service">
+        <h3>
+          <a [routerLink]="'/services/minerals' | langPath">{{ 'minerals.title' | translate }}</a>
+        </h3>
+        <p>{{ 'company.minerals.summary' | translate }}</p>
+      </li>
+    </ul>
   </div>
 </section>
 

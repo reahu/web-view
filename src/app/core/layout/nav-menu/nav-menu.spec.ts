@@ -17,7 +17,7 @@ const TEST_NAV: readonly NavEntry[] = [
     label: 'nav.about',
     links: [
       { label: 'about.title', path: '/company' },
-      { label: 'organisation.title', path: '/people' },
+      { label: 'nav.organisation', path: '/people' },
     ],
   },
   { id: 'more', label: 'footer.company', links: [{ label: 'nav.terms', path: '/other' }] },

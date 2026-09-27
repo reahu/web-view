@@ -4,6 +4,7 @@ import { LanguageService } from '@core/i18n/language.service';
 import { TranslatePipe } from '@core/i18n/translate-pipe';
 import { OrgMember, OrgNode } from '@core/models/org-member';
 import { ContentService } from '@core/services/content.service';
+import { LOGO } from '@core/services/seo.service';
 
 /**
  * One or more people drawn side by side over one bracket, as on the printed chart: people
@@ -42,7 +43,8 @@ export function groupChart(nodes: readonly OrgNode[]): OrgGroup[] {
 /**
  * The organisation chart as nested lists, so the hierarchy is announced by screen readers
  * and works at any width. People with two managers sit under the first; the other is
- * named in text.
+ * named in text. Drawn like the printed chart: on its green, under its heading in all three
+ * scripts.
  */
 @Component({
   imports: [NgOptimizedImage, NgTemplateOutlet, TranslatePipe],
@@ -51,8 +53,10 @@ export function groupChart(nodes: readonly OrgNode[]): OrgGroup[] {
   templateUrl: './organisation.html',
 })
 export class Organisation {
-  private readonly orgChart = inject(ContentService).orgChart;
-  protected readonly chart = computed(() => groupChart(this.orgChart()));
+  private readonly content = inject(ContentService);
+  protected readonly heading = this.content.orgHeading;
+  protected readonly chart = computed(() => groupChart(this.content.orgChart()));
+  protected readonly logo = LOGO;
 
   private readonly language = inject(LanguageService).current;
   private readonly names = computed(

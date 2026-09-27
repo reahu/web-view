@@ -1,13 +1,36 @@
-<div class="container page">
-  <header class="page-header">
-    <h1>{{ 'organisation.title' | translate }}</h1>
-    <p class="lead">{{ 'organisation.lead' | translate }}</p>
+<!-- Green from the site header to the footer, as on the printed chart. -->
+<div class="board">
+  <!-- As printed: the company on the left, the title in the middle, the logo on the right. -->
+  <header class="board__header">
+    <p class="board__company">
+      @for (line of heading().company; track line.lang) {
+        <span [attr.lang]="line.lang">{{ line.text }}</span>
+      }
+    </p>
+    <h1 class="board__title">
+      @for (line of heading().title; track line.lang) {
+        <span [attr.lang]="line.lang">{{ line.text }}</span>
+      }
+    </h1>
+    <!-- The company is named right beside it, so the logo needs no text alternative. -->
+    <img
+      class="board__logo"
+      [ngSrc]="logo.src"
+      [width]="logo.width"
+      [height]="logo.height"
+      alt=""
+    />
   </header>
 
   <ng-container
     [ngTemplateOutlet]="branch"
     [ngTemplateOutletContext]="{ $implicit: chart(), depth: 1 }"
   />
+
+  <footer class="board__footer">
+    <p>{{ 'company.tagline' | translate }}</p>
+    <p>{{ 'company.motto' | translate }}</p>
+  </footer>
 </div>
 
 <!--
@@ -33,7 +56,13 @@
       >
         <div class="org__heads" [class.org__heads--pair]="group.heads.length > 1">
           @for (node of group.heads; track node.member.id) {
-            <div class="person" [class.person--lead]="depth < 3" [class.person--head]="depth === 3">
+            <!-- Name plates as printed: white for managers, green for teams, cyan under a pair. -->
+            <div
+              class="person"
+              [class.person--lead]="depth < 3"
+              [class.person--team]="depth > 3 && !shared"
+              [class.person--shared]="shared"
+            >
               @if (node.member.photo) {
                 <!-- The name is right beneath it, so the photo needs no text alternative. -->
                 <img
@@ -43,17 +72,23 @@
                   height="70"
                   alt=""
                 />
+              } @else {
+                <!-- An empty frame keeps the chart's shape, and its connectors meeting it. -->
+                <span class="person__photo"></span>
               }
-              <p class="person__role">{{ node.member.role | translate }}</p>
-              <p class="person__name">{{ node.member.name }}</p>
-              @if (node.alsoReportsTo.length) {
-                <!-- Under a pair, the bracket already shows the second manager. -->
-                <p class="person__also" [class.visually-hidden]="shared">
-                  {{
-                    'organisation.alsoReportsTo' | translate: { names: namesOf(node.alsoReportsTo) }
-                  }}
-                </p>
-              }
+              <div class="person__plate">
+                <p class="person__name">{{ node.member.name }}</p>
+                <p class="person__role">{{ node.member.role | translate }}</p>
+                @if (node.alsoReportsTo.length) {
+                  <!-- Under a pair, the bracket already shows the second manager. -->
+                  <p class="person__also" [class.visually-hidden]="shared">
+                    {{
+                      'organisation.alsoReportsTo'
+                        | translate: { names: namesOf(node.alsoReportsTo) }
+                    }}
+                  </p>
+                }
+              </div>
             </div>
           }
         </div>

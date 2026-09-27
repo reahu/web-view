@@ -19,7 +19,14 @@ export const isNavGroup = (entry: NavEntry): entry is NavGroup => 'links' in ent
 
 /** Main navigation. Header and footer both render from this, so they can't drift apart. */
 export const MAIN_NAV: readonly NavEntry[] = [
-  { label: 'nav.services', path: '/services' },
+  {
+    id: 'services',
+    label: 'nav.services',
+    links: [
+      { label: 'nav.sand', path: '/services/sand' },
+      { label: 'nav.minerals', path: '/services/minerals' },
+    ],
+  },
   { label: 'nav.organisation', path: '/organisation' },
   { label: 'nav.contact', path: '/contact-us' },
   { label: 'nav.about', path: '/about' },
