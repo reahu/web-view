@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LangPathPipe } from '@core/i18n/lang-path-pipe';
+import { TranslatePipe } from '@core/i18n/translate-pipe';
 import { LEGAL_NAV, MAIN_NAV, NavGroup, NavLink, isNavGroup } from '../navigation';
 
 @Component({
-  imports: [RouterLink],
+  imports: [RouterLink, TranslatePipe, LangPathPipe],
   selector: 'rg-footer',
   styleUrl: './footer.scss',
   templateUrl: './footer.html',
@@ -14,7 +16,7 @@ export class Footer {
     ...MAIN_NAV.filter(isNavGroup),
     {
       id: 'company',
-      label: $localize`:@@footer.company:Company`,
+      label: 'footer.company',
       links: MAIN_NAV.filter((entry): entry is NavLink => !isNavGroup(entry)),
     },
   ];

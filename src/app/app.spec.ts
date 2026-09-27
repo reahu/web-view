@@ -1,4 +1,3 @@
-import { APP_BASE_HREF } from '@angular/common';
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Router, provideRouter } from '@angular/router';
@@ -8,16 +7,12 @@ import { App } from './app';
 class TestPage {}
 
 describe('App', () => {
-  const setup = (baseHref: string) =>
+  beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [App],
-      providers: [
-        provideRouter([{ path: '**', component: TestPage }]),
-        { provide: APP_BASE_HREF, useValue: baseHref },
-      ],
-    }).compileComponents();
-
-  beforeEach(() => setup('/'));
+      providers: [provideRouter([{ path: '**', component: TestPage }])],
+    }).compileComponents(),
+  );
 
   it('renders the landmarks in order', async () => {
     const fixture = TestBed.createComponent(App);
@@ -39,10 +34,8 @@ describe('App', () => {
   });
 
   it('keeps the language prefix in the skip link on English pages', async () => {
-    TestBed.resetTestingModule();
-    await setup('/en/');
     const fixture = TestBed.createComponent(App);
-    await TestBed.inject(Router).navigateByUrl('/csr');
+    await TestBed.inject(Router).navigateByUrl('/en/csr');
     await fixture.whenStable();
 
     const skip = (fixture.nativeElement as HTMLElement).querySelector('.skip-link');

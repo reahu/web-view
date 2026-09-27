@@ -19,10 +19,14 @@
   // Typefaces
   // Khmer headings use Kantumruy Pro (as body text): Noto Serif Khmer cost Khmer pages their
   // Lighthouse 95. Latin headings keep Noto Serif Display.
-  --font-display: 'Noto Serif Display', 'Kantumruy Pro', Georgia, 'Times New Roman', serif;
+  // Chinese uses the system's own sans-serif, in headings too: a self-hosted Chinese font
+  // would be megabytes. The fonts before it cover every Latin and Khmer character we use.
+  --font-cjk: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC';
+  --font-display:
+    'Noto Serif Display', 'Kantumruy Pro', var(--font-cjk), Georgia, 'Times New Roman', serif;
   --font-body:
-    'Kantumruy Pro', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    sans-serif;
+    'Kantumruy Pro', var(--font-cjk), system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
 
   // Type scale: ratio 1.25, 17px body
   --fs-xs: 0.8125rem; // 13
@@ -60,5 +64,6 @@
 
   // Shape
   --radius-control: 2px;
+  --radius-card: 0.5rem; // organisation chart boxes
   --border: 1px solid var(--c-line);
 }

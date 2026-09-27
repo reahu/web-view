@@ -1,36 +1,27 @@
 <div class="container page">
   <header class="page-header">
-    <h1 i18n="@@about.title">About us</h1>
-    <p class="lead" i18n="@@company.tagline">Together for sustainable development</p>
+    <h1>{{ 'about.title' | translate }}</h1>
+    <p class="lead">{{ 'company.tagline' | translate }}</p>
   </header>
 
   <div class="prose">
-    <p i18n="@@about.experience">
-      We are experienced in professionally dredging and supplying sand for construction projects of
-      every kind.
-    </p>
-    <p i18n="@@about.barge">
-      Our 700 m³ sand-dredging barge is run by skilled operators and a team of six who work to
-      safety standards.
-    </p>
-    <p i18n="@@about.commitment">
-      We are committed to quality, service and trust in support of the development of Cambodia’s
-      construction sector.
-    </p>
+    <p>{{ 'about.experience' | translate }}</p>
+    <p>{{ 'about.barge' | translate }}</p>
+    <p>{{ 'about.commitment' | translate }}</p>
   </div>
 
   <section class="values" aria-labelledby="values-title">
-    <h2 id="values-title" i18n="@@about.values.heading">What we stand for</h2>
+    <h2 id="values-title">{{ 'about.values.heading' | translate }}</h2>
     <ul class="values__list" role="list">
-      <li i18n="@@company.value.quality">Quality</li>
-      <li i18n="@@company.value.trust">Trust</li>
-      <li i18n="@@company.value.partnership">Strong partnership</li>
+      <li>{{ 'company.value.quality' | translate }}</li>
+      <li>{{ 'company.value.trust' | translate }}</li>
+      <li>{{ 'company.value.partnership' | translate }}</li>
     </ul>
-    <p class="values__motto" i18n="@@company.motto">People · resources · prosperity</p>
+    <p class="values__motto">{{ 'company.motto' | translate }}</p>
   </section>
 
   <p class="team-link">
-    <a routerLink="/organisation" i18n="@@about.teamLink">See who leads the company</a>
+    <a [routerLink]="'/organisation' | langPath">{{ 'about.teamLink' | translate }}</a>
   </p>
 </div>
 

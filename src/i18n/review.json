@@ -1,0 +1,32 @@
+{
+  "notes": {
+    "footer.legalName": "The client's Khmer legal name, from the organisation chart. On phones it wraps inside ឌីវេឡុបមិន.",
+    "home.welcome.heading": "The client's welcome line, without its closing ។ because it's a heading. The client wrote the company name in Latin capitals; here it's their Khmer legal name (as in the footer), so the Khmer page reads as Khmer. The ⁠ inside ក្រុមហ៊ុន (an invisible word joiner) stops phones breaking the word across two lines.",
+    "site.name": "The client's Khmer name. On phones the browser may break ឌីវេឡុបមិន inside the word; say if a break point should be fixed."
+  },
+  "km": {
+    "client": [
+      "about.barge",
+      "about.commitment",
+      "about.experience",
+      "company.experience",
+      "company.value.partnership",
+      "company.value.quality",
+      "company.value.trust",
+      "company.values",
+      "footer.legalName",
+      "nav.organisation",
+      "organisation.title",
+      "process.depot.text",
+      "process.dredging.text",
+      "process.loading.text",
+      "route.organisation.title",
+      "site.name"
+    ],
+    "reviewed": []
+  },
+  "zh-Hans": {
+    "client": [],
+    "reviewed": []
+  }
+}

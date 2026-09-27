@@ -14,6 +14,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { TranslatePipe } from '@core/i18n/translate-pipe';
 
 /** Keep in sync with $md in src/styles/_breakpoints.scss. */
 const COMPACT_QUERY = '(max-width: 59.99rem)';
@@ -23,7 +24,7 @@ const COMPACT_QUERY = '(max-width: 59.99rem)';
  * compact screens. The projected markup is the same at every width.
  */
 @Component({
-  imports: [CdkTrapFocus],
+  imports: [CdkTrapFocus, TranslatePipe],
   selector: 'rg-mobile-drawer',
   styleUrl: './mobile-drawer.scss',
   templateUrl: './mobile-drawer.html',

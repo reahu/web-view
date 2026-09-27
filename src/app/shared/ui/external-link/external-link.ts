@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { TranslatePipe } from '@core/i18n/translate-pipe';
 
 /**
  * A link to another site. Always opens in a new tab with rel="noopener noreferrer" and
@@ -7,6 +8,7 @@ import { Component, input } from '@angular/core';
  * <rg-external-link href="https://example.com">Example</rg-external-link>
  */
 @Component({
+  imports: [TranslatePipe],
   selector: 'rg-external-link',
   styleUrl: './external-link.scss',
   templateUrl: './external-link.html',

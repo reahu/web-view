@@ -1,12 +1,13 @@
 import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LangPathPipe } from '@core/i18n/lang-path-pipe';
 
 /**
  * A section's heading, with an optional intro line and an optional link to the full
  * page. Plain on purpose: no eyebrow label, no decorative arrow.
  */
 @Component({
-  imports: [RouterLink],
+  imports: [RouterLink, LangPathPipe],
   selector: 'rg-section-heading',
   styleUrl: './section-heading.scss',
   templateUrl: './section-heading.html',

@@ -22,19 +22,20 @@ describe('Footer', () => {
     expect(el.textContent).toContain(`© ${new Date().getFullYear()} Malin Koh Kong Peace Development Co., Ltd.`);
   });
 
+  // Tests show English pages, so every link has the /en prefix.
   it('links to every page in the main navigation', () => {
     const hrefs = [...el.querySelectorAll('a')].map((a) => a.getAttribute('href'));
     const paths = MAIN_NAV.flatMap((entry) => (isNavGroup(entry) ? entry.links : [entry])).map(
       (link) => link.path,
     );
     for (const path of paths) {
-      expect(hrefs).toContain(path);
+      expect(hrefs).toContain(`/en${path}`);
     }
   });
 
   it('links to the legal pages instead of opening them in modals', () => {
     const hrefs = [...el.querySelectorAll('a')].map((a) => a.getAttribute('href'));
-    expect(hrefs).toContain('/privacy-policy');
-    expect(hrefs).toContain('/terms-of-use');
+    expect(hrefs).toContain('/en/privacy-policy');
+    expect(hrefs).toContain('/en/terms-of-use');
   });
 });

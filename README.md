@@ -12,6 +12,19 @@ Angular 22 · standalone · zoneless · signals · Vitest.
 | `docker build --build-arg configuration=staging -t web-view .` | Container image served by nginx |
 | `npm run preview:staging` | Staging build served locally by Wrangler (http://localhost:8787), with Cloudflare's routing and headers |
 | `npm run deploy:staging` | Staging build deployed to Cloudflare from your machine (run `npx wrangler login` once first). Normally a push to `main` does this |
+| `npm run i18n` | Checks the translations and writes a review page per language to `dist/i18n/review.<code>.html` |
+
+## Translations
+
+[ngx-translate](https://ngx-translate.org) with one JSON file per language in [src/i18n](src/i18n): `en.json`, `km.json`, `zh-Hans.json`. Keys are flat (`"about.title": "About us"`).
+
+- **Use a string:** `{{ 'about.title' | translate }}`, with values as `{{ 'footer.copyright' | translate: { year } }}` for `"© {{year}} …"`. Import `TranslatePipe` from `@core/i18n/translate-pipe`: it only accepts keys that are in `en.json`, so a typo fails the build. In TypeScript, type a key as `TranslationKey`.
+- **Add a string:** add the key to every file. `en.json` is the source; `npm run build` refuses to run until every language has the same keys, `{{placeholders}}` and links (`tools/i18n-check.mjs`).
+- **A link inside a sentence:** mark it in each translation, `"… please <a>contact us</a>."`, and render it with `<rg-linked-text [text]="'legal.contact' | translate" path="/contact-us" />`.
+- **Internal links:** `[routerLink]="'/about' | langPath"`, which adds the page's language prefix.
+- **Review state:** [src/i18n/review.json](src/i18n/review.json) lists, per language, the strings that are the client's own text and the ones a native speaker has approved; the rest are drafts. It also holds notes for translators. `npm run i18n` shows all of this on the review pages. When English text changes, take its key out of those lists.
+
+Every page is prerendered in every language, in one build: Khmer at `/`, English under `/en`, Chinese under `/zh` ([app.routes.ts](src/app/app.routes.ts)). The URL decides the language, and the language switch changes it in place, without reloading. `npm start` serves all three.
 
 ## Deployment
 

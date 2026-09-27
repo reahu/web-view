@@ -1,16 +1,16 @@
 <footer class="footer">
   <div class="container">
     <div class="footer__top">
-      <p class="footer__brand" i18n="The client's Khmer legal name, from the organisation chart. On phones it wraps inside ឌីវេឡុបមិន.@@footer.legalName">Malin Koh Kong Peace Development Co., Ltd.</p>
+      <p class="footer__brand">{{ 'footer.legalName' | translate }}</p>
 
-      <nav class="footer__sitemap" aria-label="Footer" i18n-aria-label="@@footer.label">
+      <nav class="footer__sitemap" [attr.aria-label]="'footer.label' | translate">
         @for (column of columns; track column.id) {
           <div>
-            <h2 class="footer__heading" [id]="'footer-' + column.id">{{ column.label }}</h2>
+            <h2 class="footer__heading" [id]="'footer-' + column.id">{{ column.label | translate }}</h2>
             <ul class="footer__links" role="list" [attr.aria-labelledby]="'footer-' + column.id">
               @for (link of column.links; track link.path) {
                 <li>
-                  <a [routerLink]="link.path">{{ link.label }}</a>
+                  <a [routerLink]="link.path | langPath">{{ link.label | translate }}</a>
                 </li>
               }
             </ul>
@@ -20,11 +20,11 @@
     </div>
 
     <div class="footer__bottom">
-      <p i18n="@@footer.copyright">© {{ year }} Malin Koh Kong Peace Development Co., Ltd. All rights reserved.</p>
+      <p>{{ 'footer.copyright' | translate: { year } }}</p>
       <ul class="footer__legal" role="list">
         @for (link of legal; track link.path) {
           <li>
-            <a [routerLink]="link.path">{{ link.label }}</a>
+            <a [routerLink]="link.path | langPath">{{ link.label | translate }}</a>
           </li>
         }
       </ul>

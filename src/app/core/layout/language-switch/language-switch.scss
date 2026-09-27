@@ -1,20 +1,74 @@
 .switch {
+  position: relative;
+}
+
+// Matches the header's Menu button.
+.switch__button {
   display: flex;
   align-items: center;
+  gap: var(--space-2);
   min-width: 2.75rem;
   min-height: 2.75rem;
   padding: 0 var(--space-3);
   border: 1px solid rgb(255 255 255 / 0.5);
   border-radius: var(--radius-control);
   color: var(--c-paper);
-  text-decoration: none;
+  cursor: pointer;
+  list-style: none; // no disclosure triangle
+
+  &::-webkit-details-marker {
+    display: none;
+  }
 
   &:hover {
     border-color: var(--c-paper);
   }
 }
 
-// A faint edge: the flags' dark blue would otherwise merge into the header's green.
-.flag {
-  outline: 1px solid rgb(255 255 255 / 0.3);
+.switch__globe {
+  flex-shrink: 0;
+}
+
+.switch__chevron {
+  transition: transform 0.15s;
+}
+
+.switch[open] .switch__chevron {
+  transform: rotate(180deg);
+}
+
+// A white panel under the button, like the main menu's groups.
+.switch__menu {
+  --c-focus: var(--c-brand);
+
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  right: 0;
+  z-index: 10;
+  min-width: 11rem;
+  margin: 0;
+  padding: var(--space-2) 0;
+  border: var(--border);
+  background: var(--c-paper);
+  list-style: none;
+}
+
+.switch__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 2.75rem;
+  padding: 0 var(--space-4);
+  color: var(--c-brand);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.switch__item:hover {
+  background: var(--c-mist);
+}
+
+.is-current {
+  font-weight: 600;
 }

@@ -34,7 +34,7 @@ describe('SectionHeading', () => {
 
     fixture.componentRef.setInput('linkPath', '/latest-news');
     await fixture.whenStable();
-    expect(el.querySelector('a')?.getAttribute('href')).toBe('/latest-news');
+    expect(el.querySelector('a')?.getAttribute('href')).toBe('/en/latest-news');
   });
 
   it('omits the intro paragraph when not given', async () => {

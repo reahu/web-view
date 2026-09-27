@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 import { QuoteCta } from './quote-cta';
 
 describe('QuoteCta', () => {
-  it('links to the contact form with the quote topic chosen', async () => {
+  it('links to the contact page', async () => {
     await TestBed.configureTestingModule({
       imports: [QuoteCta],
       providers: [provideRouter([])],
@@ -12,6 +12,6 @@ describe('QuoteCta', () => {
     await fixture.whenStable();
 
     const link = (fixture.nativeElement as HTMLElement).querySelector('a');
-    expect(link?.getAttribute('href')).toBe('/contact-us?topic=quote');
+    expect(link?.getAttribute('href')).toBe('/en/contact-us');
   });
 });

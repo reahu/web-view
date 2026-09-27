@@ -6,7 +6,8 @@ import {
   withComponentInputBinding,
   withInMemoryScrolling,
 } from '@angular/router';
-import { provideClientHydration, withI18nSupport } from '@angular/platform-browser';
+import { provideClientHydration } from '@angular/platform-browser';
+import { provideTranslations } from '@core/i18n/translations';
 import { SeoTitleStrategy } from '@core/services/seo.service';
 import { routes } from './app.routes';
 
@@ -20,8 +21,7 @@ export const appConfig: ApplicationConfig = {
     ),
     { provide: TitleStrategy, useClass: SeoTitleStrategy },
     provideHttpClient(withFetch()),
-    // Without withI18nSupport, hydration skips every component with i18n blocks (every page)
-    // and re-renders it in the browser: the content vanishes and reappears, shifting the layout.
-    provideClientHydration(withI18nSupport()),
+    provideTranslations(),
+    provideClientHydration(),
   ],
 };

@@ -18,7 +18,6 @@ export class ContentService {
 
   readonly organisation: Signal<readonly OrgMember[]> = signal(ORGANISATION).asReadonly();
 
-  /** Sample values for now (contactDetails().sample); the contact page labels them. */
   readonly contactDetails: Signal<ContactDetails> = signal(CONTACT_DETAILS).asReadonly();
 
   /**

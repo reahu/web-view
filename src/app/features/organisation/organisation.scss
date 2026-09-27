@@ -1,16 +1,15 @@
 @use 'breakpoints' as bp;
 
+$line: 2px solid var(--c-line);
+// Each connector's drop: from a card to a bar, or from a bar to a card.
+$drop: var(--space-4);
+// Where a tree tick meets a card on phones: level with the role line.
+$tick: 1.75rem;
+
 .org {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-// Each level indents from a rule that joins it to its manager.
-.org .org {
-  margin-top: var(--space-3);
-  padding-left: var(--space-5);
-  border-left: 2px solid var(--c-line);
 }
 
 .org__item + .org__item {
@@ -18,29 +17,26 @@
 }
 
 .person {
-  display: flex;
-  gap: var(--space-3);
-  align-items: flex-start;
-  max-width: 24rem;
+  // Top border width, so a connector can stop at the box's outer edge.
+  --edge: 1px;
+
+  position: relative;
   padding: var(--space-3) var(--space-4);
-  border-left: 3px solid var(--c-brand);
-  background: var(--c-mist);
-}
-
-.person__photo {
-  flex-shrink: 0;
-  width: 3.5rem;
-  height: auto;
+  border: var(--border);
+  border-radius: var(--radius-card);
   background: var(--c-paper);
+  text-align: center;
 }
 
-.person__text {
-  min-width: 0;
-}
-
-.person__name {
-  color: var(--c-brand);
-  font-weight: 600;
+// A passport-style portrait above the title, as on the printed chart.
+.person__photo {
+  display: block;
+  width: 4rem;
+  height: 5rem;
+  margin: 0 auto var(--space-2);
+  border-radius: calc(var(--radius-card) / 2);
+  background: var(--c-paper);
+  object-fit: cover;
 }
 
 .person__role,
@@ -49,28 +45,328 @@
   font-size: var(--fs-sm);
 }
 
-.person__also {
-  margin-top: var(--space-1);
+.person__name {
+  color: var(--c-brand);
+  font-weight: 600;
 }
 
-// Like the printed chart: the CEO's departments side by side.
+.person__also {
+  margin-top: var(--space-1);
+  font-size: var(--fs-xs);
+}
+
+// President and CEO: solid brand green.
+.person--lead {
+  border-color: var(--c-brand);
+  background: var(--c-brand);
+
+  .person__role {
+    color: var(--c-line);
+  }
+
+  .person__name {
+    color: var(--c-paper);
+    font-size: var(--fs-md);
+  }
+}
+
+// Heads of the CEO's departments.
+.person--head {
+  --edge: 3px;
+
+  border-color: var(--c-mist);
+  border-top: 3px solid var(--c-brand);
+  background: var(--c-mist);
+}
+
+// A pair side by side, each with a drop to a bracket; the person they share hangs from the
+// bracket's middle.
+.org__heads--pair {
+  display: flex;
+  gap: var(--space-2);
+  position: relative;
+  padding-bottom: $drop;
+
+  > .person {
+    flex: 1 1 0;
+    min-width: 0;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      height: $drop;
+      border-left: $line;
+    }
+  }
+
+  // From the first centre to the last: with two equal boxes, a quarter in from each side.
+  &::before {
+    content: '';
+    position: absolute;
+    right: calc((100% - var(--space-2)) / 4);
+    bottom: 0;
+    left: calc((100% - var(--space-2)) / 4);
+    border-top: $line;
+  }
+}
+
+// An indented tree: each group hangs off their manager's line by a short tick. The last
+// group's line stops at their tick.
+@mixin tree {
+  margin-top: var(--space-3);
+  margin-left: var(--space-3);
+  padding-left: var(--space-4);
+
+  > .org__item {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: calc(-1 * var(--space-4));
+    }
+
+    &::before {
+      top: calc(-1 * var(--space-3));
+      bottom: 0;
+      border-left: $line;
+    }
+
+    &:last-child::before {
+      bottom: auto;
+      height: calc(var(--space-3) + #{$tick});
+    }
+
+    &::after {
+      top: $tick;
+      width: var(--space-4);
+      border-top: $line;
+    }
+  }
+}
+
+// Phones and tablets: five departments don't fit side by side, so the CEO and the
+// departments hang off the President in a tree, kept narrow enough to read down.
+@media (width < #{bp.$lg}) {
+  .page > .org {
+    max-width: 30rem;
+  }
+
+  .org--leads .org--leads,
+  .org--departments {
+    @include tree;
+  }
+
+  // A team: boxes on one line down the middle. Anyone with their own people goes last, so
+  // the next person doesn't seem to report to them; their people carry on down, narrower.
+  .org--team,
+  .org--subteam {
+    display: flex;
+    flex-direction: column;
+
+    > .org__item {
+      position: relative;
+      margin-top: 0;
+      padding-top: var(--space-4);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: var(--space-4);
+        border-left: $line;
+      }
+    }
+  }
+
+  .org--team > .org__item--manager {
+    order: 1;
+  }
+
+  .org--subteam {
+    margin-inline: var(--space-4);
+  }
+}
+
+// Wide: the printed chart. Each level is a row centred beneath the person or pair above,
+// joined by a bar along the row.
 @include bp.up(bp.$lg) {
+  // Cards share the width. The widest row is the departments, eight cards across: two pairs,
+  // and the CTO's three, one of whom has two people beneath them. The 5rem is their spacing.
+  // The chart spreads wider than the text column, up to 90rem, for wider boxes; the 4rem
+  // keeps it clear of the window edges and a scrollbar.
+  .page > .org {
+    --chart-width: min(100vw - 4rem, 90rem);
+    --card-width: calc((100cqi - 5rem) / 8);
+
+    container-type: inline-size;
+    width: var(--chart-width);
+    margin-inline: calc((100% - var(--chart-width)) / 2);
+  }
+
+  .org {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .org__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .org .org > .org__item {
+    position: relative;
+    margin: 0;
+    padding: $drop var(--space-1) 0;
+
+    // The bar along the row, from the first centre to the last, and the drop to each group.
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+    }
+
+    &::before {
+      right: 0;
+      left: 0;
+      border-top: $line;
+    }
+
+    &:first-child::before {
+      left: 50%;
+    }
+
+    &:last-child::before {
+      right: 50%;
+    }
+
+    &::after {
+      left: 50%;
+      height: $drop;
+      border-left: $line;
+    }
+  }
+
+  // A pair in a row takes a drop to each person rather than one to the middle, and at either
+  // end of the row the bar stops at the outer person's centre.
+  .org .org > .org__item--pair {
+    &::after {
+      content: none;
+    }
+
+    &:first-child::before {
+      left: calc(var(--space-1) + var(--card-width) / 2);
+    }
+
+    &:last-child::before {
+      right: calc(var(--space-1) + var(--card-width) / 2);
+    }
+
+    > .org__heads > .person::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + var(--edge));
+      left: 50%;
+      height: $drop;
+      border-left: $line;
+    }
+  }
+
+  // One manager's drop to the bar of the row beneath.
+  .org__item--manager > .org__heads:not(.org__heads--pair) {
+    position: relative;
+    padding-bottom: $drop;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      height: $drop;
+      border-left: $line;
+    }
+  }
+
+  // Every box the same size, like the printed chart: the photo, then room for the longest
+  // title (four lines, Director of Domestic & International Relations) and a name. The
+  // photos line up along the top; the text is centred in the space beneath.
+  .person {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: var(--card-width);
+    min-height: 12.5rem;
+    padding: var(--space-2);
+
+    // Wider boxes need fewer lines for that title: three from an 80rem chart, two from 86rem.
+    @container (min-width: 80rem) {
+      min-height: 11.75rem;
+    }
+
+    @container (min-width: 86rem) {
+      min-height: 10.75rem;
+    }
+  }
+
+  .person__photo + .person__role {
+    margin-top: auto;
+  }
+
+  .person__photo ~ .person__name {
+    margin-bottom: auto;
+  }
+
+  .person__role,
+  .person__name {
+    line-height: var(--lh-snug);
+
+    &:lang(km) {
+      line-height: var(--lh-khmer);
+    }
+  }
+
+  .person__role {
+    font-size: var(--fs-xs);
+  }
+
+  .person__name {
+    font-size: var(--fs-sm);
+  }
+
+  .person--lead .person__name {
+    font-size: var(--fs-base);
+  }
+
+  .org__heads--pair > .person {
+    flex: none;
+  }
+
+  // The departments share two rows, so every head's box is as tall as the tallest and their
+  // teams start level.
   .org--departments {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: var(--space-4);
+    grid-template-rows: auto auto;
+    grid-auto-flow: column;
 
-    > .org__item + .org__item {
-      margin-top: 0;
+    > .org__item {
+      display: grid;
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+      row-gap: 0;
+      align-items: stretch;
+      justify-items: center;
     }
 
-    // Columns are narrow: photo above the name, as on the printed chart, and a smaller indent.
-    .person {
-      flex-direction: column;
-    }
-
-    .org {
-      padding-left: var(--space-3);
+    .org__heads {
+      display: flex;
+      padding-bottom: $drop;
     }
   }
 }

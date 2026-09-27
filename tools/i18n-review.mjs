@@ -1,16 +1,25 @@
-// Writes dist/i18n/review.html from src/locale/messages.km.xlf: every Khmer string beside
-// its English source, grouped by where it appears, with its review state and any
-// translator note. For the native speaker who checks the translations. Run with
-// `npm run i18n` (after the merge), or on its own.
+// Writes dist/i18n/review.<code>.html for each translation in src/i18n: every translated
+// string beside its English, grouped by where it appears, with its review state from
+// review.json and any translator note. For the native speakers who check the translations.
+// Run with `npm run i18n` (after the check), or on its own.
+//
+// review.json lists, per language, the keys whose text is the client's own ("client") and
+// those a native speaker has approved ("reviewed"); every other string is a draft. When a
+// string's English changes, take its key out of those lists so it's checked again.
 
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const ROOT = join(import.meta.dirname, '..');
-const KHMER = join(ROOT, 'src', 'locale', 'messages.km.xlf');
-const OUT = join(ROOT, 'dist', 'i18n', 'review.html');
+const DIR = join(ROOT, 'src', 'i18n');
 
-/** Page groups by id prefix, in site order. */
+/** Each language's name in English, for the page's text, and in itself, for its column. */
+const LANGUAGES = {
+  km: { name: 'Khmer', label: 'ខ្មែរ' },
+  'zh-Hans': { name: 'Chinese', label: '简体中文' },
+};
+
+/** Page groups by key prefix, in site order. */
 const GROUPS = [
   ['Every page: header, menu and footer', ['site', 'layout', 'nav', 'footer', 'link', 'seo']],
   ['Home', ['home']],
@@ -25,54 +34,69 @@ const GROUPS = [
 ];
 
 const STATES = {
-  'needs-review-translation': { key: 'draft', label: 'Draft · please check' },
-  final: { key: 'client', label: 'Client’s own text' },
-  translated: { key: 'reviewed', label: 'Reviewed' },
+  draft: { key: 'draft', label: 'Draft · please check' },
+  client: { key: 'client', label: 'Client’s own text' },
+  reviewed: { key: 'reviewed', label: 'Reviewed' },
 };
 
-const units = [
-  ...(await readFile(KHMER, 'utf8')).matchAll(/<trans-unit id="([^"]+)"[^>]*>([\s\S]*?)<\/trans-unit>/g),
-].map(([, id, body]) => {
-  const target = body.match(/<target(?:\s+state="([^"]*)")?\s*>([\s\S]*?)<\/target>/);
-  return {
-    id,
-    source: body.match(/<source>([\s\S]*?)<\/source>/)?.[1] ?? '',
-    target: target?.[2] ?? '',
-    state: STATES[target?.[1]] ?? STATES['needs-review-translation'],
-    notes: [...body.matchAll(/<note\b[^>]*>([\s\S]*?)<\/note>/g)].map(([, note]) => note),
-  };
-});
-
-const groups = [...GROUPS, ['Other', []]]
-  .map(([title, prefixes]) => ({
-    title,
-    units: units.filter((unit) => {
-      const prefix = unit.id.split('.', 1)[0];
-      return title === 'Other'
-        ? !GROUPS.some(([, known]) => known.includes(prefix))
-        : prefixes.includes(prefix);
-    }),
-  }))
-  .filter((group) => group.units.length);
-
-const count = (key) => units.filter((unit) => unit.state.key === key).length;
+const readJson = async (name) => JSON.parse(await readFile(join(DIR, name), 'utf8'));
+const english = await readJson('en.json');
+const review = await readJson('review.json');
+const codes = (await readdir(DIR))
+  .filter((name) => name.endsWith('.json') && !['en.json', 'review.json'].includes(name))
+  .map((name) => name.slice(0, -'.json'.length));
 
 await mkdir(join(ROOT, 'dist', 'i18n'), { recursive: true });
-await writeFile(OUT, page());
-console.log(`i18n: review page for ${units.length} strings at ${OUT.slice(ROOT.length + 1)}`);
-
-/** Angular's placeholders, shown as tags the reviewer must keep. XLIFF text is already escaped. */
-function withPlaceholders(text) {
-  return text.replace(/<x id="([^"]+)"(?:[^>]*?equiv-text="([^"]*)")?[^>]*\/>/g, (_, id, equiv = '') => {
-    if (id.startsWith('START_')) return '<span class="ph">⟨link⟩</span>';
-    if (id.startsWith('CLOSE_')) return '<span class="ph">⟨/link⟩</span>';
-    if (id.startsWith('LINE_BREAK')) return '<span class="ph">⟨line break⟩</span>';
-    const name = equiv.match(/\{\{\s*([A-Za-z]+)/)?.[1] ?? 'value';
-    return `<span class="ph">⟨${name === 'namesOf' ? 'names' : name}⟩</span>`;
-  });
+for (const locale of codes) {
+  if (!LANGUAGES[locale]) {
+    console.error(`i18n: add ${locale} to LANGUAGES in tools/i18n-review.mjs`);
+    process.exit(1);
+  }
+  const strings = await readJson(`${locale}.json`);
+  const lists = review[locale] ?? {};
+  const units = Object.entries(english).map(([id, source]) => ({
+    id,
+    source,
+    target: strings[id] ?? '',
+    state: lists.client?.includes(id)
+      ? STATES.client
+      : lists.reviewed?.includes(id)
+        ? STATES.reviewed
+        : STATES.draft,
+    notes: review.notes?.[id] ? [review.notes[id]] : [],
+  }));
+  const out = join(ROOT, 'dist', 'i18n', `review.${locale}.html`);
+  await writeFile(out, page({ locale, ...LANGUAGES[locale] }, units));
+  console.log(`i18n: ${locale}: review page for ${units.length} strings at ${out.slice(ROOT.length + 1)}`);
 }
 
-function row(unit) {
+function groupsOf(units) {
+  return [...GROUPS, ['Other', []]]
+    .map(([title, prefixes]) => ({
+      title,
+      units: units.filter((unit) => {
+        const prefix = unit.id.split('.', 1)[0];
+        return title === 'Other'
+          ? !GROUPS.some(([, known]) => known.includes(prefix))
+          : prefixes.includes(prefix);
+      }),
+    }))
+    .filter((group) => group.units.length);
+}
+
+function escapeHtml(text) {
+  return text.replace(/[&<>"]/g, (char) => `&#${char.charCodeAt(0)};`);
+}
+
+/** {{placeholders}} and the <a>…</a> link, shown as tags the reviewer must keep. */
+function withPlaceholders(text) {
+  return escapeHtml(text)
+    .replace(/&#60;a&#62;/g, '<span class="ph">⟨link⟩</span>')
+    .replace(/&#60;\/a&#62;/g, '<span class="ph">⟨/link⟩</span>')
+    .replace(/\{\{\s*(\w+)\s*\}\}/g, '<span class="ph">⟨$1⟩</span>');
+}
+
+function row(language, unit) {
   return `
       <article class="row" data-state="${unit.state.key}">
         <div class="row__meta">
@@ -84,14 +108,15 @@ function row(unit) {
           <p lang="en">${withPlaceholders(unit.source)}</p>
         </div>
         <div class="row__text">
-          <span class="row__label" lang="km">ខ្មែរ</span>
-          <p lang="km">${withPlaceholders(unit.target)}</p>
-        </div>${unit.notes.map((note) => `\n        <p class="row__note">Note: ${note}</p>`).join('')}
+          <span class="row__label row__label--target" lang="${language.locale}">${language.label}</span>
+          <p class="row__target" lang="${language.locale}">${withPlaceholders(unit.target)}</p>
+        </div>${unit.notes.map((note) => `\n        <p class="row__note">Note: ${escapeHtml(note)}</p>`).join('')}
       </article>`;
 }
 
-function page() {
-  return `<title>Malin Khmer Review</title>
+function page(language, units) {
+  const count = (key) => units.filter((unit) => unit.state.key === key).length;
+  return `<title>Malin ${language.name} Review</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600&family=Noto+Serif+Display:wght@600&display=swap">
@@ -152,7 +177,7 @@ function page() {
   body {
     background: var(--bg);
     color: var(--ink);
-    font: 16px/1.6 'Kantumruy Pro', 'Khmer UI', 'Leelawadee UI', system-ui, sans-serif;
+    font: 16px/1.6 'Kantumruy Pro', 'Khmer UI', 'Leelawadee UI', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
   }
   .wrap {
     max-width: 72rem;
@@ -173,7 +198,7 @@ function page() {
   h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
   h2 { font-size: 1.35rem; }
   p { margin: 0; }
-  [lang="km"] { line-height: 1.85; }
+  .row__target { line-height: 1.85; }
   code { font: 0.8125rem/1.4 ui-monospace, 'Cascadia Mono', Consolas, monospace; color: var(--muted); overflow-wrap: anywhere; }
   :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
@@ -207,7 +232,7 @@ function page() {
   .row__text { display: grid; gap: 2px; min-width: 0; }
   .row__label { color: var(--muted); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; }
   /* Letter-spacing pulls Khmer subscript consonants apart. */
-  .row__label[lang="km"] { letter-spacing: 0; }
+  .row__label--target { letter-spacing: 0; }
   .row__note { color: var(--muted); font-size: 0.875rem; }
 
   .chip { padding: 2px 8px; border-radius: 2px; font-size: 0.8125rem; font-weight: 600; white-space: nowrap; }
@@ -219,15 +244,15 @@ function page() {
 
 <main class="wrap">
   <header class="intro">
-    <h1>Malin Khmer Review</h1>
+    <h1>Malin ${language.name} Review</h1>
     <p class="intro__lead">
-      Every Khmer text on the Malin Koh Kong Peace Development website, beside the English it
-      was written from. ${units.length} strings: ${count('draft')} drafts to check,
-      ${count('client')} taken from the client’s own Khmer, ${count('reviewed')} already reviewed.
+      Every ${language.name} text on the Malin Koh Kong Peace Development website, beside the
+      English it was written from. ${units.length} strings: ${count('draft')} drafts to check,
+      ${count('client')} taken from the client’s own ${language.name}, ${count('reviewed')} already reviewed.
     </p>
     <ol class="howto">
-      <li>Read each <strong>draft</strong>: is the Khmer correct and natural for a company website?</li>
-      <li><strong>Client’s own text</strong> is Malin’s Khmer, used as given. Flag it only if something looks wrong.</li>
+      <li>Read each <strong>draft</strong>: is the ${language.name} correct and natural for a company website?</li>
+      <li><strong>Client’s own text</strong> is Malin’s ${language.name}, used as given. Flag it only if something looks wrong.</li>
       <li>Keep the grey tags such as ⟨link⟩ and ⟨year⟩ in place: the website fills them in.</li>
       <li>Words marked “placeholder” are temporary and will be replaced with real details.</li>
       <li>Send corrections with the string’s code (for example <code>contact.title</code>) so the developer can find it.</li>
@@ -240,12 +265,12 @@ function page() {
     <button type="button" class="filter" data-filter="client" aria-pressed="false">Client’s own text <b>${count('client')}</b></button>
     <button type="button" class="filter" data-filter="reviewed" aria-pressed="false">Reviewed <b>${count('reviewed')}</b></button>
   </div>
-${groups
+${groupsOf(units)
   .map(
     (group, index) => `
   <section class="group" aria-labelledby="group-${index}">
     <h2 id="group-${index}">${group.title}</h2>
-    <div class="rows">${group.units.map(row).join('')}
+    <div class="rows">${group.units.map((unit) => row(language, unit)).join('')}
     </div>
   </section>`,
   )

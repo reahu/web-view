@@ -8,9 +8,4 @@ export const environment = {
   site_url: 'https://www.example.com',
   /** Production is the only build search engines may index. */
   indexable: true,
-  /**
-   * The contact form isn't connected to a service yet: sending is simulated and the page says
-   * the message wasn't sent. Set false once a real CONTACT_SENDER is provided.
-   */
-  contact_demo: true,
 };

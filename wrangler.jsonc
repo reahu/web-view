@@ -9,7 +9,8 @@
     // /about serves about/index.html and /about/ redirects to /about, matching the canonical
     // URLs, which never end in a slash.
     "html_handling": "drop-trailing-slash",
-    // Unknown URLs get the nearest 404.html with a 404 status: en/404.html under /en/.
+    // Unknown URLs get the nearest 404.html with a 404 status: en/404.html under /en/,
+    // zh/404.html under /zh/.
     "not_found_handling": "404-page",
   },
   // Production is only for the .com.kh domain, added as a custom domain under "routes" once

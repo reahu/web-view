@@ -1,9 +1,7 @@
 <div class="container page">
   <header class="page-header">
-    <h1 i18n="@@organisation.title">Organisation structure</h1>
-    <p class="lead" i18n="@@organisation.lead">
-      The people who lead Malin Koh Kong Peace Development and its teams.
-    </p>
+    <h1>{{ 'organisation.title' | translate }}</h1>
+    <p class="lead">{{ 'organisation.lead' | translate }}</p>
   </header>
 
   <ng-container
@@ -12,30 +10,61 @@
   />
 </div>
 
-<!-- depth 3 is the CEO's departments, shown side by side on wide screens. -->
-<ng-template #branch let-nodes let-depth="depth">
-  <ul class="org" [class.org--departments]="depth === 3" role="list">
-    @for (node of nodes; track node.member.id) {
-      <li class="org__item">
-        <div class="person">
-          @if (node.member.photo) {
-            <!-- The name is right beside it, so the photo needs no text alternative. -->
-            <img class="person__photo" [ngSrc]="node.member.photo" width="56" height="70" alt="" />
+<!--
+  Laid out like the printed chart. depth 1-2 are the President and the CEO; depth 3 is the
+  CEO's departments; depth 4 their teams; depth 5+ anyone under a team member. Each list
+  item is a group (see OrgGroup): one person, or a pair joined by a bracket over the person
+  they share.
+-->
+<ng-template #branch let-groups let-depth="depth" let-shared="shared">
+  <ul
+    class="org"
+    [class.org--leads]="depth < 3"
+    [class.org--departments]="depth === 3"
+    [class.org--team]="depth === 4"
+    [class.org--subteam]="depth > 4"
+    role="list"
+  >
+    @for (group of groups; track group.heads[0].member.id) {
+      <li
+        class="org__item"
+        [class.org__item--manager]="group.reports.length"
+        [class.org__item--pair]="group.heads.length > 1"
+      >
+        <div class="org__heads" [class.org__heads--pair]="group.heads.length > 1">
+          @for (node of group.heads; track node.member.id) {
+            <div class="person" [class.person--lead]="depth < 3" [class.person--head]="depth === 3">
+              @if (node.member.photo) {
+                <!-- The name is right beneath it, so the photo needs no text alternative. -->
+                <img
+                  class="person__photo"
+                  [ngSrc]="node.member.photo"
+                  width="56"
+                  height="70"
+                  alt=""
+                />
+              }
+              <p class="person__role">{{ node.member.role | translate }}</p>
+              <p class="person__name">{{ node.member.name }}</p>
+              @if (node.alsoReportsTo.length) {
+                <!-- Under a pair, the bracket already shows the second manager. -->
+                <p class="person__also" [class.visually-hidden]="shared">
+                  {{
+                    'organisation.alsoReportsTo' | translate: { names: namesOf(node.alsoReportsTo) }
+                  }}
+                </p>
+              }
+            </div>
           }
-          <div class="person__text">
-            <p class="person__name">{{ node.member.name }}</p>
-            <p class="person__role">{{ node.member.role }}</p>
-            @if (node.alsoReportsTo.length) {
-              <p class="person__also" i18n="@@organisation.alsoReportsTo">
-                Also reports to {{ namesOf(node.alsoReportsTo) }}
-              </p>
-            }
-          </div>
         </div>
-        @if (node.reports.length) {
+        @if (group.reports.length) {
           <ng-container
             [ngTemplateOutlet]="branch"
-            [ngTemplateOutletContext]="{ $implicit: node.reports, depth: depth + 1 }"
+            [ngTemplateOutletContext]="{
+              $implicit: group.reports,
+              depth: depth + 1,
+              shared: group.heads.length > 1,
+            }"
           />
         }
       </li>

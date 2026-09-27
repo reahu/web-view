@@ -1,13 +1,11 @@
 <div class="container page">
   <header class="page-header">
-    <h1 i18n="@@services.title">Services</h1>
-    <p class="lead" i18n="@@services.lead">
-      Professional sand dredging and supply for construction projects of every kind.
-    </p>
+    <h1>{{ 'services.title' | translate }}</h1>
+    <p class="lead">{{ 'services.lead' | translate }}</p>
   </header>
 
   <section aria-labelledby="process-title">
-    <h2 id="process-title" class="process-title" i18n="@@process.heading">How we work</h2>
+    <h2 id="process-title" class="process-title">{{ 'process.heading' | translate }}</h2>
     <rg-process-steps [steps]="steps()" />
   </section>
 </div>

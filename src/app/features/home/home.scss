@@ -25,9 +25,10 @@
   margin-top: var(--space-5);
 }
 
+// No bigger than other pages' h1: the welcome line is long, and shares the width with the photo.
 h1 {
   color: var(--c-paper);
-  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-size: clamp(1.75rem, 1rem + 2.5vw, var(--fs-2xl));
 }
 
 .hero__lead {

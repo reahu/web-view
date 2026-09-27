@@ -2,13 +2,14 @@ import { DOCUMENT, Location } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { TranslatePipe } from '@core/i18n/translate-pipe';
 import { Footer } from '@layout/footer/footer';
 import { Header } from '@layout/header/header';
 import { filter, map } from 'rxjs';
 
 @Component({
   selector: 'rg-root',
-  imports: [RouterOutlet, Header, Footer],
+  imports: [RouterOutlet, Header, Footer, TranslatePipe],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -18,8 +19,8 @@ export class App {
   private readonly location = inject(Location);
 
   /**
-   * With a <base href> a bare "#main" would resolve to the language's home page, so the
-   * skip link points at the current path, including the base ("/en/…" in English).
+   * With a <base href> a bare "#main" would resolve to the home page, so the skip link
+   * points at the current path, including its language prefix ("/en/…" in English).
    */
   protected readonly skipHref = toSignal(
     this.router.events.pipe(

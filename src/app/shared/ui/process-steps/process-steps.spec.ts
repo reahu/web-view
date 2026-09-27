@@ -3,8 +3,8 @@ import { ProcessStep } from '@core/models/process-step';
 import { ProcessSteps } from './process-steps';
 
 const STEPS: readonly ProcessStep[] = [
-  { id: 'a', title: 'First', text: 'First text' },
-  { id: 'b', title: 'Second', text: 'Second text' },
+  { id: 'a', title: 'process.dredging.title', text: 'process.dredging.text' },
+  { id: 'b', title: 'process.depot.title', text: 'process.depot.text' },
 ];
 
 describe('ProcessSteps', () => {
@@ -22,8 +22,8 @@ describe('ProcessSteps', () => {
   it('renders an ordered list with a heading per step', () => {
     expect(el.querySelector('ol')).not.toBeNull();
     expect([...el.querySelectorAll('li h3')].map((h) => h.textContent?.trim())).toEqual([
-      'First',
-      'Second',
+      'Dredging',
+      'Pumping to the depot',
     ]);
     expect(el.querySelectorAll('.step__text').length).toBe(2);
   });

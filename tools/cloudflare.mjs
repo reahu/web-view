@@ -5,13 +5,14 @@
 //
 // 1. 404 pages: Cloudflare serves the nearest 404.html with a 404 status (not_found_handling),
 //    so each language's prerendered 404 page moves from 404/index.html to 404.html (Khmer at
-//    the root, English in en/). The URLs /404 and /en/404 then show that page with a 200
-//    status, where nginx sends a 404; the page is noindex, so that's harmless.
+//    the root, English in en/, Chinese in zh/). The URLs /404, /en/404 and /zh/404 then show
+//    that page with a 200 status, where nginx sends a 404; the page is noindex, so that's
+//    harmless.
 // 2. _headers: the headers in security-headers.conf on every response, and the year-long cache
 //    nginx gives hashed build output and fonts. HTML needs no rule: Cloudflare's default,
 //    max-age=0 with must-revalidate, has the same effect as nginx's no-cache.
-// 3. .assetsignore: keeps the client-side shells (index.csr.html) out of the upload, as nginx
-//    refuses to serve them; no page links to them.
+// 3. .assetsignore: keeps the client-side shell (index.csr.html) out of the upload, as nginx
+//    refuses to serve it; no page links to it.
 
 import { readFile, rename, rmdir, stat, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';

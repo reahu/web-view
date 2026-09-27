@@ -19,13 +19,41 @@
 }
 
 .brand {
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0; // lets the name wrap before it pushes the buttons off-screen
   margin-right: auto;
   padding-block: var(--space-2);
+  color: inherit;
+  text-decoration: none;
 
   img {
+    flex-shrink: 0;
     width: auto;
     height: 3.5rem; // 56px; the file is 2x
+  }
+}
+
+// Logo lockup: the name in bold capitals over two lines.
+// Hidden on phones, where it would push the menu button off-screen; the hero repeats the name.
+.brand__name {
+  display: none;
+  max-width: 13em; // two balanced lines: MALIN KOH KONG / PEACE DEVELOPMENT
+  font-size: var(--fs-md);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-wrap: balance;
+
+  // :lang(km) sets every element's line-height; Khmer subscripts need the room.
+  &:lang(km) {
+    line-height: var(--lh-snug);
+  }
+
+  @include bp.up(bp.$sm) {
+    display: block;
   }
 }
 

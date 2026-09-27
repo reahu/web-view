@@ -19,33 +19,68 @@ describe('Organisation', () => {
     expect(new Set(names).size).toBe(names.length);
   });
 
-  it('nests lists to show who reports to whom', () => {
+  const namesIn = (root: Element, selector: string) =>
+    [...root.querySelectorAll(selector)].map((p) => p.textContent?.trim());
+
+  it('nests lists to show who reports to whom, in the printed chart order', () => {
     const ceo = [...el.querySelectorAll('.org__item')].find((li) =>
-      li.querySelector(':scope > .person')?.textContent?.includes('Cheng Phally'),
+      li.querySelector(':scope > .org__heads')?.textContent?.includes('Cheng Phally'),
     )!;
-    const direct = ceo.querySelectorAll(':scope > ul > li > .person .person__name');
-    expect([...direct].map((p) => p.textContent?.trim())).toEqual([
+    expect(namesIn(ceo, ':scope > ul > li > .org__heads .person__name')).toEqual([
       'Jia Junxian',
       'Hok Cheaven',
       'Cai Liangrong',
       'Chroy Thea',
       'Cai Rixin',
     ]);
+
+    const cto = ceo.querySelector(':scope > ul > li:nth-child(2)')!;
+    expect(namesIn(cto, ':scope > ul > li > .org__heads .person__name')).toEqual([
+      'Zhang Quanjian',
+      'Khun Chanthol',
+      'Shang Deyao',
+    ]);
+    expect(namesIn(cto, '.org--subteam .person__name')).toEqual(['Sroy Chendy', 'Cha Vin']);
   });
 
-  it('shows each portrait beside its own name, with an empty alt', () => {
+  it('pairs people who share a report, with that person beneath the pair', () => {
+    const pairs = [...el.querySelectorAll('.org__item--pair')];
+    expect(pairs.map((li) => namesIn(li, ':scope > .org__heads .person__name'))).toEqual([
+      ['Jia Junxian', 'Hok Cheaven'],
+      ['Chroy Thea', 'Cai Rixin'],
+    ]);
+    expect(pairs.map((li) => namesIn(li, ':scope > ul .person__name'))).toEqual([
+      ['Vith Sreymey'],
+      ['Ya Ratha'],
+    ]);
+  });
+
+  it('shows each portrait above its own name, with an empty alt', () => {
     const people = [...el.querySelectorAll('.person')];
     expect(people.length).toBe(14);
     for (const person of people) {
       const name = person.querySelector('.person__name')!.textContent!.trim();
       const img = person.querySelector('img')!;
       expect(img.getAttribute('alt')).toBe('');
-      expect(img.getAttribute('src')).toBe(`/images/people/${name.toLowerCase().replace(/ /g, '-')}.webp`);
+      expect(img.getAttribute('src')).toBe(
+        `/images/people/${name.toLowerCase().replace(/ /g, '-')}.webp`,
+      );
     }
   });
 
-  it('names a second manager in text', () => {
-    const notes = [...el.querySelectorAll('.person__also')].map((p) => p.textContent?.trim());
-    expect(notes).toEqual(['Also reports to Hok Cheaven', 'Also reports to Cai Rixin']);
+  it('marks the President and CEO as leads and the five department heads', () => {
+    const names = (selector: string) =>
+      [...el.querySelectorAll(`${selector} .person__name`)].map((p) => p.textContent?.trim());
+    expect(names('.person--lead')).toEqual(['Sor Bunmalin', 'Cheng Phally']);
+    expect(names('.person--head').length).toBe(5);
+  });
+
+  it('names a second manager for screen readers, hidden where the bracket shows it', () => {
+    const notes = [...el.querySelectorAll('.person__also')];
+    expect(notes.map((p) => p.textContent?.trim())).toEqual([
+      'Also reports to Hok Cheaven',
+      'Also reports to Cai Rixin',
+    ]);
+    expect(notes.every((p) => p.classList.contains('visually-hidden'))).toBe(true);
   });
 });

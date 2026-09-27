@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { TranslatePipe } from '@core/i18n/translate-pipe';
 import { ProcessStep } from '@core/models/process-step';
 
 /**
@@ -6,6 +7,7 @@ import { ProcessStep } from '@core/models/process-step';
  * step's text. Numbers come from CSS counters, in Khmer numerals on Khmer pages.
  */
 @Component({
+  imports: [TranslatePipe],
   selector: 'rg-process-steps',
   styleUrl: './process-steps.scss',
   templateUrl: './process-steps.html',

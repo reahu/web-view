@@ -1,37 +1,44 @@
-import { DOCUMENT, Location } from '@angular/common';
-import { InjectionToken, Injectable, LOCALE_ID, Service, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { InjectionToken, Injectable, Service, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
-import { LANGUAGES, languageFor, languagePath } from '@core/i18n/languages';
+import { CONTACT_DETAILS } from '@content/contact';
+import { LanguageService } from '@core/i18n/language.service';
+import { LANGUAGES, languagePath, pagePath } from '@core/i18n/languages';
+import { TranslationKey } from '@core/i18n/translations';
 import { environment } from '@env/environment';
+import { TranslateService } from '@ngx-translate/core';
 
-/** The brand in Latin script, as registered; the JSON-LD name on pages in both languages. */
+/** The brand in Latin script, as registered; the JSON-LD name on pages in every language. */
 const BRAND_NAME = 'Malin Koh Kong Peace Development';
 
 const LEGAL_NAME = 'Malin Koh Kong Peace Development Co., Ltd.';
 
-/** Title suffix and og:site_name, in the page's language. */
-export const SITE_NAME = $localize`:The client's Khmer name. On phones the browser may break ឌីវេឡុបមិន inside the word; say if a break point should be fixed.@@site.name:Malin Koh Kong Peace Development`;
+/** A string in the page's language, by its key. */
+export type Translate = (key: TranslationKey) => string;
+
+/** Title suffix and og:site_name. */
+const SITE_NAME: TranslationKey = 'site.name';
 
 /** Header logo, from the client's organisation chart; also the JSON-LD logo (112px tall). */
 export const LOGO = { src: '/images/logo/malin-logo.webp', width: 206, height: 112 };
 
-const DEFAULT_DESCRIPTION = $localize`:@@seo.defaultDescription:Malin Koh Kong Peace Development dredges and supplies sand for construction projects of every kind, in support of Cambodia’s construction sector.`;
+const DEFAULT_DESCRIPTION: TranslationKey = 'seo.defaultDescription';
 
 /** Default social preview: logo, both names and the values line on the brand green. */
 const SHARE_IMAGE = {
   src: '/images/share/malin-share.webp',
   width: 1200,
   height: 630,
-  alt: $localize`:@@seo.shareImageAlt:The Malin logo with the company name in English and Khmer`,
-};
+  alt: 'seo.shareImageAlt',
+} as const;
 
 /**
- * schema.org Organization for the home page. Only confirmed facts go here: structured data
- * isn't visible, so a placeholder can't be marked as one. Add address, telephone, email,
- * foundingDate and sameAs once the client confirms them.
+ * schema.org Organization for the home page, with its description in the page's language.
+ * Only confirmed facts go here: structured data isn't visible, so a placeholder can't be
+ * marked as one. Add email, foundingDate and sameAs once the client confirms them.
  */
-export const ORGANIZATION_JSON_LD = {
+export const organizationJsonLd = (t: Translate) => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: BRAND_NAME,
@@ -40,8 +47,16 @@ export const ORGANIZATION_JSON_LD = {
   alternateName: 'ក្រុមហ៊ុន ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន ឯ.ក',
   url: `${environment.site_url}/`,
   logo: `${environment.site_url}${LOGO.src}`,
-  description: DEFAULT_DESCRIPTION,
-};
+  description: t(DEFAULT_DESCRIPTION),
+  // In Latin script on every language's pages, like name. See CONTACT_DETAILS.
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '32, St. L02, Srok Chek Village, Sangkat Cheung Ek',
+    postalCode: '12000',
+    addressCountry: 'KH',
+  },
+  telephone: CONTACT_DETAILS.phone,
+});
 
 /**
  * False on local, dev and staging builds (environment.indexable): every page is noindex and
@@ -52,11 +67,15 @@ export const SITE_INDEXABLE = new InjectionToken<boolean>('SITE_INDEXABLE', {
   factory: () => environment.indexable,
 });
 
+/** A page's SEO, in the page's language. */
 export interface PageSeo {
   /** Page name without the site suffix; empty or undefined for the home page. */
   title?: string;
   description?: string;
-  /** Root-relative path of the page, e.g. '/csr'. Query and fragment are dropped. */
+  /**
+   * Root-relative path of the page without its language prefix, e.g. '/csr'. Query and
+   * fragment are dropped.
+   */
   path: string;
   /** Root-relative image path for social previews. */
   image?: string;
@@ -67,21 +86,23 @@ export interface PageSeo {
 
 /**
  * Writes the document title, meta description, canonical link, language alternates,
- * Open Graph tags and JSON-LD.
+ * Open Graph tags and JSON-LD, for the page in the current language.
  */
 @Service()
 export class SeoService {
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
-  private readonly location = inject(Location);
-  private readonly language = languageFor(inject(LOCALE_ID));
+  private readonly translateService = inject(TranslateService);
+  private readonly language = inject(LanguageService).current;
   private readonly indexable = inject(SITE_INDEXABLE);
 
+  readonly translate: Translate = (key) => this.translateService.instant(key) as string;
+
   apply(page: PageSeo): void {
-    const title =
-      page.title && page.title !== SITE_NAME ? `${page.title} | ${SITE_NAME}` : SITE_NAME;
-    const description = page.description || DEFAULT_DESCRIPTION;
+    const siteName = this.translate(SITE_NAME);
+    const title = page.title && page.title !== siteName ? `${page.title} | ${siteName}` : siteName;
+    const description = page.description || this.translate(DEFAULT_DESCRIPTION);
     const url = this.pageUrl(page.path);
     const image = absoluteUrl(page.image ?? SHARE_IMAGE.src);
     const noindex = page.noindex || !this.indexable;
@@ -90,7 +111,7 @@ export class SeoService {
     this.meta.updateTag({ name: 'description', content: description });
     this.meta.updateTag({ name: 'robots', content: noindex ? 'noindex' : 'index, follow' });
 
-    this.meta.updateTag({ property: 'og:site_name', content: SITE_NAME });
+    this.meta.updateTag({ property: 'og:site_name', content: siteName });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
     this.meta.updateTag({ property: 'og:title', content: title });
     this.meta.updateTag({ property: 'og:description', content: description });
@@ -104,9 +125,9 @@ export class SeoService {
     } else {
       this.meta.updateTag({ property: 'og:image:width', content: String(SHARE_IMAGE.width) });
       this.meta.updateTag({ property: 'og:image:height', content: String(SHARE_IMAGE.height) });
-      this.meta.updateTag({ property: 'og:image:alt', content: SHARE_IMAGE.alt });
+      this.meta.updateTag({ property: 'og:image:alt', content: this.translate(SHARE_IMAGE.alt) });
     }
-    this.meta.updateTag({ property: 'og:locale', content: this.language.ogLocale });
+    this.meta.updateTag({ property: 'og:locale', content: this.language().ogLocale });
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
 
     this.setCanonical(url);
@@ -140,13 +161,12 @@ export class SeoService {
   }
 
   /**
-   * Absolute URL of a page in the current language: the base href supplies the language
-   * prefix ("/en/…"). No trailing slash, so the English home page is "/en", like every
-   * other page and like the route list the sitemap is built from.
+   * Absolute URL of a page in the current language ("/en/…"). No trailing slash, so the
+   * English home page is "/en", like every other page and like the route list the sitemap
+   * is built from.
    */
   private pageUrl(path: string): string {
-    const external = this.location.prepareExternalUrl(path.split(/[?#]/, 1)[0] || '/');
-    return absoluteUrl(external.length > 1 ? external.replace(/\/$/, '') : external);
+    return absoluteUrl(languagePath(this.language(), path.split(/[?#]/, 1)[0] || '/'));
   }
 
   private setJsonLd(data: object | undefined): void {
@@ -176,8 +196,9 @@ export class SeoService {
 }
 
 /**
- * Applies SEO on every navigation from the route's `title` and its `data`:
- * `description` (string), `noindex` (boolean) and `jsonLd` (object).
+ * Applies SEO on every navigation from the route's `title` and its `data`: `description`
+ * (both translation keys), `noindex` (boolean) and `jsonLd` (a function of `Translate`, like
+ * organizationJsonLd).
  */
 @Injectable()
 export class SeoTitleStrategy extends TitleStrategy {
@@ -188,12 +209,16 @@ export class SeoTitleStrategy extends TitleStrategy {
     while (leaf.firstChild) {
       leaf = leaf.firstChild;
     }
+    const t = this.seo.translate;
+    const title = this.buildTitle(snapshot) as TranslationKey | undefined;
+    const description = leaf.data['description'] as TranslationKey | undefined;
+    const jsonLd = leaf.data['jsonLd'] as ((t: Translate) => object) | undefined;
     this.seo.apply({
-      title: this.buildTitle(snapshot),
-      description: leaf.data['description'] as string | undefined,
+      title: title && t(title),
+      description: description && t(description),
       noindex: leaf.data['noindex'] === true,
-      jsonLd: leaf.data['jsonLd'] as object | undefined,
-      path: snapshot.url,
+      jsonLd: jsonLd?.(t),
+      path: pagePath(snapshot.url),
     });
   }
 }

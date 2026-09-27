@@ -1,74 +1,104 @@
-import { Routes } from '@angular/router';
-import { ORGANIZATION_JSON_LD, SITE_NAME } from '@core/services/seo.service';
+import { inject } from '@angular/core';
+import { Route, Routes } from '@angular/router';
+import { LanguageService } from '@core/i18n/language.service';
+import { LANGUAGES } from '@core/i18n/languages';
+import { TranslationKey } from '@core/i18n/translations';
+import { Translate, organizationJsonLd } from '@core/services/seo.service';
 
-// `data.description` feeds the meta description and `data.jsonLd` the structured data
-// (see SeoTitleStrategy).
-export const routes: Routes = [
+/**
+ * A page. `title` (the browser tab) and `data.description` (the meta description) are
+ * translation keys; `data.jsonLd` gives the structured data (see SeoTitleStrategy).
+ */
+interface Page extends Route {
+  title?: TranslationKey;
+  data?: { description?: TranslationKey; noindex?: boolean; jsonLd?: (t: Translate) => object };
+}
+
+const PAGES: Page[] = [
   {
     path: '',
-    title: SITE_NAME,
-    data: { jsonLd: ORGANIZATION_JSON_LD },
+    title: 'site.name',
+    data: { jsonLd: organizationJsonLd },
     loadComponent: () => import('@features/home/home').then((m) => m.Home),
   },
   {
     path: 'about',
-    title: $localize`:@@route.about.title:About us`,
+    title: 'route.about.title',
     data: {
-      description: $localize`:@@route.about.description:About Malin Koh Kong Peace Development, a sand dredging and supply company in Cambodia.`,
+      description: 'route.about.description',
     },
     loadComponent: () => import('@features/about/about').then((m) => m.About),
   },
   {
     path: 'services',
-    title: $localize`:@@route.services.title:Services`,
+    title: 'route.services.title',
     data: {
-      description: $localize`:@@route.services.description:How we dredge sand and supply it for construction projects of every kind.`,
+      description: 'route.services.description',
     },
     loadComponent: () => import('@features/services/services').then((m) => m.Services),
   },
   {
     path: 'organisation',
-    title: $localize`:@@route.organisation.title:Organisation structure`,
+    title: 'route.organisation.title',
     data: {
-      description: $localize`:@@route.organisation.description:Who leads Malin Koh Kong Peace Development and how its teams are organised.`,
+      description: 'route.organisation.description',
     },
     loadComponent: () => import('@features/organisation/organisation').then((m) => m.Organisation),
   },
   {
     path: 'contact-us',
-    title: $localize`:@@route.contact.title:Contact us`,
+    title: 'route.contact.title',
     data: {
-      description: $localize`:@@route.contact.description:How to reach Malin Koh Kong Peace Development.`,
+      description: 'route.contact.description',
     },
     loadComponent: () => import('@features/contact/contact').then((m) => m.Contact),
   },
   {
     path: 'privacy-policy',
-    title: $localize`:@@route.privacy.title:Privacy policy`,
+    title: 'route.privacy.title',
     data: {
-      description: $localize`:@@route.privacy.description:How Malin Koh Kong Peace Development collects and uses personal information.`,
+      description: 'route.privacy.description',
     },
     loadComponent: () => import('@features/legal/privacy/privacy').then((m) => m.Privacy),
   },
   {
     path: 'terms-of-use',
-    title: $localize`:@@route.terms.title:Terms of use`,
+    title: 'route.terms.title',
     data: {
-      description: $localize`:@@route.terms.description:The terms that apply when you use this website.`,
+      description: 'route.terms.description',
     },
     loadComponent: () => import('@features/legal/terms/terms').then((m) => m.Terms),
   },
   {
-    // Prerendered to /404/index.html so nginx can serve it with a real 404 status.
+    // Prerendered to /404/index.html (and /en/404/…) so nginx can serve it with a real 404
+    // status.
     path: '404',
-    title: $localize`:@@notFound.title:Page not found`,
+    title: 'notFound.title',
     data: { noindex: true },
     loadComponent: () => import('@features/not-found/not-found').then((m) => m.NotFound),
   },
   {
     path: '**',
-    title: $localize`:@@notFound.title:Page not found`,
+    title: 'notFound.title',
     data: { noindex: true },
     loadComponent: () => import('@features/not-found/not-found').then((m) => m.NotFound),
   },
 ];
+
+/**
+ * Every page in every language: Khmer at the root, the others under their prefix
+ * ('/en/about'). Entering a language's pages loads its strings before they show. The root
+ * goes last, so it doesn't catch '/en/…'.
+ */
+export const routes: Routes = [...LANGUAGES]
+  .sort((a, b) => b.prefix.length - a.prefix.length)
+  .map((language) => ({
+    path: language.prefix.slice(1),
+    canActivate: [
+      () =>
+        inject(LanguageService)
+          .use(language)
+          .then(() => true),
+    ],
+    children: PAGES,
+  }));

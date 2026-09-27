@@ -1,6 +1,9 @@
 import { Component, ElementRef, inject, input, signal } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { pagePath } from '@core/i18n/languages';
+import { LangPathPipe } from '@core/i18n/lang-path-pipe';
+import { TranslatePipe } from '@core/i18n/translate-pipe';
 import { filter, map } from 'rxjs';
 import { MAIN_NAV, NavEntry, NavGroup, isNavGroup } from '../navigation';
 
@@ -10,7 +13,7 @@ import { MAIN_NAV, NavEntry, NavGroup, isNavGroup } from '../navigation';
  * clicking outside, tabbing away or navigating closes it.
  */
 @Component({
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, TranslatePipe, LangPathPipe],
   selector: 'rg-nav-menu',
   styleUrl: './nav-menu.scss',
   templateUrl: './nav-menu.html',
@@ -33,7 +36,7 @@ export class NavMenu {
     filter((event): event is NavigationEnd => event instanceof NavigationEnd),
   );
 
-  /** Current path without query string or fragment. */
+  /** Current page's path, without its language prefix, query string or fragment. */
   private readonly path = toSignal(
     this.navigationEnd$.pipe(map((event) => stripUrl(event.urlAfterRedirects))),
     { initialValue: stripUrl(this.router.url) },
@@ -78,5 +81,5 @@ export class NavMenu {
 }
 
 function stripUrl(url: string): string {
-  return url.split(/[?#]/, 1)[0] || '/';
+  return pagePath(url).split(/[?#]/, 1)[0] || '/';
 }

@@ -1,12 +1,11 @@
 import { ContactDetails } from '@core/models/contact-details';
 
-// Sample details for the mock-up (user, 2026-09-24); the company's real details replace them
-// before launch. The phone number starts with 00, which no Cambodian number does, so it can't
-// ring anyone. Never put sample values in the JSON-LD.
+// From the company's Google Maps listing (user, 2026-09-27). The listing leaves the district
+// name blank ("Sangkat Cheung Ek, District, 12000"), so the address leaves it out too.
+// No email address or opening hours yet: those rows stay hidden until the client sends them.
 export const CONTACT_DETAILS: ContactDetails = {
-  sample: true,
-  address: $localize`:@@contact.details.address:Street 000, Koh Kong Province, Cambodia`,
-  phone: '+855 00 000 000',
-  email: 'info@example.com',
-  hours: $localize`:@@contact.details.hours:Monday to Saturday, 8:00 to 17:00`,
+  address: 'contact.details.address',
+  mapUrl: 'https://maps.app.goo.gl/3E3FKrWdcBAqes5j9',
+  phone: '+855 85 886 336',
+  whatsapp: '+855 85 886 336',
 };

@@ -7,18 +7,21 @@ import { NavMenu } from './nav-menu';
 @Component({ template: '' })
 class Blank {}
 
-/** The site's own menu may have no groups, so the disclosure behaviour is tested on this one. */
+/**
+ * The site's own menu may have no groups, so the disclosure behaviour is tested on this one.
+ * Labels are translation keys, so it borrows the site's.
+ */
 const TEST_NAV: readonly NavEntry[] = [
   {
     id: 'about',
-    label: 'About',
+    label: 'nav.about',
     links: [
-      { label: 'Company', path: '/company' },
-      { label: 'People', path: '/people' },
+      { label: 'about.title', path: '/company' },
+      { label: 'organisation.title', path: '/people' },
     ],
   },
-  { id: 'more', label: 'More', links: [{ label: 'Other', path: '/other' }] },
-  { label: 'Contact', path: '/contact' },
+  { id: 'more', label: 'footer.company', links: [{ label: 'nav.terms', path: '/other' }] },
+  { label: 'nav.contact', path: '/contact' },
 ];
 
 describe('NavMenu', () => {
@@ -53,6 +56,11 @@ describe('NavMenu', () => {
 
   it('never uses href="#"', () => {
     expect(el.querySelector('a[href="#"]')).toBeNull();
+  });
+
+  it('translates labels and links pages in the current language', () => {
+    expect(trigger('about').textContent?.trim()).toBe('About us');
+    expect(group('about').querySelector('a')?.getAttribute('href')).toBe('/en/company');
   });
 
   it('opens one group at a time', async () => {
@@ -101,7 +109,7 @@ describe('NavMenu', () => {
     trigger('about').click();
     await fixture.whenStable();
 
-    await TestBed.inject(Router).navigateByUrl('/people');
+    await TestBed.inject(Router).navigateByUrl('/en/people');
     await fixture.whenStable();
     expect(group('about').hidden).toBe(true);
     expect(trigger('about').classList).toContain('is-active');

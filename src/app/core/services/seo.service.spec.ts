@@ -1,8 +1,13 @@
-import { APP_BASE_HREF, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 import { Meta, Title } from '@angular/platform-browser';
+import { LanguageService } from '@core/i18n/language.service';
+import { LANGUAGES } from '@core/i18n/languages';
 import { environment } from '@env/environment';
-import { ORGANIZATION_JSON_LD, SITE_INDEXABLE, SITE_NAME, SeoService } from './seo.service';
+import { SITE_INDEXABLE, SeoService, organizationJsonLd } from './seo.service';
+
+const SITE_NAME = 'Malin Koh Kong Peace Development';
+const [khmer] = LANGUAGES;
 
 describe('SeoService', () => {
   let service: SeoService;
@@ -15,12 +20,10 @@ describe('SeoService', () => {
     document.head.querySelector('link[rel="canonical"]')?.getAttribute('href');
 
   // Tests describe the production site; local builds aren't indexable (see the last test).
-  const setup = (baseHref: string, indexable = true) => {
+  // Pages are in English, as in every test (src/test-providers.ts).
+  const setup = (indexable = true) => {
     TestBed.configureTestingModule({
-      providers: [
-        { provide: APP_BASE_HREF, useValue: baseHref },
-        { provide: SITE_INDEXABLE, useValue: indexable },
-      ],
+      providers: [{ provide: SITE_INDEXABLE, useValue: indexable }],
     });
     service = TestBed.inject(SeoService);
     meta = TestBed.inject(Meta);
@@ -28,7 +31,7 @@ describe('SeoService', () => {
     document = TestBed.inject(DOCUMENT);
   };
 
-  beforeEach(() => setup('/'));
+  beforeEach(() => setup());
 
   it('suffixes page titles with the site name', () => {
     service.apply({ title: 'Investors', path: '/investors' });
@@ -39,7 +42,7 @@ describe('SeoService', () => {
   it('uses the bare site name for the home page', () => {
     service.apply({ title: SITE_NAME, path: '/' });
     expect(title.getTitle()).toBe(SITE_NAME);
-    expect(canonical()).toBe(`${environment.site_url}/`);
+    expect(canonical()).toBe(`${environment.site_url}/en`);
   });
 
   it('writes the description, falling back to a default', () => {
@@ -55,18 +58,31 @@ describe('SeoService', () => {
     service.apply({ path: '/csr?x=1#main' });
     service.apply({ path: '/media#main' });
     expect(document.head.querySelectorAll('link[rel="canonical"]').length).toBe(1);
-    expect(canonical()).toBe(`${environment.site_url}/media`);
-    expect(content('property="og:url"')).toBe(`${environment.site_url}/media`);
+    expect(canonical()).toBe(`${environment.site_url}/en/media`);
+    expect(content('property="og:url"')).toBe(`${environment.site_url}/en/media`);
   });
 
-  it('prefixes page URLs with the language base href, without a trailing slash', () => {
-    TestBed.resetTestingModule();
-    setup('/en/');
+  it('prefixes page URLs with the language, without a trailing slash', async () => {
     service.apply({ path: '/csr' });
     expect(canonical()).toBe(`${environment.site_url}/en/csr`);
     service.apply({ path: '/' });
     expect(canonical()).toBe(`${environment.site_url}/en`);
     expect(content('property="og:url"')).toBe(`${environment.site_url}/en`);
+
+    await TestBed.inject(LanguageService).use(khmer);
+    service.apply({ path: '/csr' });
+    expect(canonical()).toBe(`${environment.site_url}/csr`);
+    service.apply({ path: '/' });
+    expect(canonical()).toBe(`${environment.site_url}/`);
+  });
+
+  it('writes the site name, default description and locale in the page language', async () => {
+    await TestBed.inject(LanguageService).use(khmer);
+    service.apply({ path: '/' });
+    expect(title.getTitle()).toBe('ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន');
+    expect(content('property="og:site_name"')).toBe('ម៉ាលីន កោះកុង ភីស ឌីវេឡុបមិន');
+    expect(content('name="description"')).toContain('បូម និងផ្គត់ផ្គង់ខ្សាច់');
+    expect(content('property="og:locale"')).toBe('km_KH');
   });
 
   it('marks pages noindex on request', () => {
@@ -102,12 +118,14 @@ describe('SeoService', () => {
       expect(alternates()).toEqual({
         km: `${environment.site_url}/services`,
         en: `${environment.site_url}/en/services`,
+        'zh-Hans': `${environment.site_url}/zh/services`,
         'x-default': `${environment.site_url}/services`,
       });
       service.apply({ path: '/' });
       expect(alternates()).toEqual({
         km: `${environment.site_url}/`,
         en: `${environment.site_url}/en`,
+        'zh-Hans': `${environment.site_url}/zh`,
         'x-default': `${environment.site_url}/`,
       });
     });
@@ -118,7 +136,7 @@ describe('SeoService', () => {
       expect(alternates()).toEqual({});
     });
 
-    it('sets og:locale for the build (English in tests)', () => {
+    it('sets og:locale for the page language (English in tests)', () => {
       service.apply({ path: '/' });
       expect(content('property="og:locale"')).toBe('en_US');
     });
@@ -128,10 +146,11 @@ describe('SeoService', () => {
     const scripts = () => document.head.querySelectorAll('script[type="application/ld+json"]');
 
     it('writes one block and removes it on pages without structured data', () => {
-      service.apply({ path: '/', jsonLd: ORGANIZATION_JSON_LD });
-      service.apply({ path: '/', jsonLd: ORGANIZATION_JSON_LD });
+      const organization = organizationJsonLd(service.translate);
+      service.apply({ path: '/', jsonLd: organization });
+      service.apply({ path: '/', jsonLd: organization });
       expect(scripts().length).toBe(1);
-      expect(JSON.parse(scripts()[0].textContent ?? '')).toEqual(ORGANIZATION_JSON_LD);
+      expect(JSON.parse(scripts()[0].textContent ?? '')).toEqual(organization);
 
       service.apply({ title: 'Media', path: '/media' });
       expect(scripts().length).toBe(0);
@@ -143,21 +162,22 @@ describe('SeoService', () => {
       expect(JSON.parse(scripts()[0].textContent ?? '').name).toBe('</script><script>alert(1)</script>');
     });
 
-    it('describes the organisation at the site origin', () => {
-      expect(ORGANIZATION_JSON_LD).toMatchObject({
+    it('describes the organisation at the site origin, in the page language', () => {
+      expect(organizationJsonLd(service.translate)).toMatchObject({
         '@type': 'Organization',
         name: SITE_NAME,
         url: `${environment.site_url}/`,
+        description: expect.stringContaining('dredges and supplies sand'),
       });
     });
   });
 
   it('marks every page noindex, without alternates, on builds that are not indexable', () => {
     TestBed.resetTestingModule();
-    setup('/', false);
+    setup(false);
     service.apply({ title: 'Services', path: '/services' });
     expect(content('name="robots"')).toBe('noindex');
     expect(document.head.querySelector('link[rel="alternate"][hreflang]')).toBeNull();
-    expect(canonical()).toBe(`${environment.site_url}/services`);
+    expect(canonical()).toBe(`${environment.site_url}/en/services`);
   });
 });

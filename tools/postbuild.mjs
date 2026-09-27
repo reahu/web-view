@@ -7,8 +7,8 @@
 //    event-replay bootstrap lists that page's events), so no single header could list them.
 //    frame-ancestors can't be set from <meta>; nginx sends it (security-headers.conf).
 // 2. sitemap.xml: every prerendered route whose page is indexable and canonical to itself,
-//    in both languages (Khmer at /, English under /en). noindex pages and redirect stubs (no
-//    canonical) drop out; an indexable page whose canonical points elsewhere fails the build.
+//    in every language (Khmer at /, English under /en, Chinese under /zh). noindex pages and
+//    redirect stubs (no canonical) drop out; an indexable page whose canonical points elsewhere fails the build.
 //    Each URL carries its language alternates (hreflang), read from the page; they must
 //    agree both ways and point at pages in the sitemap.
 // 3. robots.txt: allows everything and points to the sitemap. Builds that aren't

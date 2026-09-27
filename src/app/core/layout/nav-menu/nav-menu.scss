@@ -28,10 +28,6 @@
   text-align: start;
   text-decoration: none;
   cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }
 
 .nav__trigger[aria-expanded='true'] .nav__chevron {
@@ -47,10 +43,6 @@
   padding: var(--space-2) 0;
   color: var(--c-ink);
   text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }
 
 .is-active {
@@ -76,13 +68,17 @@
     min-height: 2.75rem;
     color: var(--c-paper);
     font-size: var(--fs-sm);
+    transition: color 0.15s;
+
+    // Light grey: still about 9:1 on the header green, where --c-slate would be too dark.
+    &:hover {
+      color: var(--c-line);
+    }
   }
 
   .nav__trigger.is-active,
   .nav__link.is-active {
     font-weight: inherit;
-    text-decoration: underline 2px;
-    text-underline-offset: 0.5em;
   }
 
   .nav__group {
