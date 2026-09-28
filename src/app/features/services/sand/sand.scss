@@ -1,3 +1,9 @@
+// As wide as the text: the clip is no bigger than that yet (848px).
+.video {
+  max-width: var(--measure);
+  margin-bottom: var(--space-7);
+}
+
 .process {
   margin-top: var(--space-7);
 }

@@ -34,12 +34,26 @@
     />
     <ul class="services" role="list">
       <li class="service">
+        <rg-video-loop
+          class="service__video"
+          src="/videos/sand-dredgers.mp4"
+          [width]="848"
+          [height]="464"
+          [label]="'sand.video' | translate"
+        />
         <h3>
           <a [routerLink]="'/services/sand' | langPath">{{ 'sand.title' | translate }}</a>
         </h3>
         <p>{{ 'company.sand.summary' | translate }}</p>
       </li>
       <li class="service">
+        <rg-video-loop
+          class="service__video"
+          src="/videos/minerals-table.mp4"
+          [width]="464"
+          [height]="848"
+          [label]="'minerals.video.table' | translate"
+        />
         <h3>
           <a [routerLink]="'/services/minerals' | langPath">{{ 'minerals.title' | translate }}</a>
         </h3>

@@ -5,9 +5,18 @@ import { LangPathPipe } from '@core/i18n/lang-path-pipe';
 import { TranslatePipe } from '@core/i18n/translate-pipe';
 import { QuoteCta } from '@shared/ui/quote-cta/quote-cta';
 import { SectionHeading } from '@shared/ui/section-heading/section-heading';
+import { VideoLoop } from '@shared/ui/video-loop/video-loop';
 
 @Component({
-  imports: [NgOptimizedImage, RouterLink, SectionHeading, QuoteCta, TranslatePipe, LangPathPipe],
+  imports: [
+    NgOptimizedImage,
+    RouterLink,
+    SectionHeading,
+    QuoteCta,
+    TranslatePipe,
+    LangPathPipe,
+    VideoLoop,
+  ],
   selector: 'rg-home',
   styleUrl: './home.scss',
   templateUrl: './home.html',

@@ -28,7 +28,7 @@ Every page is prerendered in every language, in one build: Khmer at `/`, English
 
 ## Deployment
 
-GitHub → Cloudflare: the site is hosted on Cloudflare Workers static assets ([wrangler.jsonc](wrangler.jsonc)), and Cloudflare builds it from this repository by itself (Workers Builds). Deploys need no GitHub Actions workflow or API token; [ci.yml](.github/workflows/ci.yml) only checks pull requests.
+GitHub → Cloudflare: the site is hosted on Cloudflare Workers static assets ([wrangler.jsonc](wrangler.jsonc)), and Cloudflare builds it from this repository by itself (Workers Builds). Deploys need no GitHub Actions workflow or API token; [ci.yml](.github/workflows/ci.yml) only checks pull requests. The only Worker code, [worker/index.js](worker/index.js), serves the videos (see [Videos](#videos)).
 
 - A push to `main` deploys staging, the Worker `malin-web-staging`: https://malin-web-staging.reahu-seak.workers.dev (noindex).
 - A push to any other branch builds a Preview with its own URL, linked from the pull request.
@@ -46,6 +46,33 @@ The Worker was created from this repository in the Cloudflare dashboard (**Worke
 | Root directory | empty (the repository root) |
 
 Cloudflare's build image uses Node 24, which Angular 22 supports.
+
+## Videos
+
+Short silent clips that loop while they're on screen, with a pause button: `<rg-video-loop>` ([video-loop.ts](src/app/shared/ui/video-loop/video-loop.ts)) on the home, sand and minerals pages. Each clip is an MP4 in [public/videos](public/videos) with a WebP poster of its first frame beside it, under the same name.
+
+- **Keep them small:** H.264, no sound, about 10 seconds, a few MB. Cloudflare takes at most 25 MiB per file, and the Worker reads each clip whole. Longer videos with sound belong on Cloudflare Stream, not in this repository.
+- **Replace a clip** by replacing both files under the same names; Cloudflare revalidates every file, so visitors get the new one. If its size changes, update `[width]` and `[height]` where it's used.
+- **The current clips are placeholders**, cut from compressed chat copies (848×464). Recut them from the original files:
+
+| File | Source | From | Length | Fade |
+|---|---|---|---|---|
+| `sand-dredgers` | `IMG_3154.MP4` (drone) | 0:50 | 12 s | 1.5 s |
+| `minerals-table` | `IMG_9469.MP4` | 0:02 | 8 s | 1 s |
+| `minerals-sample` | `IMG_5161.MP4` | 0:17 | 9 s | 1 s |
+
+With [ffmpeg](https://ffmpeg.org), the clip's last seconds fade into its first frames, so the loop has no jump. `-t` is the length plus the fade, and `offset` the length minus the fade:
+
+```sh
+ffmpeg -ss 50 -t 13.5 -i IMG_3154.MP4 -filter_complex \
+  "[0:v]setpts=PTS-STARTPTS,split[a][b];[a]trim=start=1.5,setpts=PTS-STARTPTS[main];[b]trim=end=1.5,setpts=PTS-STARTPTS[head];[main][head]xfade=transition=fade:duration=1.5:offset=10.5,format=yuv420p[v]" \
+  -map "[v]" -an -c:v libx264 -profile:v high -crf 26 -preset slow -movflags +faststart sand-dredgers.mp4
+ffmpeg -i sand-dredgers.mp4 -frames:v 1 -c:v libwebp -quality 80 sand-dredgers.webp
+```
+
+From a full-size original, add `scale=-2:720,` before `format=yuv420p` (`scale=720:-2,` for an upright clip).
+
+**iPhones need byte ranges.** Safari, which every iPhone browser uses, only plays a video from a server that answers a `Range` request with `206 Partial Content`. Cloudflare's static assets send the whole file instead, so [worker/index.js](worker/index.js) answers for `/videos/*` (`run_worker_first` in wrangler.jsonc); every other URL is served as before. nginx handles ranges itself. To check a deploy, `curl -sI -H "Range: bytes=0-1" <site>/videos/sand-dredgers.mp4` should say `206`. The clips start by themselves because [security-headers.conf](security-headers.conf) allows `autoplay=(self)`.
 
 ## Project structure
 

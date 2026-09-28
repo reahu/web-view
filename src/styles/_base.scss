@@ -154,6 +154,38 @@ textarea {
   }
 }
 
+// A row of photos across the page: two by two on small screens (the first one alone when
+// there's an odd number), all side by side on wide ones. Each file is cut to 4:3, so they
+// line up.
+.photo-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  margin-block: var(--space-7);
+  padding: 0;
+  list-style: none;
+
+  > li:first-child:nth-last-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  @include bp.up(bp.$md) {
+    grid-template-columns: none;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    gap: var(--space-4);
+
+    > li:first-child:nth-last-child(odd) {
+      grid-column: auto;
+    }
+  }
+
+  img {
+    width: 100%;
+    border-radius: var(--radius-card);
+  }
+}
+
 // Buttons (also used on links that look like buttons).
 .button {
   display: inline-flex;

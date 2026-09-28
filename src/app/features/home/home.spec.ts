@@ -33,6 +33,12 @@ describe('Home', () => {
     expect(hrefs).toContain('/en/contact-us');
   });
 
+  it('shows each service at work on video', () => {
+    expect(
+      [...el.querySelectorAll('.service source')].map((source) => source.getAttribute('src')),
+    ).toEqual(['/videos/sand-dredgers.mp4', '/videos/minerals-table.mp4']);
+  });
+
   it('shows the hall photo, no longer a placeholder', () => {
     const image = el.querySelector('.hero__image');
     expect(image?.getAttribute('src')).toContain('/images/photos/hall.webp');

@@ -10,6 +10,25 @@
     <p>{{ 'about.belief' | translate }}</p>
   </div>
 
+  <ul class="photo-row" role="list">
+    <li>
+      <img
+        ngSrc="/images/photos/sand-bow.webp"
+        width="960"
+        height="720"
+        [alt]="'sand.bow.imageAlt' | translate"
+      />
+    </li>
+    <li>
+      <img
+        ngSrc="/images/photos/minerals-survey.webp"
+        width="960"
+        height="720"
+        [alt]="'minerals.survey.imageAlt' | translate"
+      />
+    </li>
+  </ul>
+
   <section class="values" aria-labelledby="values-title">
     <h2 id="values-title">{{ 'about.values.heading' | translate }}</h2>
     <ul class="values__list" role="list">

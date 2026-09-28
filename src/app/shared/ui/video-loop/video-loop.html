@@ -1,0 +1,31 @@
+<video
+  #video
+  [attr.width]="width()"
+  [attr.height]="height()"
+  [attr.poster]="poster()"
+  [attr.aria-label]="label()"
+  muted
+  loop
+  playsinline
+  preload="none"
+  disablepictureinpicture
+  disableremoteplayback
+  (play)="playing.set(true)"
+  (pause)="playing.set(false)"
+>
+  <source [attr.src]="src()" type="video/mp4" />
+</video>
+<button
+  type="button"
+  class="toggle"
+  [attr.aria-label]="(playing() ? 'video.pause' : 'video.play') | translate"
+  (click)="toggle()"
+>
+  <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false">
+    @if (playing()) {
+      <path d="M4 2h3v12H4zM9 2h3v12H9z" />
+    } @else {
+      <path d="M4 2l10 6-10 6z" />
+    }
+  </svg>
+</button>

@@ -30,6 +30,26 @@ describe('Minerals', () => {
     expect(el.querySelectorAll('ul.licences li').length).toBe(6);
   });
 
+  it('shows a sample being dug and minerals being separated on video', () => {
+    expect(
+      [...el.querySelectorAll('.clips source')].map((source) => source.getAttribute('src')),
+    ).toEqual(['/videos/minerals-sample.mp4', '/videos/minerals-table.mp4']);
+  });
+
+  it('shows photos of exploration work after the videos, each described', () => {
+    const photos = [...el.querySelectorAll<HTMLImageElement>('.photo-row img')];
+    expect(photos.map((img) => img.getAttribute('src'))).toEqual([
+      '/images/photos/minerals-fieldwork.webp',
+      '/images/photos/minerals-outcrop.webp',
+      '/images/photos/minerals-drilling.webp',
+      '/images/photos/minerals-panning.webp',
+    ]);
+    expect(photos.every((img) => img.alt.length > 0)).toBe(true);
+    const clips = el.querySelector('.clips')!;
+    const row = el.querySelector('.photo-row')!;
+    expect(clips.compareDocumentPosition(row) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
   it('asks for a consultation, not a quote for sand', () => {
     expect(el.querySelector('rg-quote-cta h2')?.textContent?.trim()).toBe(
       'Planning a mining project?',

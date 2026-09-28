@@ -137,3 +137,10 @@ h1 {
     margin-top: var(--space-3);
   }
 }
+
+// One shape for both cards: the minerals clip is an upright phone video, cropped here.
+.service__video {
+  aspect-ratio: 16 / 9;
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-card);
+}

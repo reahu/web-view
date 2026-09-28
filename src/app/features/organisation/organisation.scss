@@ -8,20 +8,23 @@ $ink: #3b22c6;
 $team: #13803f;
 $shared: #4de8f2;
 
-// Lines are borders, or a strip of solid background sized and placed where it's needed.
+// Lines are borders, or a strip of solid background (--bar) sized and placed where needed.
 $line: 2px solid $violet;
-$bar: linear-gradient($violet 0 0);
 // Each connector's drop: from a card to a bar, or from a bar to a card.
 $drop: 1rem;
-// Where a tree tick meets a card on phones, from the top of its item: level with the name,
-// just under the portrait.
-$tick: calc(var(--space-3) + 6.125rem);
+// Phones: the tree's indent, and where a tick meets a card, from the top of its item: level
+// with the name, just under the portrait.
+$indent: 0.75rem;
+$tick: $indent + 6.125rem;
 
 // The printed chart's green, edge to edge from the site header to the footer.
 .board {
+  --bar: linear-gradient(#{$violet} 0 0);
+
   padding: var(--space-6) var(--gutter) var(--space-7);
   background: var(--c-brand);
   color: var(--c-paper);
+  text-align: center;
 }
 
 // As printed: company, title and logo side by side. Narrower, the title goes beneath the
@@ -32,7 +35,6 @@ $tick: calc(var(--space-3) + 6.125rem);
   gap: var(--space-5);
   justify-items: center;
   margin-bottom: var(--space-7);
-  text-align: center;
 
   // A line per language. Khmer in the print's Moul lettering, which has only the one
   // weight; Chinese spaced out, taking back the space after the last character so the line
@@ -42,10 +44,6 @@ $tick: calc(var(--space-3) + 6.125rem);
     font-weight: 400;
   }
 
-  [lang='en'] {
-    text-transform: uppercase;
-  }
-
   [lang^='zh'] {
     margin-right: -0.4em;
     font-size: var(--fs-md);
@@ -53,11 +51,12 @@ $tick: calc(var(--space-3) + 6.125rem);
   }
 }
 
+// Capitals for the English; Khmer and Chinese have no case.
 .board__company,
 .board__title {
   display: grid;
-  font-weight: 700;
-  line-height: var(--lh-snug);
+  font: 700 var(--fs-md) / var(--lh-snug) var(--font-body);
+  text-transform: uppercase;
 }
 
 .board__company {
@@ -68,8 +67,6 @@ $tick: calc(var(--space-3) + 6.125rem);
 
 .board__title {
   grid-area: title;
-  font-family: var(--font-body);
-  font-size: var(--fs-md);
   color: inherit;
 
   > [lang='km'] {
@@ -95,7 +92,6 @@ $tick: calc(var(--space-3) + 6.125rem);
   margin-top: var(--space-7);
   font-family: Georgia, var(--font-display);
   font-size: var(--fs-md);
-  text-align: center;
 
   &:lang(en) {
     font-style: italic;
@@ -113,22 +109,20 @@ $tick: calc(var(--space-3) + 6.125rem);
 .person {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: $bar calc(50% + 1px) 0 / 2px var(--line, 0) no-repeat;
+  background: var(--bar) calc(50% + 1px) 0 / 2px var(--line, 0) no-repeat;
 }
 
 .person__photo {
   width: 4rem;
   height: 5rem;
+  margin: 0 auto;
   border: $line;
   background: var(--c-paper);
   object-fit: cover;
 }
 
 .person__plate {
-  flex: 1 0 auto;
-  align-self: stretch;
+  flex-grow: 1;
   padding: var(--space-2) var(--space-3);
   border-radius: calc(var(--radius-card) / 2);
   background: var(--c-paper);
@@ -155,21 +149,21 @@ $tick: calc(var(--space-3) + 6.125rem);
 }
 
 // A manager's line runs on through their card, down to their people.
-.org .org__item--manager > .org__heads > .person {
+.org__item--manager > .org__heads > .person {
   --line: 100%;
 }
 
 // A pair side by side, their lines dropping to a bracket; the person they share hangs from
 // its middle. With two equal cards, it runs from a quarter in on either side.
 .org__heads--pair {
-  --pair-gap: var(--space-2);
+  --gap: var(--space-2);
 
   display: flex;
-  gap: var(--pair-gap);
-  background: $bar 50% 100% / calc(50% + var(--pair-gap) / 2) 2px no-repeat;
+  gap: var(--gap);
+  background: var(--bar) 50% 100% / calc(50% + var(--gap) / 2) 2px no-repeat;
 
   > .person {
-    flex: 1 1 0;
+    flex: 1;
     min-width: 0;
     padding-bottom: $drop;
   }
@@ -217,21 +211,17 @@ $tick: calc(var(--space-3) + 6.125rem);
     font-size: var(--fs-sm);
   }
 
-  // Under the President and the CEO: each group hangs off their manager's line by a short
-  // tick, and the line stops at the last one.
-  .org--leads > .org__item > .org {
-    margin-left: var(--space-3);
+  // Under the President and the CEO: each group hangs off their manager's line by a tick,
+  // and the line stops at the last one.
+  .org--leads > * > .org > * {
+    padding: $indent 0 0 $indent + 1rem;
+    background:
+      var(--bar) $indent #{$tick} / 1rem 2px no-repeat,
+      var(--bar) $indent 0 / 2px 100% no-repeat;
 
-    > .org__item {
-      padding: var(--space-3) 0 0 var(--space-4);
-      background:
-        $bar 0 $tick / var(--space-4) 2px no-repeat,
-        $bar 0 0 / 2px 100% no-repeat;
-    }
-
-    > :last-child {
+    &:last-child {
       background-size:
-        var(--space-4) 2px,
+        1rem 2px,
         2px $tick;
     }
   }
@@ -273,31 +263,31 @@ $tick: calc(var(--space-3) + 6.125rem);
   // and the CTO's three, one of whom has two people beneath them. That row holds 20 spreads:
   // one each side of every group, nested groups included, and two between a pair.
   .board > .org {
-    --card-width: min(7.75rem, (100cqi - 5rem) / 8);
-    --spread: max(var(--space-1), (100cqi - 8 * var(--card-width)) / 20);
+    --card: min(7.75rem, (100cqi - 5rem)/8);
+    --spread: max(var(--space-1), (100cqi - 8 * var(--card))/20);
 
     container-type: inline-size;
   }
 
   .org {
     display: flex;
-    align-items: flex-start;
+    align-items: start;
     justify-content: center;
   }
 
   .org__item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    justify-items: center;
   }
 
   .org__heads {
     display: flex;
   }
 
-  // The bar runs from the first centre in a row to the last. A pair has a line to each of
-  // them rather than one to the middle, so at an end of the row it stops at the outer one.
-  .org .org > .org__item {
+  // Everyone below the President (an item within an item) hangs from a bar, which runs from
+  // the first centre in a row to the last. A pair has a line to each of them rather than one
+  // to the middle, so at an end of the row the bar stops at the outer one.
+  li li {
     --end: 50%;
 
     position: relative;
@@ -306,22 +296,20 @@ $tick: calc(var(--space-3) + 6.125rem);
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
+      inset: 0 0 auto;
       border-top: $line;
     }
   }
 
-  .org .org > .org__item--pair {
-    --end: calc(var(--spread) + var(--card-width) / 2);
+  li .org__item--pair {
+    --end: calc(var(--spread) + var(--card)/2);
   }
 
-  .org .org > :first-child::before {
+  li li:first-child::before {
     left: var(--end);
   }
 
-  .org .org > :last-child::before {
+  li li:last-child::before {
     right: var(--end);
   }
 
@@ -329,11 +317,11 @@ $tick: calc(var(--space-3) + 6.125rem);
   // and room beneath for a drop to the next row. The plates keep to their text rather than
   // all being as tall as the longest title.
   .person {
-    width: var(--card-width);
+    width: var(--card);
     padding-bottom: $drop;
   }
 
-  .org .org .person {
+  li li .person {
     --line: #{$drop};
 
     padding-top: $drop;
@@ -352,11 +340,7 @@ $tick: calc(var(--space-3) + 6.125rem);
   }
 
   .org__heads--pair {
-    --pair-gap: calc(2 * var(--spread));
-
-    > .person {
-      flex: none;
-    }
+    --gap: calc(2 * var(--spread));
   }
 
   // The departments share two rows, so every head's card is as tall as the tallest and their
@@ -366,10 +350,8 @@ $tick: calc(var(--space-3) + 6.125rem);
     grid: auto auto / auto-flow;
 
     > .org__item {
-      display: grid;
       grid-row: span 2;
       grid-template-rows: subgrid;
-      place-items: stretch center;
     }
   }
 }

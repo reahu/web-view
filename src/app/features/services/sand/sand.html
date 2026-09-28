@@ -4,6 +4,14 @@
     <p class="lead">{{ 'company.sand.intro' | translate }}</p>
   </header>
 
+  <rg-video-loop
+    class="video"
+    src="/videos/sand-dredgers.mp4"
+    [width]="848"
+    [height]="464"
+    [label]="'sand.video' | translate"
+  />
+
   <div class="prose">
     <p>{{ 'sand.focus' | translate }}</p>
   </div>
@@ -12,6 +20,33 @@
     <h2 id="process-title" class="process__title">{{ 'process.heading' | translate }}</h2>
     <rg-process-steps [steps]="steps()" />
   </section>
+
+  <ul class="photo-row" role="list">
+    <li>
+      <img
+        ngSrc="/images/photos/sand-bank.webp"
+        width="960"
+        height="720"
+        [alt]="'sand.bank.imageAlt' | translate"
+      />
+    </li>
+    <li>
+      <img
+        ngSrc="/images/photos/sand-deck.webp"
+        width="960"
+        height="720"
+        [alt]="'sand.deck.imageAlt' | translate"
+      />
+    </li>
+    <li>
+      <img
+        ngSrc="/images/photos/sand-moored.webp"
+        width="960"
+        height="720"
+        [alt]="'sand.moored.imageAlt' | translate"
+      />
+    </li>
+  </ul>
 
   <div class="prose">
     <h2>{{ 'sand.supply.heading' | translate }}</h2>

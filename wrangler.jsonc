@@ -1,11 +1,16 @@
 // Cloudflare Workers static assets: serves the prerendered site in dist/web-view/browser as it
-// is, with no Worker code. tools/cloudflare.mjs prepares that folder after the build.
+// is. tools/cloudflare.mjs prepares that folder after the build. The only Worker code,
+// worker/index.js, serves the videos, which need byte ranges.
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "malin-web",
+  "main": "worker/index.js",
   "compatibility_date": "2026-09-25",
   "assets": {
     "directory": "./dist/web-view/browser",
+    "binding": "ASSETS",
+    // Everything else skips the Worker, and costs nothing.
+    "run_worker_first": ["/videos/*"],
     // /about serves about/index.html and /about/ redirects to /about, matching the canonical
     // URLs, which never end in a slash.
     "html_handling": "drop-trailing-slash",

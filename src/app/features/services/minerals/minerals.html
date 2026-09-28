@@ -24,7 +24,58 @@
 
     <h2>{{ 'minerals.exploration.heading' | translate }}</h2>
     <p>{{ 'minerals.exploration.body' | translate }}</p>
+    <div class="clips">
+      <rg-video-loop
+        src="/videos/minerals-sample.mp4"
+        [width]="352"
+        [height]="640"
+        [label]="'minerals.video.sample' | translate"
+      />
+      <rg-video-loop
+        src="/videos/minerals-table.mp4"
+        [width]="464"
+        [height]="848"
+        [label]="'minerals.video.table' | translate"
+      />
+    </div>
+  </div>
 
+  <ul class="photo-row" role="list">
+    <li>
+      <img
+        ngSrc="/images/photos/minerals-fieldwork.webp"
+        width="960"
+        height="720"
+        [alt]="'minerals.fieldwork.imageAlt' | translate"
+      />
+    </li>
+    <li>
+      <img
+        ngSrc="/images/photos/minerals-outcrop.webp"
+        width="960"
+        height="720"
+        [alt]="'minerals.outcrop.imageAlt' | translate"
+      />
+    </li>
+    <li>
+      <img
+        ngSrc="/images/photos/minerals-drilling.webp"
+        width="960"
+        height="720"
+        [alt]="'minerals.drilling.imageAlt' | translate"
+      />
+    </li>
+    <li>
+      <img
+        ngSrc="/images/photos/minerals-panning.webp"
+        width="960"
+        height="720"
+        [alt]="'minerals.panning.imageAlt' | translate"
+      />
+    </li>
+  </ul>
+
+  <div class="prose">
     <h2>{{ 'minerals.licences.heading' | translate }}</h2>
     <p>{{ 'minerals.licences.intro' | translate }}</p>
     <ul class="licences">
