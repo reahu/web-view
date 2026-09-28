@@ -1,0 +1,93 @@
+:host {
+  // How much of each neighbour shows beside the middle photo.
+  --peek: clamp(1.5rem, 4vw, 3rem);
+  // A neighbour's size, next to the middle photo's.
+  --side-scale: 0.92;
+  --duration: 700ms;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  display: block;
+}
+
+// The photos stack in one grid cell: the middle one sets the height. Nothing is clipped, so
+// the middle photo's glow can spread; the page around it clips that at the screen's edge.
+.track {
+  display: grid;
+  touch-action: pan-y; // sideways swipes are ours, scrolling the page stays the browser's
+  user-select: none;
+}
+
+// A neighbour sits behind the middle photo, darkened, with just its outer edge showing: moved
+// by the peek, plus the half of what it lost to shrinking, that edge meets the carousel's.
+// Photos further out wait, unseen, in the neighbours' places.
+.slide {
+  --place: clamp(-1, var(--offset), 1);
+
+  grid-area: 1 / 1;
+  justify-self: center;
+  position: relative;
+  z-index: 0;
+  width: calc(100% - 2 * var(--peek));
+  filter: brightness(0.5) blur(2px);
+  cursor: pointer;
+  transform: translateX(calc(var(--place) * (50% * (1 - var(--side-scale)) + var(--peek))))
+    scale(var(--side-scale));
+  transition:
+    transform var(--duration) var(--ease),
+    filter var(--duration) var(--ease),
+    opacity var(--duration) var(--ease),
+    z-index var(--duration) var(--ease),
+    visibility 0s;
+}
+
+.slide--current {
+  z-index: 1;
+  filter: none;
+  cursor: auto;
+  transform: none;
+}
+
+// Hidden only once it has faded, on its way out; shown at once on its way back in.
+.slide--away {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    transform var(--duration) var(--ease),
+    filter var(--duration) var(--ease),
+    opacity var(--duration) var(--ease),
+    z-index var(--duration) var(--ease),
+    visibility 0s var(--duration);
+}
+
+.frame {
+  overflow: hidden;
+  border-radius: var(--radius-media);
+  background: rgb(255 255 255 / 0.06);
+  // A hairline highlight so the photo's edge reads against the dark green.
+  outline: 1px solid rgb(255 255 255 / 0.12);
+  outline-offset: -1px;
+}
+
+// The middle photo's own colours, blurred, spreading around it and over its neighbours.
+.glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--radius-media);
+  background: center / cover no-repeat;
+  opacity: 0;
+  filter: blur(2rem) saturate(1.3);
+  transform: scale(1.06);
+  transition: opacity var(--duration) var(--ease);
+  pointer-events: none;
+
+  .slide--current & {
+    opacity: 0.75;
+  }
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}

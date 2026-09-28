@@ -76,9 +76,12 @@
     }
   }
 
+  // The current page's link, or its group's button, in gold (--c-accent is allowed on the
+  // header's green), hovered or not.
   .nav__trigger.is-active,
   .nav__link.is-active {
     font-weight: inherit;
+    color: var(--c-accent);
   }
 
   .nav__group {

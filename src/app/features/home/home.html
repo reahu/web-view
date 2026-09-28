@@ -14,14 +14,7 @@
       </div>
     </div>
     <div class="hero__media">
-      <img
-        class="hero__image"
-        ngSrc="/images/photos/hall.webp"
-        width="1280"
-        height="960"
-        priority
-        [alt]="'home.hero.imageAlt' | translate"
-      />
+      <rg-photo-carousel [photos]="photos" [label]="'home.hero.photos' | translate" priority />
     </div>
   </div>
 </section>

@@ -2,6 +2,7 @@
 
 .hero {
   --c-focus: var(--c-paper);
+  overflow: clip; // the photos' glow, which spreads past them, stays inside the green
   padding-block: var(--space-7);
   // A faint light behind the photo gives the flat green some depth.
   background:
@@ -50,34 +51,22 @@ h1 {
   gap: var(--space-3);
 }
 
-// The photo on a gold frame, offset toward the text, with a dot grid above its far corner.
+// The photos, with a dot grid above their far corner.
 .hero__media {
   --offset: var(--space-3);
 
   position: relative;
-  isolation: isolate; // keeps the decorations (z-index -1) above the hero's background
-  margin: 0 var(--offset) var(--offset) var(--offset);
+  isolation: isolate; // keeps the dot grid (z-index -1) above the hero's background
 
   @include bp.up(bp.$md) {
     --offset: var(--space-5);
-
-    margin-inline-end: 0;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: var(--offset) var(--offset) calc(-1 * var(--offset)) calc(-1 * var(--offset));
-    z-index: -1;
-    border: 2px solid var(--c-accent);
-    border-radius: var(--radius-media);
   }
 
   &::after {
     content: '';
     position: absolute;
     top: calc(-2 * var(--offset));
-    right: calc(-1 * var(--offset));
+    right: 0;
     z-index: -1;
     width: 7rem;
     height: 5rem;
@@ -88,16 +77,6 @@ h1 {
       )
       0 0 / 1rem 1rem;
   }
-}
-
-.hero__image {
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius-media);
-  box-shadow: 0 2rem 3rem -1.5rem rgb(0 0 0 / 0.6);
-  // A hairline highlight so the photo's edge reads against the dark green.
-  outline: 1px solid rgb(255 255 255 / 0.12);
-  outline-offset: -1px;
 }
 
 .services {

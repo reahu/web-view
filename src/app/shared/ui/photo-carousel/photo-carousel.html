@@ -1,0 +1,36 @@
+<div
+  class="track"
+  (pointerdown)="onPointerDown($event)"
+  (pointerup)="onPointerUp($event)"
+  (pointercancel)="onPointerCancel()"
+>
+  @for (photo of photos(); track photo.src; let i = $index, first = $first) {
+    @let place = offset(i);
+    <div
+      class="slide"
+      role="group"
+      [class.slide--current]="place === 0"
+      [class.slide--away]="place < -1 || place > 1"
+      [style.--offset]="place"
+      [attr.aria-label]="'carousel.position' | translate: { number: i + 1, total: photos().length }"
+      [attr.aria-hidden]="place === 0 ? null : 'true'"
+      [attr.data-index]="i"
+    >
+      <!-- Only the photos on show: the image is already loaded for them, so it costs nothing. -->
+      <div
+        class="glow"
+        [style.background-image]="place >= -1 && place <= 1 ? 'url(' + photo.src + ')' : null"
+      ></div>
+      <div class="frame">
+        <img
+          [ngSrc]="photo.src"
+          [width]="photo.width"
+          [height]="photo.height"
+          [priority]="priority() && first"
+          [alt]="photo.alt | translate"
+          draggable="false"
+        />
+      </div>
+    </div>
+  }
+</div>

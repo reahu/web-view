@@ -39,9 +39,23 @@ describe('Home', () => {
     ).toEqual(['/videos/sand-dredgers.mp4', '/videos/minerals-table.mp4']);
   });
 
-  it('shows the hall photo, no longer a placeholder', () => {
-    const image = el.querySelector('.hero__image');
-    expect(image?.getAttribute('src')).toContain('/images/photos/hall.webp');
-    expect(image?.getAttribute('alt')).not.toMatch(/^Placeholder/);
+  it('opens on the hall photo, then sand and minerals work in turn', () => {
+    expect(
+      [...el.querySelectorAll('.hero__media img')].map((img) => img.getAttribute('src')),
+    ).toEqual([
+      '/images/photos/hall.webp',
+      '/images/photos/sand-bow.webp',
+      '/images/photos/minerals-survey.webp',
+      '/images/photos/sand-bank.webp',
+      '/images/photos/minerals-drilling.webp',
+      '/images/photos/sand-deck.webp',
+      '/images/photos/minerals-fieldwork.webp',
+      '/images/photos/sand-moored.webp',
+      '/images/photos/minerals-outcrop.webp',
+      '/images/photos/minerals-panning.webp',
+    ]);
+    expect(el.querySelector('.hero__media [role="region"]')?.getAttribute('aria-label')).toBe(
+      'Photos of our office and our work',
+    );
   });
 });
